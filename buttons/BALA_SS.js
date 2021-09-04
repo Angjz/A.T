@@ -40,7 +40,7 @@ exports.run3 = (bot, interaction, f1, f2) => {
         }
 
         let bai = bot.bala_data[code].bai;
-        bai = functions.fisherYates(bai);
+        bai = functions.Knuth_Fisher_Yates(bai);
         let tay = bot.bala_data[code].p1.bai;
         let diem = bot.bala_data[code].p1.diem;
 
@@ -83,7 +83,7 @@ exports.run3 = (bot, interaction, f1, f2) => {
         }
 
         let bai = bot.bala_data[code].bai;
-        bai = functions.fisherYates(bai);
+        bai = functions.Knuth_Fisher_Yates(bai);
         let tay = bot.bala_data[code].p2.bai;
         let diem = bot.bala_data[code].p2.diem;
 

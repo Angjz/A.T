@@ -17,7 +17,7 @@ module.exports.jointer = (args, b) => {
 	return result;
 }
 
-module.exports.fisherYates = ( myArray ) => {
+module.exports.Knuth_Fisher_Yates = ( myArray ) => {
 	let i = myArray.length;
 	if ( i == 0 ) return;
 	while ( --i ) {
@@ -367,7 +367,7 @@ module.exports.code_phong = () => {
 	]
 	let code = "";
 	
-	array = functions.fisherYates(array)
+	array = functions.Knuth_Fisher_Yates(array)
 	for (let i = 1; i <= 5; i ++)
 		code += array[Math.floor( Math.random() * array.length )];
 	return code;

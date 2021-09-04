@@ -32,7 +32,7 @@ exports.run3 = (bot, interaction, f1, f2) => {
     }
     
     let bai = bot.bala_data[code].bai;
-    bai = functions.fisherYates(bai);
+    bai = functions.Knuth_Fisher_Yates(bai);
 
     if (one == bot.bala_data[code].p1.id){
         let tay = bot.bala_data[code].p1.bai;
