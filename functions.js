@@ -304,7 +304,7 @@ module.exports.set_user = (bot, message, f) => {
             phong: 0,
 			code: ".",
 			start: 0,
-			cuoc: 0,
+			cuoc: ".",
 			o_name: ".",
 			o_dis: ".",
 			o_id: ".",
@@ -373,7 +373,7 @@ module.exports.code_phong = () => {
 	return code;
 }
 
-module.exports.tao_phong = (bot, message, mention, ban, tiencuoc, f2, f3) => {
+module.exports.tao_phong = (bot, message, mention, tiencuocz, f2, f3) => {
 	let code = functions.code_phong();
 
 	bot.info[message.author.id] = {
@@ -387,7 +387,7 @@ module.exports.tao_phong = (bot, message, mention, ban, tiencuoc, f2, f3) => {
             phong: 1,
 			code: code,
 			start: 0,
-			cuoc: ban,
+			cuoc: tiencuocz,
 			o_name: mention.username,
 			o_dis: mention.discriminator,
 			o_id: mention.id,
@@ -404,7 +404,7 @@ module.exports.tao_phong = (bot, message, mention, ban, tiencuoc, f2, f3) => {
 	});
 
 	bot.bala_data[code] = {
-		cuoc: tiencuoc,
+		cuoc: tiencuocz,
 		bai: [
 			0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
 			11, 12, 13, 14, 15, 16, 17, 18, 19,
