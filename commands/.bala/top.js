@@ -6,135 +6,231 @@ exports.run4 = (bot, message, args, f1, f2) => {
 
     switch(args[2]){
         case 'money':
-            let a1 = [];
-            let a2 = [];
+            var mention = message.mentions.users.first();
+            if (!mention) var output = message.author;
+            else var output = mention;
 
+            var a = [];
             for(var k in bot.info) {
                 if (k == "880842350459486258") continue;
-                a1.push(bot.info[k].bala.tien);
-                a2.push(bot.info[k].id);
+                a.push([]);
+                a[a.length - 1].push(bot.info[k].bala.tien);
+                a[a.length - 1].push(bot.info[k].id);    
             }
-            for(let i = 0; i < a1.length; i++) a1[i] = functions.tach_tien(a1[i], 0);
+            for(var i = 0; i < a.length; i++) a[i][0] = functions.tach_tien(a[i][0], 0);
 
-            let a = functions.sortz(a1, a2);
-            a2 = a[1];
-            let vitri = a2.indexOf(message.author.id);
+            a = functions.sortz(a);
+            if (output.id == bot.user.id) vitri = "25-1-5";
+            else for(var i = 0; i < a.length; i++)
+                    if (a[i][1] == output.id){
+                        vitri = ++i;
+                        break;
+                    }
 
-            if (!bot.info[a2[1]]){
-                ten2 = "NONE";
-                tien2 = "NONE";
-            }
-            else{
-                ten2 = bot.info[a2[1]].ten;
-                tien2 = bot.info[a2[1]].bala.tien;
-            }
-
-            if (!bot.info[a2[2]]){
-                ten3 = "NONE";
-                tien3 = "NONE";
-            }
-            else{
-                ten3 = bot.info[a2[2]].ten;
-                tien3 = bot.info[a2[2]].bala.tien;
-            }
-
-            if (!bot.info[a2[3]]){
-                ten4 = "NONE";
-                tien4 = "NONE";
-            }
-            else{
-                ten4 = bot.info[a2[3]].ten;
-                tien4 = bot.info[a2[3]].bala.tien;
-            }
-
-            if (!bot.info[a2[4]]){
-                ten5 = "NONE";
-                tien5 = "NONE";
-            }
-            else{
-                ten5 = bot.info[a2[4]].ten;
-                tien5 = bot.info[a2[4]].bala.tien;
+            var tt = [];
+            for(var i = 0; i < 4; i++){
+                tt.push([]);
+                if (!bot.info[a[i+1][1]]) tt[i][0] = tt[i][1] = "NONE";
+                else{
+                    tt[i][0] = bot.info[a[i+1][1]].ten;
+                    tt[i][1] = bot.info[a[i+1][1]].bala.tien;
+                }
             }
 
             const embed2 = new MessageEmbed()
                 .setColor('#FBFF08')
-                .setTitle('Ba lá - bảng xếp hạng tiền')
+                .setTitle('Ba lá - bảng xếp hạng tiền 💰')
                 .setDescription('Các đại gia:')
                 .addFields(
-                    { name: '🥇Top 1', value: bot.info[a2[0]].ten + '\n' + bot.info[a2[0]].bala.tien + '(VND)', inline: true },
-                    { name: '🥈Top 2', value: ten2 + '\n' + tien2 + '(VND)', inline: true },
-                    { name: '🥉Top 3', value: ten3 + '\n' + tien3 + '(VND)', inline: true },
-                    { name: 'Top 4', value: ten4 + '\n' + tien4 + '(VND)', inline: true  },
-                    { name: 'Top 5', value: ten5 + '\n' + tien5 + '(VND)', inline: true  },
-                    { name: 'Vị trí của ' + message.author.tag, value: 'Top ' + (vitri + 1) + '\n' + bot.info[message.author.id].bala.tien + '(VND)', inline: true  },
+                    { name: '🥇Top 1', value: bot.info[a[0][1]].ten + '\n' + bot.info[a[0][1]].bala.tien + '(VND)', inline: true },
+                    { name: '🥈Top 2', value: tt[0][0] + '\n' + tt[0][1] + '(VND)', inline: true },
+                    { name: '🥉Top 3', value: tt[1][0] + '\n' + tt[1][1] + '(VND)', inline: true },
+                    { name: 'Top 4', value: tt[2][0] + '\n' + tt[2][1] + '(VND)', inline: true  },
+                    { name: 'Top 5', value: tt[3][0] + '\n' + tt[3][1] + '(VND)', inline: true  },
+                    { name: 'Vị trí của ' + output.tag, value: 'Top ' + vitri + '\n' + bot.info[output.id].bala.tien + '(VND)', inline: true  },
                 )
             message.channel.send({ embeds: [embed2] });
             break;
-       /* case 'play':
-            let a1 = [];
-            let a2 = [];
+        case 'play':
+            var mention = message.mentions.users.first();
+            if (!mention) var output = message.author;
+            else var output = mention;
     
+            var a = [];
             for(var k in bot.info) {
                 if (k == "880842350459486258") continue;
-                a1.push(bot.info[k].bala.tien);
-                a2.push(bot.info[k].id);
-            }
-            for(let i = 0; i < a1.length; i++) a1[i] = functions.tach_tien(a1[i], 0);
-    
-            let a = functions.sortz(a1, a2);
-            a2 = a[1];
-            let vitri = a2.indexOf(message.author.id);
-    
-            if (!bot.info[a2[1]]){
-                ten2 = "NONE";
-                tien2 = "NONE";
-            }
-            else{
-                ten2 = bot.info[a2[1]].ten;
-                tien2 = bot.info[a2[1]].bala.tien;
+                a.push([]);
+                a[a.length - 1].push(bot.info[k].bala.choi);
+                a[a.length - 1].push(bot.info[k].id);    
             }
     
-            if (!bot.info[a2[2]]){
-                ten3 = "NONE";
-                tien3 = "NONE";
-            }
-            else{
-                ten3 = bot.info[a2[2]].ten;
-                tien3 = bot.info[a2[2]].bala.tien;
+            a = functions.sortz(a);
+            if (output.id == bot.user.id) vitri = "25-1-5";
+            else for(var i = 0; i < a.length; i++)
+                    if (a[i][1] == output.id){
+                        vitri = ++i;
+                        break;
+                    }
+    
+            var tt = [];
+            for(var i = 0; i < 4; i++){
+                tt.push([]);
+                if (!bot.info[a[i+1][1]]) tt[i][0] = tt[i][1] = "NONE";
+                else{
+                    tt[i][0] = bot.info[a[i+1][1]].ten;
+                    tt[i][1] = bot.info[a[i+1][1]].bala.choi;
+                }
             }
     
-            if (!bot.info[a2[3]]){
-                ten4 = "NONE";
-                tien4 = "NONE";
-            }
-            else{
-                ten4 = bot.info[a2[3]].ten;
-                tien4 = bot.info[a2[3]].bala.tien;
-            }
-    
-            if (!bot.info[a2[4]]){
-                ten5 = "NONE";
-                tien5 = "NONE";
-            }
-            else{
-                ten5 = bot.info[a2[4]].ten;
-                tien5 = bot.info[a2[4]].bala.tien;
-            }
-    
-            const embed2 = new MessageEmbed()
+            const embed3 = new MessageEmbed()
                 .setColor('#FBFF08')
-                .setTitle('Ba lá - bảng xếp hạng tiền')
-                .setDescription('Các đại gia:')
+                .setTitle('Ba lá - bảng xếp hạng số lần chơi 🎮')
+                .setDescription('Các dân chơi:')
                 .addFields(
-                    { name: '🥇Top 1', value: bot.info[a2[0]].ten + '\n' + bot.info[a2[0]].bala.tien + '(VND)', inline: true },
-                    { name: '🥈Top 2', value: ten2 + '\n' + tien2 + '(VND)', inline: true },
-                    { name: '🥉Top 3', value: ten3 + '\n' + tien3 + '(VND)', inline: true },
-                    { name: 'Top 4', value: ten4 + '\n' + tien4 + '(VND)', inline: true  },
-                    { name: 'Top 5', value: ten5 + '\n' + tien5 + '(VND)', inline: true  },
-                    { name: 'Vị trí của ' + message.author.tag, value: 'Top ' + (vitri + 1) + '\n' + bot.info[message.author.id].bala.tien + '(VND)', inline: true  },
+                    { name: '🥇Top 1', value: bot.info[a[0][1]].ten + '\n' + bot.info[a[0][1]].bala.choi + ' lần', inline: true },
+                    { name: '🥈Top 2', value: tt[0][0] + '\n' + tt[0][1] + ' lần', inline: true },
+                    { name: '🥉Top 3', value: tt[1][0] + '\n' + tt[1][1] + ' lần', inline: true },
+                    { name: 'Top 4', value: tt[2][0] + '\n' + tt[2][1] + ' lần', inline: true  },
+                    { name: 'Top 5', value: tt[3][0] + '\n' + tt[3][1] + ' lần', inline: true  },
+                    { name: 'Vị trí của ' + output.tag, value: 'Top ' + vitri + '\n' + bot.info[output.id].bala.choi + ' lần', inline: true  },
                 )
-            message.channel.send({ embeds: [embed2] });
-            break;*/
+            message.channel.send({ embeds: [embed3] });
+            break;
+        case 'win':
+            var mention = message.mentions.users.first();
+            if (!mention) var output = message.author;
+            else var output = mention;
+        
+            var a = [];
+            for(var k in bot.info) {
+                if (k == "880842350459486258") continue;
+                a.push([]);
+                a[a.length - 1].push(bot.info[k].bala.cthang);
+                a[a.length - 1].push(bot.info[k].id);    
+            }
+        
+            a = functions.sortz(a);
+            if (output.id == bot.user.id) vitri = "25-1-5";
+            else for(var i = 0; i < a.length; i++)
+                    if (a[i][1] == output.id){
+                        vitri = ++i;
+                        break;
+                    }
+        
+            var tt = [];
+            for(var i = 0; i < 4; i++){
+                tt.push([]);
+                if (!bot.info[a[i+1][1]]) tt[i][0] = tt[i][1] = "NONE";
+                else{
+                    tt[i][0] = bot.info[a[i+1][1]].ten;
+                    tt[i][1] = bot.info[a[i+1][1]].bala.cthang;
+                }
+            }
+        
+            const embed4 = new MessageEmbed()
+                .setColor('#FBFF08')
+                .setTitle('Ba lá - bảng xếp hạng số trận thắng 🥳')
+                .setDescription('Hay không bằng hên:')
+                .addFields(
+                    { name: '🥇Top 1', value: bot.info[a[0][1]].ten + '\n' + bot.info[a[0][1]].bala.cthang + ' thắng', inline: true },
+                    { name: '🥈Top 2', value: tt[0][0] + '\n' + tt[0][1] + ' thắng', inline: true },
+                    { name: '🥉Top 3', value: tt[1][0] + '\n' + tt[1][1] + ' thắng', inline: true },
+                    { name: 'Top 4', value: tt[2][0] + '\n' + tt[2][1] + ' thắng', inline: true  },
+                    { name: 'Top 5', value: tt[3][0] + '\n' + tt[3][1] + ' thắng', inline: true  },
+                    { name: 'Vị trí của ' + output.tag, value: 'Top ' + vitri + '\n' + bot.info[output.id].bala.cthang + ' thắng', inline: true  },
+                )
+            message.channel.send({ embeds: [embed4] });
+            break;
+        case 'bacao':
+            var mention = message.mentions.users.first();
+            if (!mention) var output = message.author;
+            else var output = mention;
+            
+            var a = [];
+            for(var k in bot.info) {
+                if (k == "880842350459486258") continue;
+                a.push([]);
+                a[a.length - 1].push(bot.info[k].bala.ba_cao);
+                a[a.length - 1].push(bot.info[k].id);    
+            }
+            
+            a = functions.sortz(a);
+            if (output.id == bot.user.id) vitri = "25-1-5";
+            else for(var i = 0; i < a.length; i++)
+                    if (a[i][1] == output.id){
+                        vitri = ++i;
+                        break;
+                    }
+            
+            var tt = [];
+            for(var i = 0; i < 4; i++){
+                tt.push([]);
+                if (!bot.info[a[i+1][1]]) tt[i][0] = tt[i][1] = "NONE";
+                else{
+                    tt[i][0] = bot.info[a[i+1][1]].ten;
+                    tt[i][1] = bot.info[a[i+1][1]].bala.ba_cao;
+                }
+            }
+            
+            const embed5 = new MessageEmbed()
+                .setColor('#FBFF08')
+                .setTitle('Ba lá - bảng xếp hạng số lần được ba cào 🍀')
+                .setDescription('Đen tình đỏ bạc:')
+                .addFields(
+                    { name: '🥇Top 1', value: bot.info[a[0][1]].ten + '\n' + bot.info[a[0][1]].bala.ba_cao + ' ba cào', inline: true },
+                    { name: '🥈Top 2', value: tt[0][0] + '\n' + tt[0][1] + ' ba cào', inline: true },
+                    { name: '🥉Top 3', value: tt[1][0] + '\n' + tt[1][1] + ' ba cào', inline: true },
+                    { name: 'Top 4', value: tt[2][0] + '\n' + tt[2][1] + ' ba cào', inline: true  },
+                    { name: 'Top 5', value: tt[3][0] + '\n' + tt[3][1] + ' ba cào', inline: true  },
+                    { name: 'Vị trí của ' + output.tag, value: 'Top ' + vitri + '\n' + bot.info[output.id].bala.ba_cao + ' ba cào', inline: true  },
+                )
+            message.channel.send({ embeds: [embed5] });
+            break;
+        case 'bu':
+            var mention = message.mentions.users.first();
+            if (!mention) var output = message.author;
+            else var output = mention;
+                
+            var a = [];
+            for(var k in bot.info) {
+                if (k == "880842350459486258") continue;
+                a.push([]);
+                a[a.length - 1].push(bot.info[k].bala.bu);
+                a[a.length - 1].push(bot.info[k].id);    
+            }
+                
+            a = functions.sortz(a);
+            if (output.id == bot.user.id) vitri = "25-1-5";
+            else for(var i = 0; i < a.length; i++)
+                    if (a[i][1] == output.id){
+                        vitri = ++i;
+                        break;
+                    }
+                
+            var tt = [];
+            for(var i = 0; i < 4; i++){
+                tt.push([]);
+                if (!bot.info[a[i+1][1]]) tt[i][0] = tt[i][1] = "NONE";
+                else{
+                    tt[i][0] = bot.info[a[i+1][1]].ten;
+                    tt[i][1] = bot.info[a[i+1][1]].bala.bu;
+                }
+            }
+                
+            const embed6 = new MessageEmbed()
+                .setColor('#FBFF08')
+                .setTitle('Ba lá - bảng xếp hạng số lần bị bù 😭')
+                .setDescription('Đen bạc đỏ tình:')
+                .addFields(
+                    { name: '🥇Top 1', value: bot.info[a[0][1]].ten + '\n' + bot.info[a[0][1]].bala.bu + ' bù', inline: true },
+                    { name: '🥈Top 2', value: tt[0][0] + '\n' + tt[0][1] + ' bù', inline: true },
+                    { name: '🥉Top 3', value: tt[1][0] + '\n' + tt[1][1] + ' bù', inline: true },
+                    { name: 'Top 4', value: tt[2][0] + '\n' + tt[2][1] + ' bù', inline: true  },
+                    { name: 'Top 5', value: tt[3][0] + '\n' + tt[3][1] + ' bù', inline: true  },
+                    { name: 'Vị trí của ' + output.tag, value: 'Top ' + vitri + '\n' + bot.info[output.id].bala.bu + ' bù', inline: true  },
+                )
+            message.channel.send({ embeds: [embed6] });
+            break;
         default:
             const embed1 = new MessageEmbed()
                 .setColor('#FBFF08')

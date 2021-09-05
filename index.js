@@ -13,10 +13,8 @@ bot.commands = new Discord.Collection();
 bot.newcomer = new Discord.Collection();
 bot.buttons = new Discord.Collection();
 bot.bala = new Discord.Collection();
-let temp = [];
 
 module.exports.bot = bot;
-module.exports.temp = temp;
 bot.config = config;
 bot.info = info;
 bot.bala_data = bala_data;

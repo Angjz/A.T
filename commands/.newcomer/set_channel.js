@@ -1,5 +1,4 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
-let temp = require("../../index.js").temp;
 const fs = require("fs");
 
 exports.run2 = (bot, message, args, f1, f2) => {
@@ -63,6 +62,7 @@ exports.run2 = (bot, message, args, f1, f2) => {
                         if (err) throw err;
                     });
                 });
+                temp = bot.config[message.guild.id].temp;
                 temp[0] = temp[1] = temp[2] = temp[3] = ".";
                 bot.config[message.guild.id] = {
                     name: bot.config[message.guild.id].name,

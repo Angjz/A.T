@@ -2,20 +2,21 @@ const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const functions = require("./functions.js");
 const fs = require("fs");
 
-module.exports.sortz = (a, b) => {
-	let isOrdered;
-  	for (let i = 0; i < a.length; i++) {
-    	isOrdered = true;
-    	for (let x = 0; x < a.length - 1 - i; x++) {
-      		if (a[x] < a[x + 1]) {
-        		[a[x], a[x + 1]] = [a[x + 1], a[x]];
-				[b[x], b[x + 1]] = [b[x + 1], b[x]];
-        		isOrdered = false;
-      	}
-    	}
-    	if (isOrdered) break;
-  	}
-	return [a,b];
+module.exports.sortz = (array) => {
+	if (array.length < 2) {
+		return array;
+	}
+
+	var pivot = []
+	var left = []; 
+	var right = [];
+	pivot[0] = array[0];
+	
+	for (var i = 1; i < array.length; i++) {
+		array[i][0] > pivot[0][0] ? left.push(array[i]) : right.push(array[i]);
+	}
+	
+	return (functions.sortz(left)).concat(pivot, functions.sortz(right)) ;
 }
 
 module.exports.jointer = (args, b) => {

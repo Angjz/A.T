@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-let temp = require("../index.js").temp;
 const fs = require("fs");
 
 exports.run3 = (bot, interaction, f1, f2) => {
