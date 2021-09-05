@@ -105,7 +105,8 @@ exports.run4 = (bot, message, args, f1, f2) => {
         const embed4 = new MessageEmbed()
 		.setColor('#FBFF08') 
 		.setTitle('Ba lá - thưởng ngày')
-        .setDescription('Xin lỗi <@' + message.author.id + '>, bạn đã nhận thưởng ngày rồi. Hãy quay lại vào 0:00(UTC+7) hôm sau nhé. 😦')
+        .setDescription('Xin lỗi <@' + message.author.id + '>, bạn đã nhận thưởng ngày rồi.\n'+
+                        'Hãy quay lại vào 0:00(UTC+7) hôm sau nhé. 😦')
         .addFields(
             { name: 'Số tiền hiện tại của bạn', value: tien + '(VND)' },
         )
