@@ -211,7 +211,7 @@ module.exports.cap_nhat = (bot, code, tien, diem, p, f2, f3, thang) => {
 	let bacao = 0;
 	let bu = 0
 	if (diem == "**Ba cào**") bacao = 1;
-	if (diem == 0) bu = 1;
+	if (diem == "**Bù**") bu = 1;
 
 	bot.info[p] = {
 		ten: bot.info[p].ten,
