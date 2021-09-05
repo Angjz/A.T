@@ -2,6 +2,22 @@ const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const functions = require("./functions.js");
 const fs = require("fs");
 
+module.exports.sortz = (a, b) => {
+	let isOrdered;
+  	for (let i = 0; i < a.length; i++) {
+    	isOrdered = true;
+    	for (let x = 0; x < a.length - 1 - i; x++) {
+      		if (a[x] < a[x + 1]) {
+        		[a[x], a[x + 1]] = [a[x + 1], a[x]];
+				[b[x], b[x + 1]] = [b[x + 1], b[x]];
+        		isOrdered = false;
+      	}
+    	}
+    	if (isOrdered) break;
+  	}
+	return [a,b];
+}
+
 module.exports.jointer = (args, b) => {
 	let str = "";
 	str = args[b].slice(1, args[b].length);
@@ -99,10 +115,8 @@ module.exports.ba_la_het = (bot, message, code) => {
 	let tay2 = bot.bala_data[code].p2.bai;
 	let p1 = bot.bala_data[code].p1.id;
 	let p2 = bot.bala_data[code].p2.id;
-	let name1 = bot.bala_data[code].p1.uname;
-	let name2 = bot.bala_data[code].p2.uname;
-	let dis1 = bot.bala_data[code].p1.dis;
-	let dis2 = bot.bala_data[code].p2.dis;
+	let name1 = bot.bala_data[code].p1.tag;
+	let name2 = bot.bala_data[code].p2.tag;
 	let tien1 = bot.info[p1].bala.tien;
 	let tien2 = bot.info[p2].bala.tien;
 	let cuoc = bot.bala_data[code].cuoc;
@@ -125,18 +139,18 @@ module.exports.ba_la_het = (bot, message, code) => {
 		}
 		const embed1 = new MessageEmbed()
         	.setColor('#FBFF08')
-        	.setTitle('Ba lá - chơi')
+        	.setTitle('Ba lá - chơi đôi')
         	.setDescription('Trò chơi của <@' + p1 + '> và <@' + p2 + '>.\n'+
 							'Phòng: `' + code + '`\n\n'+
-							'Bài của `' + name1 + '#' + dis1 + '`:' + tay1 + '\n'+
-							'Bài của `' + name2 + '#' + dis2 + '`:' + tay2)
+							'Bài của `' + name1 + '`:' + tay1 + '\n'+
+							'Bài của `' + name2 + '`:' + tay2)
         	.addFields(
 				{ name: 'Kết quả', value: 'Hòa!', inline: true },
-				{ name: 'Số điểm của ' + name1 + '#' + dis1, value: diem1 + ".", inline: true },
-            	{ name: 'Số điểm của ' + name2 + '#' + dis2, value: diem2 + ".", inline: true },
+				{ name: 'Số điểm của ' + name1, value: diem1 + ".", inline: true },
+            	{ name: 'Số điểm của ' + name2, value: diem2 + ".", inline: true },
 				{ name: 'Tiền cược', value: cuoc + '(VND)', inline: true },
-				{ name: 'Tiền của ' + name1 + '#' + dis1, value: tien1 + '(VND)', inline: true },
-        		{ name: 'Tiền của ' + name2 + '#' + dis2, value: tien2 + '(VND)', inline: true },
+				{ name: 'Tiền của ' + name1, value: tien1 + '(VND)', inline: true },
+        		{ name: 'Tiền của ' + name2, value: tien2 + '(VND)', inline: true },
        	 	)
 		message.channel.send({ embeds: [embed1] });
 		functions.cap_nhat(bot, code, tien1, diem1, p1, "./data/users.json", "./data/bala.json", 0);
@@ -162,18 +176,18 @@ module.exports.ba_la_het = (bot, message, code) => {
 
 	const embed2 = new MessageEmbed()
 		.setColor('#FBFF08')
-		.setTitle('Ba lá - chơi')
+		.setTitle('Ba lá - chơi đôi')
 		.setDescription('Trò chơi của <@' + p1 + '> và <@' + p2 + '>.\n'+
 						'Phòng: `' + code + '`\n\n'+
-						'Bài của `' + name1 + '#' + dis1 + '`:' + tay1 + '\n'+
-						'Bài của `' + name2 + '#' + dis2 + '`:' + tay2)
+						'Bài của `' + name1 + '`:' + tay1 + '\n'+
+						'Bài của `' + name2 + '`:' + tay2)
 		.addFields(
 			{ name: 'Kết quả', value: '<@' + winner + '> thắng!', inline: true },
-			{ name: 'Số điểm của ' + name1 + '#' + dis1, value: diem1 + ".", inline: true },
-			{ name: 'Số điểm của ' + name2 + '#' + dis2, value: diem2 + ".", inline: true },
+			{ name: 'Số điểm của ' + name1, value: diem1 + ".", inline: true },
+			{ name: 'Số điểm của ' + name2, value: diem2 + ".", inline: true },
 			{ name: 'Tiền cược', value: cuoc + '(VND)', inline: true },
-			{ name: 'Tiền của ' + name1 + '#' + dis1, value: tien1 + '(VND)', inline: true },
-			{ name: 'Tiền của ' + name2 + '#' + dis2, value: tien2 + '(VND)', inline: true },
+			{ name: 'Tiền của ' + name1, value: tien1 + '(VND)', inline: true },
+			{ name: 'Tiền của ' + name2, value: tien2 + '(VND)', inline: true },
 		)
 	message.channel.send({ embeds: [embed2] });
 	
@@ -200,6 +214,7 @@ module.exports.cap_nhat = (bot, code, tien, diem, p, f2, f3, thang) => {
 
 	bot.info[p] = {
 		ten: bot.info[p].ten,
+		id: bot.info[p].id,
 		bala: {
 			tien: tien,
 			choi: bot.info[p].bala.choi + 1,
@@ -210,8 +225,7 @@ module.exports.cap_nhat = (bot, code, tien, diem, p, f2, f3, thang) => {
 			code: ".",
 			start: 0,
 			cuoc: 0,
-			o_name: ".",
-			o_dis: ".",
+			o_tag: ".",
 			o_id: ".",
             ngay: bot.info[p].bala.ngay,
             thang: bot.info[p].bala.thang,
@@ -256,7 +270,7 @@ module.exports.tinh_diem = ( Array ) => {
 module.exports.ba_la = (bot, message, p1, p2, cuoc, code, f3) => {
 	const embed1 = new MessageEmbed()
 		.setColor('#FBFF08')
-		.setTitle('Ba lá - chơi')
+		.setTitle('Ba lá - chơi đôi')
         .setDescription('Trò chơi của <@' + p2 + '> và <@' + p1 + '>.\n'+
 						'Phòng: `' + code + '`\n'+
 						'Hai bạn có 60 giây để bốc đủ ba lá bài hoặc bấm "sẵn sàng" để hệ thống tự động bốc.') 
@@ -294,7 +308,8 @@ module.exports.ba_la = (bot, message, p1, p2, cuoc, code, f3) => {
 
 module.exports.set_user = (bot, message, f) => {
 	bot.info[message.author.id] = {
-		ten: message.author.username,
+		ten: message.author.tag,
+		id: message.author.id,
 		bala: {
 			tien: "0",
 			choi: 0,
@@ -305,8 +320,7 @@ module.exports.set_user = (bot, message, f) => {
 			code: ".",
 			start: 0,
 			cuoc: ".",
-			o_name: ".",
-			o_dis: ".",
+			o_tag: ".",
 			o_id: ".",
             ngay: 0,
             thang: 0,
@@ -378,6 +392,7 @@ module.exports.tao_phong = (bot, message, mention, tiencuocz, f2, f3) => {
 
 	bot.info[message.author.id] = {
 		ten: bot.info[message.author.id].ten,
+		id: bot.info[message.author.id].id,
 		bala: {
 			tien: bot.info[message.author.id].bala.tien,
 			choi: bot.info[message.author.id].bala.choi,
@@ -388,8 +403,7 @@ module.exports.tao_phong = (bot, message, mention, tiencuocz, f2, f3) => {
 			code: code,
 			start: 0,
 			cuoc: tiencuocz,
-			o_name: mention.username,
-			o_dis: mention.discriminator,
+			o_tag: mention.tag,
 			o_id: mention.id,
             ngay: bot.info[message.author.id].bala.ngay,
             thang: bot.info[message.author.id].bala.thang,
@@ -415,16 +429,14 @@ module.exports.tao_phong = (bot, message, mention, tiencuocz, f2, f3) => {
 		],
 		p1:{
 			id: message.author.id,
-			uname: message.author.username,
-			dis: message.author.discriminator,
+			tag: message.author.tag,
 			diem: 0,
 			bai: [],
 			xong: 0
 		},
 		p2:{
 			id: mention.id,
-			uname: mention.username,
-			dis: mention.discriminator,
+			tag: mention.tag,
 			diem: 0,
 			bai: [],
 			xong: 0
@@ -443,6 +455,7 @@ module.exports.thoat_phong = (bot, message, f2, f3) => {
 
 	bot.info[message.author.id] = {
 		ten: bot.info[message.author.id].ten,
+		id: bot.info[message.author.id].id,
 		bala: {
 			tien: bot.info[message.author.id].bala.tien,
 			choi: bot.info[message.author.id].bala.choi,
@@ -453,8 +466,7 @@ module.exports.thoat_phong = (bot, message, f2, f3) => {
 			code: ".",
 			start: 0,
 			cuoc: 0,
-			o_name: ".",
-			o_dis: ".",
+			o_tag: ".",
 			o_id: ".",
             ngay: bot.info[message.author.id].bala.ngay,
             thang: bot.info[message.author.id].bala.thang,
@@ -472,6 +484,7 @@ module.exports.thoat_phong = (bot, message, f2, f3) => {
 module.exports.tham_gia_phong = (bot, message, mention, f2, f3) => {
 	bot.info[message.author.id] = {
 		ten: bot.info[message.author.id].ten,
+		id: bot.info[message.author.id].id,
 		bala: {
 			tien: bot.info[message.author.id].bala.tien,
 			choi: bot.info[message.author.id].bala.choi,
@@ -482,8 +495,7 @@ module.exports.tham_gia_phong = (bot, message, mention, f2, f3) => {
 			code: bot.info[mention.id].bala.code,
 			start: 1,
 			cuoc: bot.info[mention.id].bala.cuoc,
-			o_name: mention.username,
-			o_dis: mention.discriminator,
+			o_tag: mention.tag,
 			o_id: mention.id,
             ngay: bot.info[message.author.id].bala.ngay,
             thang: bot.info[message.author.id].bala.thang,
@@ -499,6 +511,7 @@ module.exports.tham_gia_phong = (bot, message, mention, f2, f3) => {
 
 	bot.info[mention.id] = {
 		ten: bot.info[mention.id].ten,
+		id: bot.info[mention.id].id,
 		bala: {
 			tien: bot.info[mention.id].bala.tien,
 			choi: bot.info[mention.id].bala.choi,
@@ -509,8 +522,7 @@ module.exports.tham_gia_phong = (bot, message, mention, f2, f3) => {
 			code: bot.info[mention.id].bala.code,
 			start: 1,
 			cuoc: bot.info[mention.id].bala.cuoc,
-			o_name: bot.info[mention.id].bala.o_name,
-			o_dis: bot.info[mention.id].bala.o_dis,
+			o_tag: bot.info[mention.id].bala.o_tag,
 			o_id: bot.info[mention.id].bala.o_id,
             ngay: bot.info[mention.id].bala.ngay,
             thang: bot.info[mention.id].bala.thang,

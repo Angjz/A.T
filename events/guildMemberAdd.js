@@ -34,7 +34,7 @@ bot.on('guildMemberAdd', member => {
                         .setColor('#16FC35') 
                         .setTitle('Lỗi')
                         .setDescription('Bạn chủ kênh <@' + member.guild.ownerId + '> ơi.\n' +
-                                        'Cảm phiền bạn xem lại vai trò của tôi đã **cao hơn** các vai trò dưới đây chưa bởi vì tôi không thể thêm chúng vào cho bạn `' + member.user.username + '` được. 😦') 
+                                        'Cảm phiền bạn xem lại vai trò của tôi đã **cao hơn** các vai trò dưới đây chưa bởi vì tôi không thể thêm chúng vào cho bạn `' + member.user.tag + '` được. 😦') 
                         .addFields(
                             { name: 'Những vai trò cho người dùng mới đã có', value: bot.config[member.guild.id].userS + '.' },
                         )

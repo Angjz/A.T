@@ -5,11 +5,11 @@ const f3 = "./data/bala.json";
 exports.run4 = (bot, message, args, f1, f2) => {
     const embed1 = new MessageEmbed()
         .setColor('#FBFF08')
-        .setTitle('Ba lá - chơi')
+        .setTitle('Ba lá - chơi đôi')
         .setDescription('<@' + message.author.id + '>, bạn đã thoát bàn cược `' + bot.info[message.author.id].bala.code + '`.')
     const embed2 = new MessageEmbed()
         .setColor('#FBFF08')
-        .setTitle('Ba lá - chơi')
+        .setTitle('Ba lá - chơi đôi')
         .setDescription('Xin lỗi <@' + message.author.id + '>, bạn hiện không ở trong bàn cược nào nên không thể thoát được.')
     
     if (bot.info[message.author.id].bala.phong == 0){

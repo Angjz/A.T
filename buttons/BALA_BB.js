@@ -41,7 +41,7 @@ exports.run3 = (bot, interaction, f1, f2) => {
 
         const embed1 = new MessageEmbed()
             .setColor('#FBFF08')
-            .setTitle('Ba lá - chơi')
+            .setTitle('Ba lá - chơi đôi')
             .setDescription('<@' + one + '>, bạn đã bốc đủ bài. Hãy bấm "sẵn sàng" để đối chiếu số điểm!')
             .addFields(
                 { name: 'Số điểm của bạn', value: diem + ".", inline: true },
@@ -51,13 +51,13 @@ exports.run3 = (bot, interaction, f1, f2) => {
             return;
         }
 
-        tay[tay.length] = bai[random];
+        tay.push(bai[random]);
         diem = functions.tinh_diem(tay);
         bai.splice(random, 1);
 
         const embed2 = new MessageEmbed()
             .setColor('#FBFF08')
-            .setTitle('Ba lá - chơi')
+            .setTitle('Ba lá - chơi đôi')
             .setDescription('<@' + one + '>, bạn đã bốc được lá bài: `' + bo_bai[tay[tay.length-1]] + '`!')
             .addFields(
                 { name: 'Số điểm của bạn', value: diem + ".", inline: true },
@@ -70,16 +70,14 @@ exports.run3 = (bot, interaction, f1, f2) => {
             bai: bai,
             p1:{
                 id: bot.bala_data[code].p1.id,
-                uname: bot.bala_data[code].p1.uname,
-                dis: bot.bala_data[code].p1.dis,
+                tag: bot.bala_data[code].p1.tag,
                 diem: diem,
                 bai: tay,
                 xong: bot.bala_data[code].p1.xong
             },
             p2:{
                 id: bot.bala_data[code].p2.id,
-                uname: bot.bala_data[code].p2.uname,
-                dis: bot.bala_data[code].p2.dis,
+                tag: bot.bala_data[code].p2.tag,
                 diem: bot.bala_data[code].p2.diem,
                 bai: bot.bala_data[code].p2.bai,
                 xong: bot.bala_data[code].p2.xong
@@ -93,7 +91,7 @@ exports.run3 = (bot, interaction, f1, f2) => {
 
         const embed3 = new MessageEmbed()
         .setColor('#FBFF08')
-        .setTitle('Ba lá - chơi')
+        .setTitle('Ba lá - chơi đôi')
         .setDescription('<@' + one + '>, bạn đã bốc đủ bài. Hãy bấm "sẵn sàng" để đối chiếu số điểm!')
         .addFields(
             { name: 'Số điểm của bạn', value: diem + ".", inline: true },
@@ -103,13 +101,13 @@ exports.run3 = (bot, interaction, f1, f2) => {
             return;
         }
 
-        tay[tay.length] = bai[random];
+        tay.push(bai[random]);
         diem = functions.tinh_diem(tay);
         bai.splice(random, 1);
 
         const embed4 = new MessageEmbed()
             .setColor('#FBFF08')
-            .setTitle('Ba lá - chơi')
+            .setTitle('Ba lá - chơi đôi')
             .setDescription('<@' + one + '>, bạn đã bốc được lá bài: `' + bo_bai[tay[tay.length-1]] + '`!')
             .addFields(
                 { name: 'Số điểm của bạn', value: diem + ".", inline: true },
@@ -122,16 +120,14 @@ exports.run3 = (bot, interaction, f1, f2) => {
             bai: bai,
             p1:{
                 id: bot.bala_data[code].p1.id,
-                uname: bot.bala_data[code].p1.uname,
-                dis: bot.bala_data[code].p1.dis,
+                tag: bot.bala_data[code].p1.tag,
                 diem: bot.bala_data[code].p1.diem,
                 bai: bot.bala_data[code].p1.bai,
                 xong: bot.bala_data[code].p1.xong
             },
             p2:{
                 id: bot.bala_data[code].p2.id,
-                uname: bot.bala_data[code].p2.uname,
-                dis: bot.bala_data[code].p2.dis,
+                tag: bot.bala_data[code].p2.tag,
                 diem: diem,
                 bai: tay,
                 xong: bot.bala_data[code].p2.xong

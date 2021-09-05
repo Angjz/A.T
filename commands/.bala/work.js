@@ -5,9 +5,9 @@ const cv = [
     "đã làm phục vụ ở nhà hàng và nhận được 70.000(VND)",
     "đã làm phục vụ ở nhà hàng và nhận được 70.000(VND)",
     "đã làm phục vụ ở nhà hàng và nhận được 70.000(VND)",
-    "đã nhặt được tiền rơi và nhận được 100.000(VND)",
-    "đã nhặt được tiền rơi và nhận được 100.000(VND)",
-    "đã nhặt được tiền rơi và nhận được 100.000(VND)",
+    "đã thanh lý đồ cũ và nhận được 100.000(VND)",
+    "đã thanh lý đồ cũ và nhận được 100.000(VND)",
+    "đã thanh lý đồ cũ và nhận được 100.000(VND)",
     "đã làm phục vụ ở nhà hàng và nhận được 70.000(VND)",
     "đã làm phục vụ ở nhà hàng và nhận được 70.000(VND)",
     "đã giúp sửa máy tính và nhận được 200.000(VND)",
@@ -85,6 +85,7 @@ exports.run4 = (bot, message, args, f1, f2) => {
         
         bot.info[message.author.id] = {
             ten: bot.info[message.author.id].ten,
+            id: bot.info[message.author.id].id,
             bala: {
                 tien: tien,
 			    choi: bot.info[message.author.id].bala.choi,
@@ -95,8 +96,7 @@ exports.run4 = (bot, message, args, f1, f2) => {
 			    code: bot.info[message.author.id].bala.code,
 			    start: bot.info[message.author.id].bala.start,
 			    cuoc: bot.info[message.author.id].bala.cuoc,
-			    o_name: bot.info[message.author.id].bala.o_name,
-			    o_dis: bot.info[message.author.id].bala.o_dis,
+			    o_tag: bot.info[message.author.id].bala.o_tag,
 			    o_id: bot.info[message.author.id].bala.o_id,
                 ngay: bot.info[message.author.id].bala.ngay,
                 thang: bot.info[message.author.id].bala.thang,

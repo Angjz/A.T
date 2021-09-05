@@ -21,12 +21,12 @@ exports.run3 = (bot, interaction, f1, f2) => {
 
     const embed1 = new MessageEmbed()
         .setColor('#FBFF08')
-        .setTitle('Ba lá - chơi')
+        .setTitle('Ba lá - chơi đôi')
         .setDescription('Phòng: `' + code + '`\n'+
                         '<@' + one + '> đã sẵn sàng!')
     const embed2 = new MessageEmbed()
         .setColor('#FBFF08')
-        .setTitle('Ba lá - chơi')
+        .setTitle('Ba lá - chơi đôi')
         .setDescription('<@' + one + '>, bạn đã sẵn sàng rồi!')
 
     if (one == bot.bala_data[code].p1.id){
@@ -56,16 +56,14 @@ exports.run3 = (bot, interaction, f1, f2) => {
             bai: bai,
             p1:{
                 id: bot.bala_data[code].p1.id,
-                uname: bot.bala_data[code].p1.uname,
-                dis: bot.bala_data[code].p1.dis,
+                tag: bot.bala_data[code].p1.tag,
                 diem: diem,
                 bai: tay,
                 xong: xong
             },
             p2:{
                 id: bot.bala_data[code].p2.id,
-                uname: bot.bala_data[code].p2.uname,
-                dis: bot.bala_data[code].p2.dis,
+                tag: bot.bala_data[code].p2.tag,
                 diem: bot.bala_data[code].p2.diem,
                 bai: bot.bala_data[code].p2.bai,
                 xong: bot.bala_data[code].p2.xong
@@ -99,16 +97,14 @@ exports.run3 = (bot, interaction, f1, f2) => {
             bai: bai,
             p1:{
                 id: bot.bala_data[code].p1.id,
-                uname: bot.bala_data[code].p1.uname,
-                dis: bot.bala_data[code].p1.dis,
+                tag: bot.bala_data[code].p1.tag,
                 diem: bot.bala_data[code].p1.diem,
                 bai: bot.bala_data[code].p1.bai,
                 xong: bot.bala_data[code].p1.xong
             },
             p2:{
                 id: bot.bala_data[code].p2.id,
-                uname: bot.bala_data[code].p2.uname,
-                dis: bot.bala_data[code].p2.dis,
+                tag: bot.bala_data[code].p2.tag,
                 diem: diem,
                 bai: tay,
                 xong: xong

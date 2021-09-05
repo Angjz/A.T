@@ -14,8 +14,8 @@ exports.run2 = (bot, message, args, f1, f2) => {
             i = str[1];
         }
         if (message.guild.roles.cache.find(role => role.name === str[0])){
-            vVT[vVT.length] = str[0];
-            vVT_id[vVT_id.length] = message.guild.roles.cache.find(role => role.name === str[0]).id;
+            vVT.push(str[0]);
+            vVT_id.push(message.guild.roles.cache.find(role => role.name === str[0]).id);
         }
         i++;				
     }

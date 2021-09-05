@@ -17,12 +17,12 @@ exports.run = (bot, message, args, f1, f2) => {
 		return;
 	}
 	if (args[1] == "guild"){
-		message.channel.send({ content:"Đây là hình đại diện của hội " + message.guild.name + `:\n` + message.guild.iconURL() });
+		message.channel.send({ content:"Đây là hình đại diện của hội `" + message.guild.name + "`:\n" + message.guild.iconURL() });
 		return;
 	}
 	if (!user){
 		message.channel.send({ embeds: [embed] });
 		return;
 	}
-	message.channel.send({ content:"Đây là hình đại diện của " + user.username + `:\n` + user.displayAvatarURL() });
+	message.channel.send({ content:"Đây là hình đại diện của `" + user.tag + "`:\n" + user.displayAvatarURL() });
 }
