@@ -145,7 +145,7 @@ module.exports.ba_la_het = (bot, message, code) => {
 							'Bài của `' + name1 + '`:' + tay1 + '\n'+
 							'Bài của `' + name2 + '`:' + tay2)
         	.addFields(
-				{ name: 'Kết quả', value: 'Hòa!', inline: true },
+				{ name: 'Kết quả', value: 'Hòa! 🤝', inline: true },
 				{ name: 'Số điểm của ' + name1, value: diem1 + ".", inline: true },
             	{ name: 'Số điểm của ' + name2, value: diem2 + ".", inline: true },
 				{ name: 'Tiền cược', value: cuoc + '(VND)', inline: true },
@@ -182,7 +182,7 @@ module.exports.ba_la_het = (bot, message, code) => {
 						'Bài của `' + name1 + '`:' + tay1 + '\n'+
 						'Bài của `' + name2 + '`:' + tay2)
 		.addFields(
-			{ name: 'Kết quả', value: '<@' + winner + '> thắng!', inline: true },
+			{ name: 'Kết quả', value: '<@' + winner + '> thắng! 🎉', inline: true },
 			{ name: 'Số điểm của ' + name1, value: diem1 + ".", inline: true },
 			{ name: 'Số điểm của ' + name2, value: diem2 + ".", inline: true },
 			{ name: 'Tiền cược', value: cuoc + '(VND)', inline: true },

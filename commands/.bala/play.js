@@ -28,7 +28,7 @@ exports.run4 = (bot, message, args, f1, f2) => {
         .setColor('#FBFF08')
         .setTitle('Ba lá - chơi đôi')
         .setDescription('Xin lỗi <@' + message.author.id + '>, nhưng bạn không đủ tiền.\n'+
-                        'Xin hãy cược ít hơn nhưng nhiều hơn 1.000(VND). 😦')
+                        'Xin hãy cược ít hơn. 😦')
         .addFields(
             { name: 'Số tiền hiện tại của bạn ', value: tien + '(VND)' },
         )

@@ -1,6 +1,14 @@
 const { MessageEmbed } = require("discord.js");
 const functions = require("../../functions.js");
 const fs = require("fs");
+/*  
+    cửa hàng: 48,4% - 50k
+    phục vụ: 19,4% - 70k
+    giao hàng: 12,9% - 120k
+    thanh lý: 9,6% - 100k
+    sửa máy tính: 6,5% - 200k
+    vé số: 3,2% - 1m
+*/
 const cv = [
     "đã làm phục vụ ở nhà hàng và nhận được 70.000(VND)",
     "đã làm phục vụ ở nhà hàng và nhận được 70.000(VND)",
@@ -13,7 +21,7 @@ const cv = [
     "đã giúp sửa máy tính và nhận được 200.000(VND)",
     "đã giúp sửa máy tính và nhận được 200.000(VND)",
     "đã làm phục vụ ở nhà hàng và nhận được 70.000(VND)",
-    "đã trúng vé số và nhận được 500.000(VND)!",
+    "đã trúng vé số và nhận được 1.000.000(VND)!",
     "đã làm việc ở cửa hàng tiện lợi và nhận được 50.000(VND)",
     "đã làm việc ở cửa hàng tiện lợi và nhận được 50.000(VND)",
     "đã làm việc ở cửa hàng tiện lợi và nhận được 50.000(VND)",
@@ -46,7 +54,7 @@ const luong = [
     "200.000",
     "200.000",
     "70.000",
-    "500.000",
+    "1.000.000",
     "50.000",
     "50.000",
     "50.000",
@@ -70,8 +78,9 @@ const luong = [
 
 exports.run4 = (bot, message, args, f1, f2) => {
     let tien = bot.info[message.author.id].bala.tien;
+    let tienz = functions.tach_tien(tien, 0);
     
-    if (tien == "0"){
+    if (tienz < 50000){
         let so = Math.floor(Math.random() * cv.length);
         tien = functions.them_tien(tien, luong[so], "cong");
         const embed1 = new MessageEmbed()
@@ -113,7 +122,7 @@ exports.run4 = (bot, message, args, f1, f2) => {
         const embed2 = new MessageEmbed()
             .setColor('#FBFF08') 
 		    .setTitle('Ba lá - làm việc')
-            .setDescription('Xin lỗi <@' + message.author.id + '>, bạn có nhiều hơn 0(VND). Đi vui vẻ chút rồi quay lại nhé! 😄')
+            .setDescription('Xin lỗi <@' + message.author.id + '>, bạn có nhiều hơn 50.000(VND). Đi vui vẻ chút rồi quay lại nhé! 😄')
             .addFields(
                 { name: 'Số tiền hiện tại của bạn', value: tien + '(VND)' },
             )
