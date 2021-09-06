@@ -55,7 +55,7 @@ exports.run4 = (bot, message, args, f1, f2) => {
             .addFields(
                 { name: 'Số tiền hiện tại của bạn', value: tien + '(VND)' },
             )
-            .setThumbnail('https://i.imgur.com/q24HVnb.png')
+            .setThumbnail('https://i.imgur.com/4FKPBpk.png')
 	    message.channel.send({ embeds: [embed1] });        
         
         bot.info[message.author.id] = {
@@ -93,7 +93,7 @@ exports.run4 = (bot, message, args, f1, f2) => {
             .addFields(
                 { name: 'Số tiền hiện tại của bạn', value: tien + '(VND)' },
             )
-            .setThumbnail('https://i.imgur.com/q24HVnb.png')
+            .setThumbnail('https://i.imgur.com/4FKPBpk.png')
         message.channel.send({ embeds:[embed2] });
     }
 }
