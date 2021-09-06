@@ -58,29 +58,7 @@ exports.run4 = (bot, message, args, f1, f2) => {
             .setThumbnail('https://i.imgur.com/uu36wha.png')
 	    message.channel.send({ embeds: [embed1] });        
         
-        bot.info[message.author.id] = {
-            ten: bot.info[message.author.id].ten,
-            id: bot.info[message.author.id].id,
-            bala: {
-                tien: tien,
-			    choi: bot.info[message.author.id].bala.choi,
-                cthang: bot.info[message.author.id].bala.cthang,
-                ba_cao: bot.info[message.author.id].bala.ba_cao,
-                bu: bot.info[message.author.id].bala.bu,
-                phong: bot.info[message.author.id].bala.phong,
-			    code: bot.info[message.author.id].bala.code,
-			    start: bot.info[message.author.id].bala.start,
-			    cuoc: bot.info[message.author.id].bala.cuoc,
-			    o_tag: bot.info[message.author.id].bala.o_tag,
-			    o_id: bot.info[message.author.id].bala.o_id,
-                ngay: bot.info[message.author.id].bala.ngay,
-                thang: bot.info[message.author.id].bala.thang,
-                nam: bot.info[message.author.id].bala.nam,
-                t_ngay: bot.info[message.author.id].bala.t_ngay,
-                t_thang: bot.info[message.author.id].bala.t_thang,
-                t_nam: bot.info[message.author.id].bala.t_nam,
-            },
-        }
+        bot.info[message.author.id].bala.tien = tien;
         fs.writeFileSync(f2, JSON.stringify(bot.info, null, 4), err => {
             if (err) throw err;
         });

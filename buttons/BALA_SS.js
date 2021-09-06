@@ -51,24 +51,10 @@ exports.run3 = (bot, interaction, f1, f2) => {
         }  
         diem = functions.tinh_diem(tay);
        
-        bot.bala_data[code] = {
-            cuoc: bot.bala_data[code].cuoc,
-            bai: bai,
-            p1:{
-                id: bot.bala_data[code].p1.id,
-                tag: bot.bala_data[code].p1.tag,
-                diem: diem,
-                bai: tay,
-                xong: xong
-            },
-            p2:{
-                id: bot.bala_data[code].p2.id,
-                tag: bot.bala_data[code].p2.tag,
-                diem: bot.bala_data[code].p2.diem,
-                bai: bot.bala_data[code].p2.bai,
-                xong: bot.bala_data[code].p2.xong
-            }
-        }
+        bot.bala_data[code].bai = bai;
+        bot.bala_data[code].p1.diem = diem;
+        bot.bala_data[code].p1.bai = tay;
+        bot.bala_data[code].p1.xong = xong;
         functions.viet_file(bot);
     } else{
         let xong = bot.bala_data[code].p2.xong;
@@ -92,24 +78,10 @@ exports.run3 = (bot, interaction, f1, f2) => {
         }  
         diem = functions.tinh_diem(tay);
        
-        bot.bala_data[code] = {
-            cuoc: bot.bala_data[code].cuoc,
-            bai: bai,
-            p1:{
-                id: bot.bala_data[code].p1.id,
-                tag: bot.bala_data[code].p1.tag,
-                diem: bot.bala_data[code].p1.diem,
-                bai: bot.bala_data[code].p1.bai,
-                xong: bot.bala_data[code].p1.xong
-            },
-            p2:{
-                id: bot.bala_data[code].p2.id,
-                tag: bot.bala_data[code].p2.tag,
-                diem: diem,
-                bai: tay,
-                xong: xong
-            }
-        }
+        bot.bala_data[code].bai = bai;
+        bot.bala_data[code].p2.diem = diem;
+        bot.bala_data[code].p2.bai = tay;
+        bot.bala_data[code].p2.xong = xong;
         functions.viet_file(bot);
     }
 

@@ -6,7 +6,7 @@ const hinh = [
     '3rTG8el', 'qZowiA8', 'aFxLqln', 'hPh5Il5', 'qwaAcTi', 'T1abZv2', 'Pi1OrvA', 'aOGmOmO', '4RRb7uo', 'Hw8NXmh', 'ejW47PI', 'PXST6bl', 'Qnv1NGP',
     'fAvqomL', '2oqbtip', 'heFDjTN', 'KmpRLHn', 'uWTJLmV', 'm7vp94P', 'TkygFIY', 'xMlqW7U', 'JB7qpTv', 'n9RnriM', 'nYQiBge', 'Ecby02J', 'saJ0GdC'
 ]
-let bo_bai = [
+const bo_bai = [
     "Át Bích", "2 Bích", "3 Bích", "4 Bích", "5 Bích", "6 Bích", "7 Bích", "8 Bích", "9 Bích", "10 Bích", "Bồi J Bích", "Đầm Q Bích", "Già K Bích",
     "Át Chuồn", "2 Chuồn", "3 Chuồn", "4 Chuồn", "5 Chuồn", "6 Chuồn", "7 Chuồn", "8 Chuồn", "9 Chuồn", "10 Chuồn", "Bồi J Chuồn", "Đầm Q Chuồn", "Già K Chuồn",
     "Át Rô", "2 Rô", "3 Rô", "4 Rô", "5 Rô", "6 Rô", "7 Rô", "8 Rô", "9 Rô", "10 Rô", "Bồi J Rô", "Đầm Q Rô", "Già K Rô",
@@ -65,24 +65,9 @@ exports.run3 = (bot, interaction, f1, f2) => {
             .setThumbnail('https://i.imgur.com/'+ hinh[tay[tay.length-1]] + '.png')
         interaction.reply({ embeds: [embed2], ephemeral: true });
         
-        bot.bala_data[code] = {
-            cuoc: bot.bala_data[code].cuoc,
-            bai: bai,
-            p1:{
-                id: bot.bala_data[code].p1.id,
-                tag: bot.bala_data[code].p1.tag,
-                diem: diem,
-                bai: tay,
-                xong: bot.bala_data[code].p1.xong
-            },
-            p2:{
-                id: bot.bala_data[code].p2.id,
-                tag: bot.bala_data[code].p2.tag,
-                diem: bot.bala_data[code].p2.diem,
-                bai: bot.bala_data[code].p2.bai,
-                xong: bot.bala_data[code].p2.xong
-            }
-        }
+        bot.bala_data[code].bai = bai;
+        bot.bala_data[code].p1.diem = diem;
+        bot.bala_data[code].p1.bai = tay;
         functions.viet_file(bot);
     } else{
         let tay = bot.bala_data[code].p2.bai;
@@ -115,24 +100,9 @@ exports.run3 = (bot, interaction, f1, f2) => {
             .setThumbnail('https://i.imgur.com/'+ hinh[tay[tay.length-1]] + '.png')
         interaction.reply({ embeds: [embed4], ephemeral: true });
 
-        bot.bala_data[code] = {
-            cuoc: bot.bala_data[code].cuoc,
-            bai: bai,
-            p1:{
-                id: bot.bala_data[code].p1.id,
-                tag: bot.bala_data[code].p1.tag,
-                diem: bot.bala_data[code].p1.diem,
-                bai: bot.bala_data[code].p1.bai,
-                xong: bot.bala_data[code].p1.xong
-            },
-            p2:{
-                id: bot.bala_data[code].p2.id,
-                tag: bot.bala_data[code].p2.tag,
-                diem: diem,
-                bai: tay,
-                xong: bot.bala_data[code].p2.xong
-            }
-        }
+        bot.bala_data[code].bai = bai;
+        bot.bala_data[code].p2.diem = diem;
+        bot.bala_data[code].p2.bai = tay;
         functions.viet_file(bot);
     }
 }

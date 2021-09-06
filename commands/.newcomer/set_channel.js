@@ -28,16 +28,8 @@ exports.run2 = (bot, message, args, f1, f2) => {
             temp[1] = msg.guild.id;
             temp[2] = msg.channel.id;
             temp[3] = msg.id;
-            bot.config[message.guild.id] = {
-                name: bot.config[message.guild.id].name,
-                prefix: bot.config[message.guild.id].prefix,
-                channel: bot.config[message.guild.id].channel,
-                temp: temp,
-                botz: bot.config[message.guild.id].botz,
-                botS: bot.config[message.guild.id].botS,
-                userz: bot.config[message.guild.id].userz,
-                userS: bot.config[message.guild.id].userS,
-            }
+
+            bot.config[message.guild.id].temp = temp;
             fs.writeFile(f1, JSON.stringify(bot.config, null, 4), err => {
                 if (err) throw err;
             });
@@ -48,32 +40,16 @@ exports.run2 = (bot, message, args, f1, f2) => {
                     }
                     temp = bot.config[message.guild.id].temp;
                     temp[0] = temp[1] = temp[2] = temp[3] = ".";
-                    bot.config[message.guild.id] = {
-                        name: bot.config[message.guild.id].name,
-                        prefix: bot.config[message.guild.id].prefix,
-                        channel: bot.config[message.guild.id].channel,
-                        temp: temp,
-                        botz: bot.config[message.guild.id].botz,
-                        botS: bot.config[message.guild.id].botS,
-                        userz: bot.config[message.guild.id].userz,
-                        userS: bot.config[message.guild.id].userS,
-                    }
+
+                    bot.config[message.guild.id].temp = temp;
                     fs.writeFile(f1, JSON.stringify(bot.config, null, 4), err => {
                         if (err) throw err;
                     });
                 });
                 temp = bot.config[message.guild.id].temp;
                 temp[0] = temp[1] = temp[2] = temp[3] = ".";
-                bot.config[message.guild.id] = {
-                    name: bot.config[message.guild.id].name,
-                    prefix: bot.config[message.guild.id].prefix,
-                    channel: bot.config[message.guild.id].channel,
-                    temp: temp,
-                    botz: bot.config[message.guild.id].botz,
-                    botS: bot.config[message.guild.id].botS,
-                    userz: bot.config[message.guild.id].userz,
-                    userS: bot.config[message.guild.id].userS,
-                }
+                
+                bot.config[message.guild.id].temp = temp;
                 fs.writeFile(f1, JSON.stringify(bot.config, null, 4), err => {
                     if (err) throw err;
                 });

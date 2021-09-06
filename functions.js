@@ -34,16 +34,6 @@ module.exports.jointer = (args, b) => {
 	return result;
 }
 
-module.exports.Knuth_Fisher_Yates = ( myArray ) => {
-	let i = myArray.length;
-	if ( i == 0 ) return;
-	while ( --i ) {
-	   let j = Math.floor( Math.random() * ( i + 1 ) );
-	   [ myArray[i], myArray[j] ] = [ myArray[j], myArray[i] ];
-	}
-	return myArray;
-}
-
 module.exports.set_default = (bot, guild, guild_id, f) => {
 	bot.config[guild_id] = {
 		name: guild,
@@ -90,16 +80,11 @@ module.exports.update_newcomer = (bot, message, f) => {
 			j = 0;
 		}	
 	}
-	bot.config[message.guild.id] = {
-		name: bot.config[message.guild.id].name,
-		prefix: bot.config[message.guild.id].prefix,
-		channel: bot.config[message.guild.id].channel,
-		temp: bot.config[message.guild.id].temp,
-		botz: botz_id,
-		botS: botz,
-		userz: userz_id,
-		userS: userz,
-	}
+	
+	bot.config[message.guild.id].botz = botz_id;
+	bot.config[message.guild.id].botS = botz;
+	bot.config[message.guild.id].userz = userz_id;
+	bot.config[message.guild.id].userS = userz;
 	fs.writeFileSync(f, JSON.stringify(bot.config, null, 4), err => {
 		if (err) throw err;
 	});
@@ -107,6 +92,16 @@ module.exports.update_newcomer = (bot, message, f) => {
 }
 
 //bala
+module.exports.Knuth_Fisher_Yates = ( myArray ) => {
+	let i = myArray.length;
+	if ( i == 0 ) return;
+	while ( --i ) {
+	   let j = Math.floor( Math.random() * ( i + 1 ) );
+	   [ myArray[i], myArray[j] ] = [ myArray[j], myArray[i] ];
+	}
+	return myArray;
+}
+
 module.exports.ba_la_het = (bot, message, code) => {
 	if (!bot.bala_data[code].cuoc) return;
 
@@ -213,29 +208,17 @@ module.exports.cap_nhat = (bot, code, tien, diem, p, f2, f3, thang) => {
 	if (diem == "**Ba cào**") bacao = 1;
 	if (diem == "**Bù**") bu = 1;
 
-	bot.info[p] = {
-		ten: bot.info[p].ten,
-		id: bot.info[p].id,
-		bala: {
-			tien: tien,
-			choi: bot.info[p].bala.choi + 1,
-            cthang: bot.info[p].bala.cthang + thang,
-            ba_cao: bot.info[p].bala.ba_cao + bacao,
-            bu: bot.info[p].bala.bu + bu,
-            phong: 0,
-			code: ".",
-			start: 0,
-			cuoc: 0,
-			o_tag: ".",
-			o_id: ".",
-            ngay: bot.info[p].bala.ngay,
-            thang: bot.info[p].bala.thang,
-            nam: bot.info[p].bala.nam,
-            t_ngay: bot.info[p].bala.t_ngay,
-            t_thang: bot.info[p].bala.t_thang,
-            t_nam: bot.info[p].bala.t_nam,
-		},
-	}
+	bot.info[p].bala.tien = tien;
+	bot.info[p].bala.choi += 1;
+	bot.info[p].bala.cthang += thang;
+	bot.info[p].bala.ba_cao += bacao;
+	bot.info[p].bala.bu += bu;
+	bot.info[p].bala.phong = 0;
+	bot.info[p].bala.code = ".";
+	bot.info[p].bala.start = 0;
+	bot.info[p].bala.cuoc = ".";
+	bot.info[p].bala.o_tag = ".";
+	bot.info[p].bala.o_id = ".";
 	fs.writeFileSync(f2, JSON.stringify(bot.info, null, 4), err => {
 		if (err) throw err;
 	});
@@ -391,29 +374,12 @@ module.exports.code_phong = () => {
 module.exports.tao_phong = (bot, message, mention, tiencuocz, f2, f3) => {
 	let code = functions.code_phong();
 
-	bot.info[message.author.id] = {
-		ten: bot.info[message.author.id].ten,
-		id: bot.info[message.author.id].id,
-		bala: {
-			tien: bot.info[message.author.id].bala.tien,
-			choi: bot.info[message.author.id].bala.choi,
-            cthang: bot.info[message.author.id].bala.cthang,
-            ba_cao: bot.info[message.author.id].bala.ba_cao,
-            bu: bot.info[message.author.id].bala.bu,
-            phong: 1,
-			code: code,
-			start: 0,
-			cuoc: tiencuocz,
-			o_tag: mention.tag,
-			o_id: mention.id,
-            ngay: bot.info[message.author.id].bala.ngay,
-            thang: bot.info[message.author.id].bala.thang,
-            nam: bot.info[message.author.id].bala.nam,
-            t_ngay: bot.info[message.author.id].bala.t_ngay,
-            t_thang: bot.info[message.author.id].bala.t_thang,
-            t_nam: bot.info[message.author.id].bala.t_nam,
-		},
-	}
+	bot.info[message.author.id].bala.phong = 1;
+	bot.info[message.author.id].bala.code = code;
+	bot.info[message.author.id].bala.start = 0;
+	bot.info[message.author.id].bala.cuoc = tiencuocz;
+	bot.info[message.author.id].bala.o_tag = mention.tag;
+	bot.info[message.author.id].bala.o_id = mention.id;
 	fs.writeFileSync(f2, JSON.stringify(bot.info, null, 4), err => {
 		if (err) throw err;
 	});
@@ -454,85 +420,30 @@ module.exports.thoat_phong = (bot, message, f2, f3) => {
 		if (err) throw err;
 	});
 
-	bot.info[message.author.id] = {
-		ten: bot.info[message.author.id].ten,
-		id: bot.info[message.author.id].id,
-		bala: {
-			tien: bot.info[message.author.id].bala.tien,
-			choi: bot.info[message.author.id].bala.choi,
-            cthang: bot.info[message.author.id].bala.cthang,
-            ba_cao: bot.info[message.author.id].bala.ba_cao,
-            bu: bot.info[message.author.id].bala.bu,
-            phong: 0,
-			code: ".",
-			start: 0,
-			cuoc: 0,
-			o_tag: ".",
-			o_id: ".",
-            ngay: bot.info[message.author.id].bala.ngay,
-            thang: bot.info[message.author.id].bala.thang,
-            nam: bot.info[message.author.id].bala.nam,
-            t_ngay: bot.info[message.author.id].bala.t_ngay,
-            t_thang: bot.info[message.author.id].bala.t_thang,
-            t_nam: bot.info[message.author.id].bala.t_nam,
-		},
-	}
+	bot.info[message.author.id].bala.phong = 0;
+	bot.info[message.author.id].bala.code = ".";
+	bot.info[message.author.id].bala.start = 0;
+	bot.info[message.author.id].bala.cuoc = ".";
+	bot.info[message.author.id].bala.o_tag = ".";
+	bot.info[message.author.id].bala.o_id = ".";
 	fs.writeFileSync(f2, JSON.stringify(bot.info, null, 4), err => {
 		if (err) throw err;
 	});
 }
 
 module.exports.tham_gia_phong = (bot, message, mention, f2, f3) => {
-	bot.info[message.author.id] = {
-		ten: bot.info[message.author.id].ten,
-		id: bot.info[message.author.id].id,
-		bala: {
-			tien: bot.info[message.author.id].bala.tien,
-			choi: bot.info[message.author.id].bala.choi,
-            cthang: bot.info[message.author.id].bala.cthang,
-            ba_cao: bot.info[message.author.id].bala.ba_cao,
-            bu: bot.info[message.author.id].bala.bu,
-            phong: 1,
-			code: bot.info[mention.id].bala.code,
-			start: 1,
-			cuoc: bot.info[mention.id].bala.cuoc,
-			o_tag: mention.tag,
-			o_id: mention.id,
-            ngay: bot.info[message.author.id].bala.ngay,
-            thang: bot.info[message.author.id].bala.thang,
-            nam: bot.info[message.author.id].bala.nam,
-            t_ngay: bot.info[message.author.id].bala.t_ngay,
-            t_thang: bot.info[message.author.id].bala.t_thang,
-            t_nam: bot.info[message.author.id].bala.t_nam,
-		},
-	}
+	bot.info[message.author.id].bala.phong = 1;
+	bot.info[message.author.id].bala.code = bot.info[mention.id].bala.code;
+	bot.info[message.author.id].bala.start = 1;
+	bot.info[message.author.id].bala.cuoc = bot.info[mention.id].bala.cuoc;
+	bot.info[message.author.id].bala.o_tag = mention.tag;
+	bot.info[message.author.id].bala.o_id = mention.id;
 	fs.writeFileSync(f2, JSON.stringify(bot.info, null, 4), err => {
 		if (err) throw err;
 	});
 
-	bot.info[mention.id] = {
-		ten: bot.info[mention.id].ten,
-		id: bot.info[mention.id].id,
-		bala: {
-			tien: bot.info[mention.id].bala.tien,
-			choi: bot.info[mention.id].bala.choi,
-            cthang: bot.info[mention.id].bala.cthang,
-            ba_cao: bot.info[mention.id].bala.ba_cao,
-            bu: bot.info[mention.id].bala.bu,
-            phong: 1,
-			code: bot.info[mention.id].bala.code,
-			start: 1,
-			cuoc: bot.info[mention.id].bala.cuoc,
-			o_tag: bot.info[mention.id].bala.o_tag,
-			o_id: bot.info[mention.id].bala.o_id,
-            ngay: bot.info[mention.id].bala.ngay,
-            thang: bot.info[mention.id].bala.thang,
-            nam: bot.info[mention.id].bala.nam,
-            t_ngay: bot.info[mention.id].bala.t_ngay,
-            t_thang: bot.info[mention.id].bala.t_thang,
-            t_nam: bot.info[mention.id].bala.t_nam,
-		},
-	}
+	bot.info[mention.id].bala.phong = 1;
+	bot.info[mention.id].bala.start = 1;
 	fs.writeFileSync(f2, JSON.stringify(bot.info, null, 4), err => {
 		if (err) throw err;
 	});

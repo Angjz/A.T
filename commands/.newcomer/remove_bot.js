@@ -22,16 +22,9 @@ exports.run2 = (bot, message, args, f1, f2) => {
         }	
         i++;				
     }
-    bot.config[message.guild.id] = {
-        name: bot.config[message.guild.id].name,
-        prefix: bot.config[message.guild.id].prefix,
-        channel: bot.config[message.guild.id].channel,
-        temp: bot.config[message.guild.id].temp,
-        botz: data_id,
-        botS: data,
-        userz: bot.config[message.guild.id].userz,
-        userS: bot.config[message.guild.id].userS,
-    }
+    
+    bot.config[message.guild.id].botz = data_id;
+    bot.config[message.guild.id].botS = data;
     fs.writeFile(f1, JSON.stringify(bot.config, null, 4), err => {
         if (err) throw err;
     });

@@ -10,16 +10,8 @@ exports.run3 = (bot, interaction, f1, f2) => {
     bot.guilds.cache.get(temp[1]).channels.cache.get(temp[2]).messages.fetch(temp[3]).then(msg => msg.delete());
 	let tempo = temp[1];
 	temp[0] = temp[1] = temp[2] = temp[3] = ".";
-	bot.config[tempo] = {
-		name: bot.config[tempo].name,
-		prefix: bot.config[tempo].prefix,
-		channel: bot.config[tempo].channel,
-		temp: temp,
-		botz: bot.config[tempo].botz,
-		botS: bot.config[tempo].botS,
-		userz: bot.config[tempo].userz,
-		userS: bot.config[tempo].userS,
-    }
+	
+	bot.config[tempo].temp = temp; 
 	fs.writeFile(f1, JSON.stringify(bot.config, null, 4), err => {
 		if (err) throw err;
 	});

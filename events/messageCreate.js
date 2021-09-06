@@ -9,6 +9,7 @@ bot.on('messageCreate', async message=>{
 
     //update datas
     functions.update_newcomer(bot, message, f1);
+    
     //slash command
     bot.api.applications(bot.user.id).guilds(message.guild.id).commands.post({
         data: {

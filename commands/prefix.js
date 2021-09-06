@@ -18,16 +18,8 @@ exports.run = (bot, message, args, f1, f2) => {
         message.reply({ content: "Prefix chỉ được tối đa 5 kí tự." });
         return;
     }
-    bot.config[message.guild.id] = {
-        name: bot.config[message.guild.id].name,
-        prefix: args[1],
-        channel: bot.config[message.guild.id].channel,
-        temp: bot.config[message.guild.id].temp,
-        botz: bot.config[message.guild.id].botz,
-        botS: bot.config[message.guild.id].botS,
-        userz: bot.config[message.guild.id].userz,
-        userS: bot.config[message.guild.id].userS,
-    }
+    
+    bot.config[message.guild.id].prefix = args[1];
     fs.writeFile(f1, JSON.stringify(bot.config, null, 4), err => {
         if (err) throw err;
     });
