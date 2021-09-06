@@ -6,7 +6,7 @@ const f2 = "./data/users.json";
 bot.on('messageCreate', async message=>{
     if (message.author.bot) return;
 	if (message.content.includes("@here") || message.content.includes("@everyone")) return;
-      
+
     //update datas
     functions.update_newcomer(bot, message, f1);
     //slash command
