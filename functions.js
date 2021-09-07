@@ -418,7 +418,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	await message.channel.send({ embeds: [embed] });
 
 	//chỉnh csdl
-	let msg = await bot.ba_data[code].msg;
+	let msg = await bot.bala_data[code].msg;
 	bot.bala_data[code] = {};
 	fs.writeFileSync("./data/bala.json", JSON.stringify(bot.bala_data, null, 4), err => {
 		if (err) throw err;
