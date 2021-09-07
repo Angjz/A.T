@@ -26,7 +26,7 @@ exports.run3 = (bot, interaction, f1, f2) => {
 		return;
     }
     
-    if (one != bot.bala_data[code].p1.id && one != bot.bala_data[code].p2.id){
+    if (!bot.bala_data[code].p[one].tag){
         interaction.reply({ content: "Này! Những nút này không phải dành cho bạn!", ephemeral: true })
 		return;
     }
@@ -34,75 +34,38 @@ exports.run3 = (bot, interaction, f1, f2) => {
     let bai = bot.bala_data[code].bai;
     bai = functions.Knuth_Fisher_Yates(bai);
 
-    if (one == bot.bala_data[code].p1.id){
-        let tay = bot.bala_data[code].p1.bai;
-        let diem = bot.bala_data[code].p1.diem;
-        let random = Math.floor( Math.random() * bai.length );
+    let tay = bot.bala_data[code].p[one].bai;
+    let diem = bot.bala_data[code].p[one].diem;
+    let random = Math.floor( Math.random() * bai.length );
 
-        const embed1 = new MessageEmbed()
-            .setColor('#FBFF08')
-            .setTitle('Ba lá - chơi đôi')
-            .setDescription('<@' + one + '>, bạn đã bốc đủ bài. Hãy bấm "sẵn sàng" để đối chiếu số điểm!')
-            .addFields(
-                { name: 'Số điểm của bạn', value: diem + ".", inline: true },
-            )
-        if (tay.length == 3){
-            interaction.reply({ embeds: [embed1], ephemeral: true });
-            return;
-        }
-
-        tay.push(bai[random]);
-        diem = functions.tinh_diem(tay);
-        bai.splice(random, 1);
-
-        const embed2 = new MessageEmbed()
-            .setColor('#FBFF08')
-            .setTitle('Ba lá - chơi đôi')
-            .setDescription('<@' + one + '>, bạn đã bốc được lá bài: `' + bo_bai[tay[tay.length-1]] + '`!')
-            .addFields(
-                { name: 'Số điểm của bạn', value: diem + ".", inline: true },
-            )
-            .setThumbnail('https://i.imgur.com/'+ hinh[tay[tay.length-1]] + '.png')
-        interaction.reply({ embeds: [embed2], ephemeral: true });
-        
-        bot.bala_data[code].bai = bai;
-        bot.bala_data[code].p1.diem = diem;
-        bot.bala_data[code].p1.bai = tay;
-        functions.viet_file(bot);
-    } else{
-        let tay = bot.bala_data[code].p2.bai;
-        let diem = bot.bala_data[code].p2.diem;
-        let random = Math.floor( Math.random() * bai.length );
-
-        const embed3 = new MessageEmbed()
+    const embed1 = new MessageEmbed()
         .setColor('#FBFF08')
-        .setTitle('Ba lá - chơi đôi')
-        .setDescription('<@' + one + '>, bạn đã bốc đủ bài. Hãy bấm "sẵn sàng" để đối chiếu số điểm!')
+        .setTitle('Ba lá - chơi')
+        .setDescription('<@' + one + '>, bạn đã bốc đủ bài. Hãy bấm "sẵn sàng" để sẵn sàng!')
         .addFields(
-            { name: 'Số điểm của bạn', value: diem + ".", inline: true },
+            { name: 'Số điểm của bạn', value: diem + '', inline: true },
         )
-        if (tay.length == 3){
-            interaction.reply({ embeds: [embed3], ephemeral: true });
-            return;
-        }
-
-        tay.push(bai[random]);
-        diem = functions.tinh_diem(tay);
-        bai.splice(random, 1);
-
-        const embed4 = new MessageEmbed()
-            .setColor('#FBFF08')
-            .setTitle('Ba lá - chơi đôi')
-            .setDescription('<@' + one + '>, bạn đã bốc được lá bài: `' + bo_bai[tay[tay.length-1]] + '`!')
-            .addFields(
-                { name: 'Số điểm của bạn', value: diem + ".", inline: true },
-            )
-            .setThumbnail('https://i.imgur.com/'+ hinh[tay[tay.length-1]] + '.png')
-        interaction.reply({ embeds: [embed4], ephemeral: true });
-
-        bot.bala_data[code].bai = bai;
-        bot.bala_data[code].p2.diem = diem;
-        bot.bala_data[code].p2.bai = tay;
-        functions.viet_file(bot);
+    if (tay.length == 3){
+        interaction.reply({ embeds: [embed1], ephemeral: true });
+        return;
     }
+
+    tay.push(bai[random]);
+    diem = functions.tinh_diem(tay);
+    bai.splice(random, 1);
+
+    const embed2 = new MessageEmbed()
+        .setColor('#FBFF08')
+        .setTitle('Ba lá - chơi')
+        .setDescription('<@' + one + '>, bạn đã bốc được lá bài: `' + bo_bai[tay[tay.length-1]] + '`!')
+        .addFields(
+            { name: 'Số điểm của bạn', value: diem + '', inline: true },
+        )
+        .setThumbnail('https://i.imgur.com/'+ hinh[tay[tay.length-1]] + '.png')
+    interaction.reply({ embeds: [embed2], ephemeral: true });
+        
+    bot.bala_data[code].bai = bai;
+    bot.bala_data[code].p[one].diem = diem;
+    bot.bala_data[code].p[one].bai = tay;
+    functions.viet_file(bot);
 }

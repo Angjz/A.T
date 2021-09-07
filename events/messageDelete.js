@@ -7,14 +7,16 @@ bot.on('messageDelete', message=>{
     if (!bot.bala_data[message.id].code) return;
 
     let code = bot.bala_data[message.id].code;
-    if (!bot.bala_data[code].cuoc){
+    if (!bot.bala_data[code].chu){
         bot.bala_data[message.id] = {};
         functions.viet_file(bot);
         return;
     }
 
+    let chu = bot.bala_data[code].chu;
     let cuoc = bot.bala_data[code].cuoc;
-    let p1 = bot.bala_data[code].p1.id;
-    let p2 = bot.bala_data[code].p2.id;
-    functions.ba_la(bot, message, p1, p2, cuoc, code, f3);
+    let danhsach = bot.bala_data[code].danhsach;
+
+    if (bot.info[chu].bala.phong == 1) functions.ba_la1(bot, message, code, chu, cuoc, danhsach, f3);
+    else functions.ba_la2(bot, message, code, chu, cuoc, danhsach, f3);
 });

@@ -6,7 +6,8 @@ exports.run4 = (bot, message, args, f1, f2) => {
 
     if (!mention) output = message.author.id;
     else output = mention.id;
-    let rate = (bot.info[output].bala.cthang / bot.info[output].bala.choi * 100).toFixed(1);
+    if (output == bot.user.id) rate = 227;
+    else rate = (bot.info[output].bala.cthang / bot.info[output].bala.choi * 100).toFixed(1);
 
     const embed = new MessageEmbed()
         .setColor('#FBFF08')
