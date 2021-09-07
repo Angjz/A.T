@@ -255,17 +255,18 @@ module.exports.tao_phong2 = (bot, message, tiencuocz, f2, f3) => {
 
 	let list = "";
 	for (var i = 0; i < idz.length; i++) list += '<@' + idz[i] + '>, ';
-	list = list.slice(0, list.length - 3);
+	list = list.slice(0, list.length - 2);
 	const embed = new MessageEmbed()
         .setColor('#FBFF08')
         .setTitle('Ba lá - chơi nhiều người')
         .setDescription('Trò chơi của <@' + message.author.id + '>\n'+
 						'Bàn cược: `' + code + '`\n'+
 						'Số lượng người chơi: ' + count + '\n\n' +
-						'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`'+
+						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join ' + message.author.tag + '`\n'+
+						'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n'+
 						'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`')
         .addFields(
-			{ name: 'Tiền cược', value: cuoc + '(VND)' },
+			{ name: 'Tiền cược', value: tiencuocz + '(VND)' },
 			{ name: 'Danh sách người chơi', value: list + '' },
        	)
 	message.channel.send({ embeds: [embed] });
@@ -469,7 +470,7 @@ module.exports.bat_dau = (bot, message, f2, f3) => {
 	for(var k in bot.bala_data[code].p){
 		if (!bot.bala_data[code].p[k].tag) continue;
 		bot.info[k].bala.start = 1;
-		danhsach.push(bot.bala_data[code].p[k].tag);
+		danhsach.push(' ' + bot.bala_data[code].p[k].tag);
 	}
 	fs.writeFileSync(f2, JSON.stringify(bot.info, null, 4), err => {
 		if (err) throw err;
@@ -664,14 +665,15 @@ module.exports.tham_gia_phong = (bot, message, mention, f2, f3) => {
 
 	let list = "";
 	for (var i = 0; i < idz.length; i++) list += '<@' + idz[i] + '>, ';
-	list = list.slice(0, list.length - 3);
+	list = list.slice(0, list.length - 2);
 	const embed = new MessageEmbed()
         .setColor('#FBFF08')
         .setTitle('Ba lá - chơi nhiều người')
         .setDescription('Trò chơi của <@' + mention.id + '>\n'+
 						'Bàn cược: `' + code + '`\n'+
 						'Số lượng người chơi: ' + count + '\n\n' +
-						'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`'+
+						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join ' + mention.tag + '`\n'+
+						'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n'+
 						'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`')
         .addFields(
 			{ name: 'Tiền cược', value: cuoc + '(VND)' },

@@ -27,7 +27,8 @@ exports.run4 = (bot, message, args, f1, f2) => {
         .setTitle('Ba lá - chơi nhiều người')
         .setDescription('Xin lỗi <@' + message.author.id + '>, nhưng bạn hiện đang trong bàn cược: `' + bot.info[message.author.id].bala.code + '`\n'+
                         'với số tiền cược là: `' + bot.info[message.author.id].bala.cuoc + '(VND)`\n\n'+
-                        'Bạn hãy dùng: `' + bot.config[message.guild.id].prefix + 'bala quit` để thoát bàn cược đã rồi mới tạo bàn cược mới nhé!')
+                        'Bạn hãy dùng: `' + bot.config[message.guild.id].prefix + 'bala quit` để thoát bàn cược đã rồi mới tạo bàn cược mới nhé!'+
+                        'Hoặc mời người khác vào bằng: `' + bot.config[message.guild.id].prefix + 'bala join ' + message.author.tag + '`')
     const embed4 = new MessageEmbed()
         .setColor('#FBFF08')
         .setTitle('Ba lá - chơi nhiều người')
