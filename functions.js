@@ -432,6 +432,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	fs.writeFileSync("./data/bala.json", JSON.stringify(bot.bala_data, null, 4), err => {
 		if (err) throw err;
 	});
+	if (msg)
 	msg.delete().catch(error => {
 		if (error.code !== 10008) {
 			console.error('Lỗi nữaaaaa:', error);
