@@ -386,16 +386,16 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	//tìm người thắng
 	let max = Math.max(...diem);
 	let min = Math.min(...diem);
-	if (min == 0) min = "**Bù**";
-	if (min == 227) min = "**Ba cào**";
-	if (max == 0) max = "**Bù**";
-	if (max == 227) max = "**Ba cào**";
 	let winner = [];
 	let lose = [];
 	for (var i = 0; i < diem.length; i++)
 		if (diem[i] == max) winner.push(idz[i]);
 		else lose.push(idz[i]);
-
+	if (min == 0) min = "**Bù**";
+	if (min == 227) min = "**Ba cào**";
+	if (max == 0) max = "**Bù**";
+	if (max == 227) max = "**Ba cào**";
+	
 	//tìm kết quả
 	let result = "";
 	if (winner.length == idz.length) result = 'Hòa! 🤝';
