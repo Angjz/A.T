@@ -333,8 +333,8 @@ module.exports.ba_la_het = async (bot, message, code) => {
 
 		var baiz = bot.bala_data[code].bai;
     	baiz = functions.Knuth_Fisher_Yates(baiz);
-    	var tay = bot.bala_data[code].p[one].bai;
-    	var diemz = bot.bala_data[code].p[one].diem;
+    	var tay = bot.bala_data[code].p[k].bai;
+    	var diemz = bot.bala_data[code].p[k].diem;
 
     	for (i = tay.length; i < 3; i++){
         	var random = Math.floor( Math.random() * baiz.length );
@@ -344,8 +344,8 @@ module.exports.ba_la_het = async (bot, message, code) => {
     	diemz = functions.tinh_diem(tay);
        
     	bot.bala_data[code].bai = baiz;
-    	bot.bala_data[code].p[one].diem = diemz;
-    	bot.bala_data[code].p[one].bai = tay;
+    	bot.bala_data[code].p[k].diem = diemz;
+    	bot.bala_data[code].p[k].bai = tay;
     	functions.viet_file(bot);
     }
 
