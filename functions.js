@@ -418,7 +418,11 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	await message.channel.send({ embeds: [embed] });
 
 	//chỉnh csdl
-	let msg = await message.channel.messages.fetch(bot.bala_data[code].msg);
+	let msg = await message.channel.messages.fetch(bot.bala_data[code].msg).catch(error => {
+		if (error.code !== 10008) {
+			console.error('Lỗi nữaaaaa:', error);
+		}
+	});
 	bot.bala_data[code] = {};
 	fs.writeFileSync("./data/bala.json", JSON.stringify(bot.bala_data, null, 4), err => {
 		if (err) throw err;

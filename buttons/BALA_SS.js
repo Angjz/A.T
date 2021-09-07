@@ -26,7 +26,11 @@ exports.run3 = async (bot, interaction, f1, f2) => {
     let xong = bot.bala_data[code].p[one].xong;
     if (xong == 0){
         var msg = bot.bala_data[code].msg;
-        var msg_m = await interaction.channel.messages.fetch(msg);
+        var msg_m = await interaction.channel.messages.fetch(msg).catch(error => {
+            if (error.code !== 10008) {
+                console.error('Lỗi nữaaaaa:', error);
+            }
+        });
         var sansang = bot.bala_data[code].sansang;
         sansang.push(' ' + bot.bala_data[code].p[one].tag);
 
@@ -55,7 +59,11 @@ exports.run3 = async (bot, interaction, f1, f2) => {
                 .setLabel("SẴN SÀNG")
                 .setStyle("SUCCESS")
         );
-        msg_m.edit({ embeds: [embed2], components: [row] });
+        msg_m.edit({ embeds: [embed2], components: [row] }).catch(error => {
+            if (error.code !== 10008) {
+                console.error('Lỗi nữaaaaa:', error);
+            }
+        });
         xong = 1;
     } else{
         interaction.reply({ embeds: [embed1], ephemeral: true });
