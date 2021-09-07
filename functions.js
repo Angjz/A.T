@@ -286,7 +286,8 @@ module.exports.ba_la = (bot, message, code, chu, cuoc, danhsach, sansang, f3) =>
         .setDescription('Ván chơi của <@' + chu + '>\n'+
 						'Bàn cược: `' + code + '`\n'+
 						'Số lượng người chơi: ' + danhsach.length + '\n'+
-						'Những người chơi có mặt có 60 giây để bốc đủ ba lá bài hoặc bấm "sẵn sàng" để hệ thống tự động bốc.')
+						'Những người chơi có mặt có 60 giây để bốc đủ ba lá bài\n'+
+						'hoặc bấm "sẵn sàng" để hệ thống tự động bốc.')
         .addFields(
 			{ name: 'Mức cược', value: cuoc + '(VND)' },
 			{ name: 'Danh sách người chơi', value: danhsach + '.' },
