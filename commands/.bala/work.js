@@ -2,16 +2,6 @@ const { MessageEmbed } = require("discord.js");
 const functions = require("../../functions.js");
 const fs = require("fs");
 
-/*  
-    cửa hàng: 40% - 50k (6001 - 10000)
-    phục vụ: 30% - 70k (3001 - 6000)
-    thanh lý: 15.2% - 100k (1481 - 3000)
-    giao hàng: 9.3% - 200k (551 - 1480)
-    sửa máy tính: 4% - 500k (151 - 550)
-    vé số: 1,44% - 1m (7 - 150)
-    đặc biệt: 0.06% - 10m (1 - 6)
-*/
-
 exports.run4 = (bot, message, args, f1, f2) => {
     let tien = bot.info[message.author.id].bala.tien;
     let tienz = functions.tach_tien(tien, 0);

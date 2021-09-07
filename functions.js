@@ -146,6 +146,7 @@ module.exports.tao_phong1 = (bot, message, tiencuocz, f2, f3) => {
 	bot.bala_data[code] = {
 		chu: message.author.id,
 		cuoc: tiencuocz,
+		msg: ".",
 		bai: [
 			0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
 			11, 12, 13, 14, 15, 16, 17, 18, 19,
@@ -157,6 +158,9 @@ module.exports.tao_phong1 = (bot, message, tiencuocz, f2, f3) => {
 		danhsach: [
 			message.author.tag,
 			' ' + bot.user.tag
+		],
+		sansang: [
+			bot.user.tag
 		],
 		p:{
 			[message.author.id]:{
@@ -201,7 +205,8 @@ module.exports.tao_phong1 = (bot, message, tiencuocz, f2, f3) => {
 	let chu = bot.bala_data[code].chu;
     let cuoc = bot.bala_data[code].cuoc;
     let danhsach = bot.bala_data[code].danhsach;
-    functions.ba_la1(bot, message, code, chu, cuoc, danhsach, f3);
+	let sansang = bot.bala_data[code].sansang;
+    functions.ba_la(bot, message, code, chu, cuoc, danhsach, sansang, f3);
 }
 
 module.exports.tao_phong2 = (bot, message, tiencuocz, f2, f3) => {
@@ -220,6 +225,7 @@ module.exports.tao_phong2 = (bot, message, tiencuocz, f2, f3) => {
 	bot.bala_data[code] = {
 		chu: message.author.id,
 		cuoc: tiencuocz,
+		msg: ".",
 		bai: [
 			0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
 			11, 12, 13, 14, 15, 16, 17, 18, 19,
@@ -229,6 +235,7 @@ module.exports.tao_phong2 = (bot, message, tiencuocz, f2, f3) => {
 			49, 50, 51
 		],
 		danhsach: [],
+		sansang: [],
 		p:{
 			[message.author.id]:{
 				tag: message.author.tag,
@@ -262,7 +269,7 @@ module.exports.tao_phong2 = (bot, message, tiencuocz, f2, f3) => {
         .setDescription('Trò chơi của <@' + message.author.id + '>\n'+
 						'Bàn cược: `' + code + '`\n'+
 						'Số lượng người chơi: ' + count + '\n\n' +
-						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join ' + message.author.tag + '`\n'+
+						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + message.author.tag + '`\n'+
 						'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n'+
 						'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`')
         .addFields(
@@ -272,54 +279,7 @@ module.exports.tao_phong2 = (bot, message, tiencuocz, f2, f3) => {
 	message.channel.send({ embeds: [embed] });
 }
 
-module.exports.ba_la1 = (bot, message, code, chu, cuoc, danhsach, f3) => {
-	const embed1 = new MessageEmbed()
-		.setColor('#FBFF08')
-		.setTitle('Ba lá - chơi với A.T')
-        .setDescription('Trò chơi của <@' + chu + '>\n'+
-						'Bàn cược: `' + code + '`\n'+
-						'Số lượng người chơi: ' + danhsach.length + '\n'+
-						'Những người chơi có mặt có 60 giây để bốc đủ ba lá bài hoặc bấm "sẵn sàng" để hệ thống tự động bốc.')
-        .addFields(
-			{ name: 'Danh sách người chơi', value: danhsach + '.' },
-            { name: 'Mức cược', value: cuoc + '(VND)' },
-        )
-	const embed2 = new MessageEmbed()
-		.setColor('#FBFF08')
-		.setTitle('Ba lá - chơi với A.T')
-        .setDescription('Bàn cược: `' + code + '`\n'+
-                        '<@' + bot.user.id + '> đã sẵn sàng!')
-    const row = new MessageActionRow().addComponents(
-        new MessageButton()
-            .setCustomId("BALA_BB")
-            .setLabel("BỐC BÀI")
-            .setStyle("PRIMARY"),
-        new MessageButton()
-            .setCustomId("BALA_SS")
-            .setLabel("SẴN SÀNG")
-            .setStyle("SUCCESS")
-    );
-    message.channel.send({ embeds: [embed1], components: [row] })
-        .then(msg=>{
-			bot.bala_data[msg.id] = {
-				code: code,
-			}
-			fs.writeFileSync(f3, JSON.stringify(bot.bala_data, null, 4), err => {
-				if (err) throw err;
-			});
-            setTimeout(function() {
-                msg.delete().catch(error => {
-                    if (error.code !== 10008) {
-                        console.error('Lỗi nữaaaaa:', error);
-                    }
-                });
-                functions.ba_la_het(bot, message, code);
-            }, 60000)
-        });
-	message.channel.send({ embeds: [embed2] });
-}
-
-module.exports.ba_la2 = (bot, message, code, chu, cuoc, danhsach, f3) => {
+module.exports.ba_la = (bot, message, code, chu, cuoc, danhsach, sansang, f3) => {
 	const embed = new MessageEmbed()
 		.setColor('#FBFF08')
 		.setTitle('Ba lá - chơi nhiều người')
@@ -328,8 +288,9 @@ module.exports.ba_la2 = (bot, message, code, chu, cuoc, danhsach, f3) => {
 						'Số lượng người chơi: ' + danhsach.length + '\n'+
 						'Những người chơi có mặt có 60 giây để bốc đủ ba lá bài hoặc bấm "sẵn sàng" để hệ thống tự động bốc.')
         .addFields(
+			{ name: 'Mức cược', value: cuoc + '(VND)' },
 			{ name: 'Danh sách người chơi', value: danhsach + '.' },
-            { name: 'Mức cược', value: cuoc + '(VND)' },
+            { name: 'Đã sẵn sàng', value: sansang + '.' },
         )
     const row = new MessageActionRow().addComponents(
         new MessageButton()
@@ -346,9 +307,11 @@ module.exports.ba_la2 = (bot, message, code, chu, cuoc, danhsach, f3) => {
 			bot.bala_data[msg.id] = {
 				code: code,
 			}
+			bot.bala_data[code].msg = msg.id;
 			fs.writeFileSync(f3, JSON.stringify(bot.bala_data, null, 4), err => {
 				if (err) throw err;
 			});
+			
             setTimeout(function() {
                 msg.delete().catch(error => {
                     if (error.code !== 10008) {
@@ -483,7 +446,8 @@ module.exports.bat_dau = (bot, message, f2, f3) => {
 
 	let chu = bot.bala_data[code].chu;
     let cuoc = bot.bala_data[code].cuoc;
-	functions.ba_la2(bot, message, code, chu, cuoc, danhsach, f3);
+	let sansang = bot.bala_data[code].sansang;
+	functions.ba_la(bot, message, code, chu, cuoc, danhsach, sansang, f3);
 }
 
 module.exports.cap_nhat = (bot, tien, diem, p, thang) => {
@@ -672,7 +636,7 @@ module.exports.tham_gia_phong = (bot, message, mention, f2, f3) => {
         .setDescription('Trò chơi của <@' + mention.id + '>\n'+
 						'Bàn cược: `' + code + '`\n'+
 						'Số lượng người chơi: ' + count + '\n\n' +
-						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join ' + mention.tag + '`\n'+
+						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + mention.tag + '`\n'+
 						'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n'+
 						'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`')
         .addFields(

@@ -16,7 +16,7 @@ bot.on('messageDelete', message=>{
     let chu = bot.bala_data[code].chu;
     let cuoc = bot.bala_data[code].cuoc;
     let danhsach = bot.bala_data[code].danhsach;
+    let sansang = bot.bala_data[code].sansang;
 
-    if (bot.info[chu].bala.phong == 1) functions.ba_la1(bot, message, code, chu, cuoc, danhsach, f3);
-    else functions.ba_la2(bot, message, code, chu, cuoc, danhsach, f3);
+    functions.ba_la(bot, message, code, chu, cuoc, danhsach, sansang, f3);
 });
