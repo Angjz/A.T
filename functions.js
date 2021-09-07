@@ -441,7 +441,8 @@ module.exports.ba_la_het = async (bot, message, code) => {
 
 	let tongcuoc = functions.tach_tien(cuoc, 0) * (idz.length - 1);
 	let nhancuoc = (tongcuoc / winner.length).toFixed();
-	nhancuoc = functions.ghep_tien(nhancuoc, '');
+	if (result === 'Hòa! 🤝') nhancuoc = "0";
+	else nhancuoc = functions.ghep_tien(nhancuoc, '');
 	let trucuoc = cuoc;
 	for (var i = 0; i < winner.length; i++){
 		if (winner[i] == bot.user.id) continue;
