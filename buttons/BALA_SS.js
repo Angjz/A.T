@@ -36,7 +36,7 @@ exports.run3 = async (bot, interaction, f1, f2) => {
         const embed2 = new MessageEmbed()
 		    .setColor('#FBFF08')
 		    .setTitle('Ba lá - chơi nhiều người')
-            .setDescription('Trò chơi của <@' + chu + '>\n'+
+            .setDescription('Ván chơi của <@' + chu + '>\n'+
 						    'Bàn cược: `' + code + '`\n'+
 						    'Số lượng người chơi: ' + danhsach.length + '\n'+
 						    'Những người chơi có mặt có 60 giây để bốc đủ ba lá bài hoặc bấm "sẵn sàng" để hệ thống tự động bốc.')

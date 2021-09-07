@@ -266,7 +266,7 @@ module.exports.tao_phong2 = (bot, message, tiencuocz, f2, f3) => {
 	const embed = new MessageEmbed()
         .setColor('#FBFF08')
         .setTitle('Ba lá - chơi nhiều người')
-        .setDescription('Trò chơi của <@' + message.author.id + '>\n'+
+        .setDescription('Ván chơi của <@' + message.author.id + '>\n'+
 						'Bàn cược: `' + code + '`\n'+
 						'Số lượng người chơi: ' + count + '\n\n' +
 						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + message.author.tag + '`\n'+
@@ -283,7 +283,7 @@ module.exports.ba_la = (bot, message, code, chu, cuoc, danhsach, sansang, f3) =>
 	const embed = new MessageEmbed()
 		.setColor('#FBFF08')
 		.setTitle('Ba lá - chơi nhiều người')
-        .setDescription('Trò chơi của <@' + chu + '>\n'+
+        .setDescription('Ván chơi của <@' + chu + '>\n'+
 						'Bàn cược: `' + code + '`\n'+
 						'Số lượng người chơi: ' + danhsach.length + '\n'+
 						'Những người chơi có mặt có 60 giây để bốc đủ ba lá bài hoặc bấm "sẵn sàng" để hệ thống tự động bốc.')
@@ -402,11 +402,11 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	}
 	
 	//xuất dữ liệu
-	await message.channel.send({ content: 'Dữ liệu trò chơi của <@' + chu + '>\n'+ 'Bàn cược: `' + code + '`\n'+ list})
+	await message.channel.send({ content: 'Dữ liệu ván chơi của <@' + chu + '>\n'+ 'Bàn cược: `' + code + '`\n'+ list})
 	const embed = new MessageEmbed()
         .setColor('#FBFF08')
         .setTitle('Ba lá - chơi')
-        .setDescription('Trò chơi của <@' + chu + '>\n'+
+        .setDescription('Ván chơi của <@' + chu + '>\n'+
 						'Bàn cược: `' + code + '`\n'+
 						'Số lượng người chơi: ' + danhsach.length)
         .addFields(
@@ -604,7 +604,7 @@ module.exports.xoa_phong = (bot, message, f2, f3) => {
 	const embed = new MessageEmbed()
         .setColor('#FBFF08')
         .setTitle('Ba lá - chơi nhiều người')
-        .setDescription('Trò chơi của <@' + message.author.id + '>\n'+
+        .setDescription('Ván chơi của <@' + message.author.id + '>\n'+
 						'Bàn cược: `' + code + '`\n'+
 						'Bàn cược đã bị đóng!')
 	message.channel.send({ embeds: [embed] });
@@ -665,7 +665,7 @@ module.exports.tham_gia_phong = (bot, message, mention, f2, f3) => {
 	const embed = new MessageEmbed()
         .setColor('#FBFF08')
         .setTitle('Ba lá - chơi nhiều người')
-        .setDescription('Trò chơi của <@' + mention.id + '>\n'+
+        .setDescription('Ván chơi của <@' + mention.id + '>\n'+
 						'Bàn cược: `' + code + '`\n'+
 						'Số lượng người chơi: ' + count + '\n\n' +
 						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + mention.tag + '`\n'+

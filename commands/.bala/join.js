@@ -75,7 +75,7 @@ exports.run4 = (bot, message, args, f1, f2) => {
     const embed7 = new MessageEmbed()
 		.setColor('#FBFF08')
 		.setTitle('Ba lá - chơi nhiều người')
-        .setDescription('Trò chơi của <@' + mention.id + '>\n'+
+        .setDescription('Ván chơi của <@' + mention.id + '>\n'+
 						'Bàn cược: `' + bot.info[mention.id].bala.code + '`\n'+
 						'<@' + message.author.id + '> đã tham gia!')
 
