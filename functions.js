@@ -326,6 +326,29 @@ module.exports.ba_la = (bot, message, code, chu, cuoc, danhsach, sansang, f3) =>
 module.exports.ba_la_het = async (bot, message, code) => {
 	if (!bot.bala_data[code].chu) return;
 
+	//lấy đủ bài
+	for(var k in bot.bala_data[code].p){
+		if (!bot.bala_data[code].p[k].tag) continue;
+		if ((bot.bala_data[code].p[k].bai).length == 3) continue; 
+
+		var bai = bot.bala_data[code].bai;
+    	bai = functions.Knuth_Fisher_Yates(bai);
+    	var tay = bot.bala_data[code].p[one].bai;
+    	var diem = bot.bala_data[code].p[one].diem;
+
+    	for (i = tay.length; i < 3; i++){
+        	var random = Math.floor( Math.random() * bai.length );
+        	tay[i] = bai[random];
+        	bai.splice(random, 1);
+    	}  
+    	diem = functions.tinh_diem(tay);
+       
+    	bot.bala_data[code].bai = bai;
+    	bot.bala_data[code].p[one].diem = diem;
+    	bot.bala_data[code].p[one].bai = tay;
+    	functions.viet_file(bot);
+    }
+
 	//lấy dữ liệu
 	let list = [];
 	let diem = [];
@@ -395,9 +418,15 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	await message.channel.send({ embeds: [embed] });
 
 	//chỉnh csdl
+	let msg = await bot.ba_data[code].msg;
 	bot.bala_data[code] = {};
 	fs.writeFileSync("./data/bala.json", JSON.stringify(bot.bala_data, null, 4), err => {
 		if (err) throw err;
+	});
+	msg.delete().catch(error => {
+		if (error.code !== 10008) {
+			console.error('Lỗi nữaaaaa:', error);
+		}
 	});
 
 	let tongcuoc = functions.tach_tien(cuoc, 0) * idz.length;
