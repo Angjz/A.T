@@ -528,7 +528,10 @@ module.exports.tinh_diem = ( Array ) => {
 }
 
 module.exports.tach_tien = (a, b) => {
-	let bac = 0;
+	var bac = 0;
+	if (a[a.length - 1].toLowerCase() === 'k') var bac = 3;
+	if (a[a.length - 1].toLowerCase() === 'm') var bac = 6;
+	if (a[a.length - 1].toLowerCase() === 'b') var bac = 9;
 	for (let i = a.length -1; i >= 0; i--){
 		if ( isNaN(Number(a[i])) ) continue;
 		b += Number(a[i]) * 10 ** bac;

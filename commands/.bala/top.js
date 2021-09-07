@@ -241,6 +241,7 @@ exports.run4 = (bot, message, args, f1, f2) => {
                     { name: 'Ván chơi', value: bot.config[message.guild.id].prefix + 'bala top play', inline: true },
                     { name: 'Trận thắng', value: bot.config[message.guild.id].prefix + 'bala top win', inline: true },
                     { name: 'Ba cào', value: bot.config[message.guild.id].prefix + 'bala top bacao', inline: true },
+                    { name: '\u200b ', value: '\u200b', inline: true },
                     { name: 'Bù', value: bot.config[message.guild.id].prefix + 'bala top bu', inline: true  },
                 )
             message.channel.send({ embeds: [embed1] });
