@@ -331,20 +331,20 @@ module.exports.ba_la_het = async (bot, message, code) => {
 		if (!bot.bala_data[code].p[k].tag) continue;
 		if ((bot.bala_data[code].p[k].bai).length == 3) continue; 
 
-		var bai = bot.bala_data[code].bai;
-    	bai = functions.Knuth_Fisher_Yates(bai);
+		var baiz = bot.bala_data[code].bai;
+    	baiz = functions.Knuth_Fisher_Yates(baiz);
     	var tay = bot.bala_data[code].p[one].bai;
-    	var diem = bot.bala_data[code].p[one].diem;
+    	var diemz = bot.bala_data[code].p[one].diem;
 
     	for (i = tay.length; i < 3; i++){
-        	var random = Math.floor( Math.random() * bai.length );
-        	tay[i] = bai[random];
-        	bai.splice(random, 1);
+        	var random = Math.floor( Math.random() * baiz.length );
+        	tay[i] = baiz[random];
+        	baiz.splice(random, 1);
     	}  
-    	diem = functions.tinh_diem(tay);
+    	diemz = functions.tinh_diem(tay);
        
-    	bot.bala_data[code].bai = bai;
-    	bot.bala_data[code].p[one].diem = diem;
+    	bot.bala_data[code].bai = baiz;
+    	bot.bala_data[code].p[one].diem = diemz;
     	bot.bala_data[code].p[one].bai = tay;
     	functions.viet_file(bot);
     }
