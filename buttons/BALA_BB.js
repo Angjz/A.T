@@ -7,10 +7,10 @@ const hinh = [
     'fAvqomL', '2oqbtip', 'heFDjTN', 'KmpRLHn', 'uWTJLmV', 'm7vp94P', 'TkygFIY', 'xMlqW7U', 'JB7qpTv', 'n9RnriM', 'nYQiBge', 'Ecby02J', 'saJ0GdC'
 ]
 const bo_bai = [
-    "Át Bích", "2 Bích", "3 Bích", "4 Bích", "5 Bích", "6 Bích", "7 Bích", "8 Bích", "9 Bích", "10 Bích", "Bồi J Bích", "Đầm Q Bích", "Già K Bích",
-    "Át Chuồn", "2 Chuồn", "3 Chuồn", "4 Chuồn", "5 Chuồn", "6 Chuồn", "7 Chuồn", "8 Chuồn", "9 Chuồn", "10 Chuồn", "Bồi J Chuồn", "Đầm Q Chuồn", "Già K Chuồn",
-    "Át Rô", "2 Rô", "3 Rô", "4 Rô", "5 Rô", "6 Rô", "7 Rô", "8 Rô", "9 Rô", "10 Rô", "Bồi J Rô", "Đầm Q Rô", "Già K Rô",
-    "Át Cơ", "2 Cơ", "3 Cơ", "4 Cơ", "5 Cơ", "6 Cơ", "7 Cơ", "8 Cơ", "9 Cơ", "10 Cơ", "Bồi J Cơ", "Đầm Q Cơ", "Già K Cơ"
+    "Át Bích", "2 Bích", "3 Bích", "4 Bích", "5 Bích", "6 Bích", "7 Bích", "8 Bích", "9 Bích", "10 Bích", "J Bích", "Q Bích", "K Bích",
+    "Át Chuồn", "2 Chuồn", "3 Chuồn", "4 Chuồn", "5 Chuồn", "6 Chuồn", "7 Chuồn", "8 Chuồn", "9 Chuồn", "10 Chuồn", "J Chuồn", "Q Chuồn", "K Chuồn",
+    "Át Rô", "2 Rô", "3 Rô", "4 Rô", "5 Rô", "6 Rô", "7 Rô", "8 Rô", "9 Rô", "10 Rô", "J Rô", "Q Rô", "K Rô",
+    "Át Cơ", "2 Cơ", "3 Cơ", "4 Cơ", "5 Cơ", "6 Cơ", "7 Cơ", "8 Cơ", "9 Cơ", "10 Cơ", "J Cơ", "Q Cơ", "K Cơ"
 ]
 
 exports.run3 = (bot, interaction, f1, f2) => {
