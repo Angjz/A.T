@@ -5,7 +5,7 @@ exports.run = (bot, message, args, f1, f2) => {
     if (!bot.info[message.author.id]){
         functions.set_user(bot, message, f2);
     }
-    args[1] = args[1].toLowerCase();
+    if (args[1]) args[1] = args[1].toLowerCase();
     const cmd = bot.bala.get(args[1]);
     if (!cmd){
         const embed = new MessageEmbed()
