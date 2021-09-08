@@ -36,7 +36,7 @@ bot.on('messageCreate', async message=>{
         cmd.run(bot, message, args, f1, f2);
     }
     else{
-        if (message.mentions.has(bot.user.id)) message.channel.send({ content: 'Người máy vui vẻ A.T luôn sẵn sàng!\n\nDùng: `' + bot.config[message.guild.id].prefix + 'help` để xem các lệnh của tôi nhé~' }).catch(error => {
+        if (message.mentions.has(bot.user.id)) message.channel.send({ content: 'Người máy vui vẻ A.T luôn sẵn sàng!\nDùng: `' + bot.config[message.guild.id].prefix + 'help` để xem các lệnh của tôi nhé~' }).catch(error => {
             if (error.code !== 50013) {
                 console.error('Lỗi nữaaaaa:', error);
             }})
