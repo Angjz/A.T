@@ -43,21 +43,12 @@ exports.run4 = (bot, message, args, f1, f2) => {
         .setTitle('Ba lá - chơi nhiều người')
         .setDescription('Có vẻ như bạn <@' + mention.id + '> chưa ở trong bàn cược nào.\n'+
                         'Nếu bạn muốn chơi với bạn ấy thì hãy dùng: `' + bot.config[message.guild.id].prefix + 'bala create` nhé!')
-    const embed8 = new MessageEmbed()
-        .setColor('#FBFF08')
-        .setTitle('Ba lá - chơi nhiều người')
-        .setDescription('Có vẻ như bàn cược của bạn <@' + mention.id + '> đã bắt đầu.\n'+
-                        'Bạn vui lòng đợi bạn ấy xong nhé!')
     if (!bot.info[mention.id]){
         message.channel.send({ embeds: [embed4] });
         return;
     }
     if (bot.info[mention.id].bala.phong == 0){
         message.channel.send({ embeds: [embed4] });
-        return;
-    }
-    if (bot.info[mention.id].bala.start == 1){
-        message.channel.send({ embeds: [embed8] });
         return;
     }
     
@@ -78,28 +69,11 @@ exports.run4 = (bot, message, args, f1, f2) => {
     }
 
     const embed6 = new MessageEmbed()
-        .setColor('#FBFF08')
-        .setTitle('Ba lá - chơi nhiều người')
-        .setDescription('Xin lỗi <@' + message.author.id + '>, có vẻ như bàn cược của bạn <@' + mention.id + '> đã đủ 17 người chơi. 😦')
-    const embed7 = new MessageEmbed()
 		.setColor('#FBFF08')
 		.setTitle('Ba lá - chơi nhiều người')
         .setDescription('Ván chơi của <@' + mention.id + '>\n'+
 						'Bàn cược: `' + bot.info[mention.id].bala.code + '`\n'+
 						'<@' + message.author.id + '> đã tham gia!')
-
-    let count = 0;
-    for(var k in bot.bala_data[bot.info[mention.id].bala.code].p){
-        if (!bot.bala_data[bot.info[mention.id].bala.code].p[k].tag) continue;
-        count++;
-    }
-    
-    if (count == 17){
-        message.channel.send({ embeds: [embed6] });
-        return;
-    }
-    else{
-        message.channel.send({ embeds: [embed7] });
-        functions.tham_gia_phong(bot, message, mention, f2, f3);
-    }
+    message.channel.send({ embeds: [embed6] });
+    functions.tham_gia_phong(bot, message, mention, f2, f3);
 }

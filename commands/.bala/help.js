@@ -4,7 +4,7 @@ exports.run4 = (bot, message, args, f1, f2) => {
     const embed = new MessageEmbed()
         .setColor('#FBFF08') 
         .setTitle('Ba lá - luật chơi')
-        .setDescription('Mỗi người chơi trong một ván chơi (tối đa 17 người chơi) sẽ tự bốc cho tới khi đủ ba lá bài rồi ra hiệu sẵn sàng, hoặc ra hiệu sẵn sàng sớm để hệ thống tự động bốc bài.\n'+
+        .setDescription('Mỗi người chơi trong một ván chơi sẽ tự bốc cho tới khi đủ ba lá bài rồi ra hiệu sẵn sàng, hoặc ra hiệu sẵn sàng sớm để hệ thống tự động bốc bài.\n'+
                         'Người thắng là người cao điểm nhất và sẽ được tiền cược của từng người chơi có mặt.\n'+
                         'Trường hợp nhiều người thắng thì tiền cược sẽ được chia đều.\n'+
                         'Trò chơi dựa trên yếu tố ngẫu nhiên nên đảm bảo tính công bằng.\n\n'+
