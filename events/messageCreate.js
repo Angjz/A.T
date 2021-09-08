@@ -33,6 +33,6 @@ bot.on('messageCreate', async message=>{
         cmd.run(bot, message, args, f1, f2);
     }
     else{
-        if (message.mentions.has(bot.user.id)) message.channel.send({ content: 'Tôi là một người máy vui vẻ~\n\nDùng: `' + bot.config[message.guild.id].prefix + 'help` để xem các lệnh của tôi nhé~' });
+        if (message.mentions.has(bot.user.id)) message.channel.send({ content: 'Người máy vui vẻ A.T luôn sẵn sàng!\n\nDùng: `' + bot.config[message.guild.id].prefix + 'help` để xem các lệnh của tôi nhé~' });
     }
 });

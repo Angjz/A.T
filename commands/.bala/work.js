@@ -12,11 +12,11 @@ exports.run4 = (bot, message, args, f1, f2) => {
             cv = "đã trúng giải đặc biệt và nhận được 10.000.000(VND)! 🥳🎉🎊👯";
             luong = "10.000.000";
         }
-        if (7 <= so && so <= 150){
+        if (7 <= so && so <= 106){
             cv = "đã trúng vé số và nhận được 1.000.000(VND)! 🥳";
             luong = "1.000.000";
         }
-        if (151 <= so && so <= 550){
+        if (107 <= so && so <= 550){
             cv = "đã giúp sửa máy tính và nhận được 500.000(VND)!";
             luong = "500.000";
         }
