@@ -318,7 +318,7 @@ module.exports.ba_la = (bot, message, code, chu, cuoc, danhsach, sansang, f3) =>
 			
             setTimeout(function() {
                 msg.delete().catch(error => {
-                    if (error.code !== 10008) {
+                    if (error.code !== 10008 && error.code !== 50013) {
                         console.error('Lỗi nữaaaaa:', error);
                     }
                 });
@@ -459,7 +459,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	});
 	if (msg)
 	msg.delete().catch(error => {
-		if (error.code !== 10008) {
+		if (error.code !== 10008 && error.code !== 50013) {
 			console.error('Lỗi nữaaaaa:', error);
 		}
 	});

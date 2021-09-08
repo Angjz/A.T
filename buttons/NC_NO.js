@@ -7,7 +7,10 @@ exports.run3 = (bot, interaction, f1, f2) => {
 		interaction.reply({ content: "Này! Những nút này không phải dành cho bạn!", ephemeral: true })
 		return;
 	}
-    bot.guilds.cache.get(temp[1]).channels.cache.get(temp[2]).messages.fetch(temp[3]).then(msg => msg.delete());
+    bot.guilds.cache.get(temp[1]).channels.cache.get(temp[2]).messages.fetch(temp[3]).then(msg => msg.delete()).catch(error => {
+		if (error.code !== 50013) {
+			console.error('Lỗi nữaaaaa:', error);
+		}})
 	let tempo = temp[1];
 	temp[0] = temp[1] = temp[2] = temp[3] = ".";
 	

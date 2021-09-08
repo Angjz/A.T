@@ -35,7 +35,7 @@ exports.run2 = (bot, message, args, f1, f2) => {
             });
             setTimeout(function() {
                 msg.delete().catch(error => {
-                    if (error.code !== 10008) {
+                    if (error.code !== 10008 && error.code !== 50013) {
                         console.error('Lỗi nữaaaaa:', error);
                     }
                     temp = bot.config[message.guild.id].temp;
