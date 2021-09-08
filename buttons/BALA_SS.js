@@ -1,7 +1,5 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const functions = require("../functions.js");
-const fs = require("fs");
-const f3 = "../data/bala.json";
 
 exports.run3 = async (bot, interaction, f1, f2) => {
     let one = interaction.user.id;
@@ -45,9 +43,7 @@ exports.run3 = async (bot, interaction, f1, f2) => {
             danhsach.push(' ' + bot.bala_data[code].p[k].tag);
         }
         bot.bala_data[code].danhsach = danhsach;
-        fs.writeFileSync(f3, JSON.stringify(bot.bala_data, null, 4), err => {
-            if (err) throw err;
-        });
+        functions.viet_file(bot);
 
         const embed2 = new MessageEmbed()
 		    .setColor('#FBFF08')
