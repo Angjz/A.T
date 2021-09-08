@@ -43,12 +43,21 @@ exports.run4 = (bot, message, args, f1, f2) => {
         .setTitle('Ba lá - chơi nhiều người')
         .setDescription('Có vẻ như bạn <@' + mention.id + '> chưa ở trong bàn cược nào.\n'+
                         'Nếu bạn muốn chơi với bạn ấy thì hãy dùng: `' + bot.config[message.guild.id].prefix + 'bala create` nhé!')
+    const embed8 = new MessageEmbed()
+        .setColor('#FBFF08')
+        .setTitle('Ba lá - chơi nhiều người')
+        .setDescription('Có vẻ như bàn cược của bạn <@' + mention.id + '> đã bắt đầu.\n'+
+                        'Bạn vui lòng đợi bạn ấy xong nhé!')
     if (!bot.info[mention.id]){
         message.channel.send({ embeds: [embed4] });
         return;
     }
     if (bot.info[mention.id].bala.phong == 0){
         message.channel.send({ embeds: [embed4] });
+        return;
+    }
+    if (bot.info[mention.id].bala.start == 1){
+        message.channel.send({ embeds: [embed8] });
         return;
     }
     
