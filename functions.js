@@ -359,7 +359,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
 		diem.push(bot.bala_data[code].p[k].diem);
 		idz.push(bot.bala_data[code].p[k].id);
 		list.push([]);	
-        list[list.length-1].push('\nTên: ' + bot.bala_data[code].p[k].tag);
+        list[list.length-1].push('\nTên: `' + bot.bala_data[code].p[k].tag + '`');
 		list[list.length-1].push(bot.bala_data[code].p[k].diem);
 		list[list.length-1].push(bot.bala_data[code].p[k].bai);
     }
@@ -378,10 +378,10 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	for (var i = 0; i < list.length; i++){
 		if (list[i][1] == 0) list[i][1] = ' Điểm: **Bù**';
 		else if (list[i][1] == 227) list[i][1] = ' Điểm: **Ba cào**';
-			else list[i][1] = ' Điểm: ' + list[i][1];
-		list[i][2][0] = ' Bài: [' + bai[list[i][2][0]]; 
+			else list[i][1] = ' Điểm: `' + list[i][1] + '`';
+		list[i][2][0] = ' Bài: `[' + bai[list[i][2][0]]; 
 		list[i][2][1] = ' ' + bai[list[i][2][1]]; 
-		list[i][2][2] = ' ' + bai[list[i][2][2]] + ']'; 
+		list[i][2][2] = ' ' + bai[list[i][2][2]] + ']`'; 
 	}
 	
 	//tìm người thắng
