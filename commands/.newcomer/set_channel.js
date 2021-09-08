@@ -54,5 +54,8 @@ exports.run2 = (bot, message, args, f1, f2) => {
                     if (err) throw err;
                 });
             }, 30000)
-        });
+        }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
 }

@@ -18,14 +18,23 @@ exports.run4 = (bot, message, args, f1, f2) => {
         .setDescription('<@' + message.author.id + '>, bạn đã thoát bàn cược `' + bot.info[message.author.id].bala.code + '`.')
 
     if (bot.info[message.author.id].bala.phong == 0){
-        message.channel.send({ embeds: [embed1] });
+        message.channel.send({ embeds: [embed1] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return;
     }
     if (bot.info[message.author.id].bala.start == 1){
-        message.channel.send({ embeds: [embed2] });
+        message.channel.send({ embeds: [embed2] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return;
     }
 
-    message.channel.send({ embeds: [embed3] });
+    message.channel.send({ embeds: [embed3] }).catch(error => {
+        if (error.code !== 50013) {
+            console.error('Lỗi nữaaaaa:', error);
+        }})
     functions.thoat_phong(bot, message, f2, f3);
 }

@@ -16,18 +16,27 @@ const bo_bai = [
 exports.run3 = (bot, interaction, f1, f2) => {
     let one = interaction.user.id;
     if (!bot.info[one]){
-        interaction.reply({ content: "Này! Những nút này không phải dành cho bạn!", ephemeral: true })
+        interaction.reply({ content: "Này! Những nút này không phải dành cho bạn!", ephemeral: true }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
 		return;
     }
     
     let code = bot.info[one].bala.code;
     if (!bot.bala_data[code]){
-        interaction.reply({ content: "Này! Những nút này không phải dành cho bạn!", ephemeral: true })
+        interaction.reply({ content: "Này! Những nút này không phải dành cho bạn!", ephemeral: true }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
 		return;
     }
     
     if (!bot.bala_data[code].p[one].tag){
-        interaction.reply({ content: "Này! Những nút này không phải dành cho bạn!", ephemeral: true })
+        interaction.reply({ content: "Này! Những nút này không phải dành cho bạn!", ephemeral: true }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
 		return;
     }
     
@@ -58,7 +67,10 @@ exports.run3 = (bot, interaction, f1, f2) => {
             { name: 'Số điểm của bạn', value: diem + '', inline: true },
         )
     if (tay.length == 3){
-        interaction.reply({ embeds: [embed1], ephemeral: true });
+        interaction.reply({ embeds: [embed1], ephemeral: true }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return;
     }
 
@@ -74,7 +86,10 @@ exports.run3 = (bot, interaction, f1, f2) => {
             { name: 'Số điểm của bạn', value: diem + '', inline: true },
         )
         .setThumbnail('https://i.imgur.com/'+ hinh[tay[tay.length-1]] + '.png')
-    interaction.reply({ embeds: [embed2], ephemeral: true });
+    interaction.reply({ embeds: [embed2], ephemeral: true }).catch(error => {
+        if (error.code !== 50013) {
+            console.error('Lỗi nữaaaaa:', error);
+        }})
         
     bot.bala_data[code].bai = bai;
     bot.bala_data[code].p[one].diem = diem;

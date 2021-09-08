@@ -11,11 +11,17 @@ exports.run = (bot, message, args, f1, f2) => {
                 { name: 'Sử dụng', value: bot.config[message.guild.id].prefix + 'prefix <gì đó>', inline: true },
                 { name: 'Ví dụ', value: bot.config[message.guild.id].prefix + 'prefix 123', inline: true },
             )
-        message.channel.send({ embeds: [embed1] });
+        message.channel.send({ embeds: [embed1] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return;
     }
     if (args[1].length > 5){
-        message.reply({ content: "Prefix chỉ được tối đa 5 kí tự." });
+        message.reply({ content: "Prefix chỉ được tối đa 5 kí tự." }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return;
     }
     
@@ -27,5 +33,8 @@ exports.run = (bot, message, args, f1, f2) => {
         .setColor('#16D2FC') //xanh dương nhạt
         .setTitle('Prefix')
         .setDescription('Đã thành công thay đổi prefix thành: `' + args[1] +'`')
-    message.channel.send({ embeds: [embed2] });
+    message.channel.send({ embeds: [embed2] }).catch(error => {
+        if (error.code !== 50013) {
+            console.error('Lỗi nữaaaaa:', error);
+        }})
 }  

@@ -4,18 +4,27 @@ const functions = require("../functions.js");
 exports.run3 = async (bot, interaction, f1, f2) => {
     let one = interaction.user.id;
     if (!bot.info[one]){
-        interaction.reply({ content: "Này! Những nút này không phải dành cho bạn!", ephemeral: true })
+        interaction.reply({ content: "Này! Những nút này không phải dành cho bạn!", ephemeral: true }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
 		return;
     }
     
     let code = bot.info[one].bala.code;
     if (!bot.bala_data[code]){
-        interaction.reply({ content: "Này! Những nút này không phải dành cho bạn!", ephemeral: true })
+        interaction.reply({ content: "Này! Những nút này không phải dành cho bạn!", ephemeral: true }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
 		return;
     }
     
     if (!bot.bala_data[code].p[one].tag){
-        interaction.reply({ content: "Này! Những nút này không phải dành cho bạn!", ephemeral: true })
+        interaction.reply({ content: "Này! Những nút này không phải dành cho bạn!", ephemeral: true }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
 		return;
     }
 
@@ -69,13 +78,16 @@ exports.run3 = async (bot, interaction, f1, f2) => {
                 .setStyle("SUCCESS")
         );
         msg_m.edit({ embeds: [embed2], components: [row] }).catch(error => {
-            if (error.code !== 10008) {
+            if (error.code !== 10008 && error.code !== 50013) {
                 console.error('Lỗi nữaaaaa:', error);
             }
         });
         xong = 1;
     } else{
-        interaction.reply({ embeds: [embed1], ephemeral: true });
+        interaction.reply({ embeds: [embed1], ephemeral: true }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return;
     }
 

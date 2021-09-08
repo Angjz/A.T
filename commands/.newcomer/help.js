@@ -12,5 +12,8 @@ exports.run2 = (bot, message, args, f1, f2) => {
             { name: '2. Sử dụng', value: config[message.guild.id].prefix + 'newcomer set_bot' },
             { name: '3. Sử dụng', value: config[message.guild.id].prefix + 'newcomer set_user' },
         )
-    message.channel.send({ embeds: [embed] });
+    message.channel.send({ embeds: [embed] }).catch(error => {
+        if (error.code !== 50013) {
+            console.error('Lỗi nữaaaaa:', error);
+        }})
 }

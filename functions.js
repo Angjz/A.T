@@ -276,7 +276,10 @@ module.exports.tao_phong2 = (bot, message, tiencuocz, f2, f3) => {
 			{ name: 'Tiền cược', value: tiencuocz + '(VND)' },
 			{ name: 'Danh sách người chơi', value: list + '' },
        	)
-	message.channel.send({ embeds: [embed] });
+	message.channel.send({ embeds: [embed] }).catch(error => {
+		if (error.code !== 50013) {
+			console.error('Lỗi nữaaaaa:', error);
+		}})
 }
 
 module.exports.ba_la = (bot, message, code, chu, cuoc, danhsach, sansang, f3) => {
@@ -321,7 +324,10 @@ module.exports.ba_la = (bot, message, code, chu, cuoc, danhsach, sansang, f3) =>
                 });
                 functions.ba_la_het(bot, message, code);
             }, 60000)
-        });
+        }).catch(error => {
+			if (error.code !== 50013) {
+				console.error('Lỗi nữaaaaa:', error);
+			}})
 }
 
 module.exports.ba_la_het = async (bot, message, code) => {
@@ -420,7 +426,10 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	}
 	
 	//xuất dữ liệu
-	await message.channel.send({ content: 'Dữ liệu ván chơi của <@' + chu + '>\n'+ 'Bàn cược: `' + code + '`\n'+ list})
+	await message.channel.send({ content: 'Dữ liệu ván chơi của <@' + chu + '>\n'+ 'Bàn cược: `' + code + '`\n'+ list}).catch(error => {
+		if (error.code !== 50013) {
+			console.error('Lỗi nữaaaaa:', error);
+		}})
 	const embed1 = new MessageEmbed()
         .setColor('#FBFF08')
         .setTitle('Ba lá - chơi')
@@ -433,7 +442,10 @@ module.exports.ba_la_het = async (bot, message, code) => {
             { name: 'Điểm thấp nhất', value: min + '', inline: true },
 			{ name: 'Kết quả', value: result + '' },
        	)
-	await message.channel.send({ embeds: [embed1] });
+	await message.channel.send({ embeds: [embed1] }).catch(error => {
+		if (error.code !== 50013) {
+			console.error('Lỗi nữaaaaa:', error);
+		}})
 
 	//chỉnh csdl
 	let msg = await message.channel.messages.fetch(bot.bala_data[code].msg).catch(error => {
@@ -470,8 +482,14 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	let trucuoc = cuoc;
 	for (var i = 0; i < winner.length; i++){
 		if (winner[i] == bot.user.id){
-			if (result === 'Hòa! 🤝') message.channel.send({ embeds: [embed4] });
-			else message.channel.send({ embeds: [embed2] });
+			if (result === 'Hòa! 🤝') message.channel.send({ embeds: [embed4] }).catch(error => {
+				if (error.code !== 50013) {
+					console.error('Lỗi nữaaaaa:', error);
+				}})
+			else message.channel.send({ embeds: [embed2] }).catch(error => {
+				if (error.code !== 50013) {
+					console.error('Lỗi nữaaaaa:', error);
+				}})
 			continue;
 		}
 		var tien = functions.them_tien(bot.info[winner[i]].bala.tien, nhancuoc, "cong");
@@ -484,7 +502,10 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	}
 	for (var i = 0; i < lose.length; i++){
 		if (lose[i] == bot.user.id){
-			message.channel.send({ embeds: [embed3] });
+			message.channel.send({ embeds: [embed3] }).catch(error => {
+				if (error.code !== 50013) {
+					console.error('Lỗi nữaaaaa:', error);
+				}})
 			continue;
 		}
 		var tien = functions.them_tien(bot.info[lose[i]].bala.tien, trucuoc, "tru");
@@ -649,7 +670,10 @@ module.exports.xoa_phong = (bot, message, f2, f3) => {
         .setDescription('Ván chơi của <@' + message.author.id + '>\n'+
 						'Bàn cược: `' + code + '`\n'+
 						'Bàn cược đã bị đóng!')
-	message.channel.send({ embeds: [embed] });
+	message.channel.send({ embeds: [embed] }).catch(error => {
+		if (error.code !== 50013) {
+			console.error('Lỗi nữaaaaa:', error);
+		}})
 }
 
 module.exports.thoat_phong = (bot, message, f2, f3) => {
@@ -717,7 +741,10 @@ module.exports.tham_gia_phong = (bot, message, mention, f2, f3) => {
 			{ name: 'Tiền cược', value: cuoc + '(VND)' },
 			{ name: 'Danh sách người chơi', value: list + '' },
        	)
-	message.channel.send({ embeds: [embed] });
+	message.channel.send({ embeds: [embed] }).catch(error => {
+		if (error.code !== 50013) {
+			console.error('Lỗi nữaaaaa:', error);
+		}})
 }
 
 module.exports.viet_file = (bot) => {

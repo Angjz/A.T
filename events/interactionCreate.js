@@ -14,7 +14,10 @@ bot.on('interactionCreate', async interaction=>{
 							'Prefix hiện tại của bạn: `' + bot.config[interaction.guild.id].prefix + '`\n\n' +
 							'Ngoài ra, cứ gọi tôi nếu bạn chẳng may quên prefix nhé! 😄' },
 				)
-			await interaction.reply({ embeds: [embed], ephemeral: true });
+			await interaction.reply({ embeds: [embed], ephemeral: true }).catch(error => {
+				if (error.code !== 50013) {
+					console.error('Lỗi nữaaaaa:', error);
+				}})
 		}
 	}
 

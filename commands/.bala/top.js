@@ -48,7 +48,10 @@ exports.run4 = (bot, message, args, f1, f2) => {
                     { name: 'Top 5', value: tt[3][0] + '\n' + tt[3][1] + '(VND)', inline: true  },
                     { name: 'Vị trí của ' + output.tag, value: 'Top ' + vitri + '\n' + bot.info[output.id].bala.tien + '(VND)', inline: true  },
                 )
-            message.channel.send({ embeds: [embed2] });
+            message.channel.send({ embeds: [embed2] }).catch(error => {
+				if (error.code !== 50013) {
+					console.error('Lỗi nữaaaaa:', error);
+				}})
             break;
         case 'play':
             var mention = message.mentions.users.first();
@@ -93,7 +96,10 @@ exports.run4 = (bot, message, args, f1, f2) => {
                     { name: 'Top 5', value: tt[3][0] + '\n' + tt[3][1] + ' lần', inline: true  },
                     { name: 'Vị trí của ' + output.tag, value: 'Top ' + vitri + '\n' + bot.info[output.id].bala.choi + ' lần', inline: true  },
                 )
-            message.channel.send({ embeds: [embed3] });
+            message.channel.send({ embeds: [embed3] }).catch(error => {
+				if (error.code !== 50013) {
+					console.error('Lỗi nữaaaaa:', error);
+				}})
             break;
         case 'win':
             var mention = message.mentions.users.first();
@@ -138,7 +144,10 @@ exports.run4 = (bot, message, args, f1, f2) => {
                     { name: 'Top 5', value: tt[3][0] + '\n' + tt[3][1] + ' thắng', inline: true  },
                     { name: 'Vị trí của ' + output.tag, value: 'Top ' + vitri + '\n' + bot.info[output.id].bala.cthang + ' thắng', inline: true  },
                 )
-            message.channel.send({ embeds: [embed4] });
+            message.channel.send({ embeds: [embed4] }).catch(error => {
+				if (error.code !== 50013) {
+					console.error('Lỗi nữaaaaa:', error);
+				}})
             break;
         case 'bacao':
             var mention = message.mentions.users.first();
@@ -183,7 +192,10 @@ exports.run4 = (bot, message, args, f1, f2) => {
                     { name: 'Top 5', value: tt[3][0] + '\n' + tt[3][1] + ' ba cào', inline: true  },
                     { name: 'Vị trí của ' + output.tag, value: 'Top ' + vitri + '\n' + bot.info[output.id].bala.ba_cao + ' ba cào', inline: true  },
                 )
-            message.channel.send({ embeds: [embed5] });
+            message.channel.send({ embeds: [embed5] }).catch(error => {
+				if (error.code !== 50013) {
+					console.error('Lỗi nữaaaaa:', error);
+				}})
             break;
         case 'bu':
             var mention = message.mentions.users.first();
@@ -228,7 +240,10 @@ exports.run4 = (bot, message, args, f1, f2) => {
                     { name: 'Top 5', value: tt[3][0] + '\n' + tt[3][1] + ' bù', inline: true  },
                     { name: 'Vị trí của ' + output.tag, value: 'Top ' + vitri + '\n' + bot.info[output.id].bala.bu + ' bù', inline: true  },
                 )
-            message.channel.send({ embeds: [embed6] });
+            message.channel.send({ embeds: [embed6] }).catch(error => {
+				if (error.code !== 50013) {
+					console.error('Lỗi nữaaaaa:', error);
+				}})
             break;
         default:
             const embed1 = new MessageEmbed()
@@ -243,6 +258,9 @@ exports.run4 = (bot, message, args, f1, f2) => {
                     { name: '\u200b ', value: '\u200b', inline: true },
                     { name: 'Bù', value: bot.config[message.guild.id].prefix + 'bala top bu', inline: true  },
                 )
-            message.channel.send({ embeds: [embed1] });
+            message.channel.send({ embeds: [embed1] }).catch(error => {
+				if (error.code !== 50013) {
+					console.error('Lỗi nữaaaaa:', error);
+				}})
     }
 }

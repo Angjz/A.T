@@ -19,5 +19,8 @@ exports.run3 = (bot, interaction, f1, f2) => {
 		.setColor('#16FC35') 
 		.setTitle('Newcomer')
 		.setDescription('Đã hủy quá trình. Chúc bạn tìm được kênh mong muốn khác nhé!') 
-	interaction.channel.send({ embeds: [embed] });
+	interaction.channel.send({ embeds: [embed] }).catch(error => {
+		if (error.code !== 50013) {
+			console.error('Lỗi nữaaaaa:', error);
+		}})
 }

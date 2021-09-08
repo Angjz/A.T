@@ -24,7 +24,10 @@ exports.run = (bot, message, args, f1, f2) => {
                 { name: 'Chơi nhiều người', value: bot.config[message.guild.id].prefix + 'bala create', inline: true },              
                 
             )
-        message.channel.send({ embeds: [embed] }); 
+        message.channel.send({ embeds: [embed] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return;
     }
     cmd.run4(bot, message, args, f1, f2);

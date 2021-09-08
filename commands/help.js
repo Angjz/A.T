@@ -9,5 +9,8 @@ exports.run = (bot, message, args, f1, f2) => {
 					'Prefix hiện tại của bạn: `' + bot.config[message.guild.id].prefix + '`\n\n' +
 					'Ngoài ra, cứ gọi tôi nếu bạn chẳng may quên prefix nhé! 😄' },
 		)
-	message.channel.send({ embeds: [embed] });
+	message.channel.send({ embeds: [embed] }).catch(error => {
+		if (error.code !== 50013) {
+			console.error('Lỗi nữaaaaa:', error);
+		}})
 }

@@ -16,5 +16,8 @@ exports.run4 = (bot, message, args, f1, f2) => {
                         'Ví dụ, tổng ba lá là 27 điểm thì được 7 điểm, 10 điểm thì được 0 điểm.\n'+
                         'Trường hợp đặc biệt là ai sở hữu được cả ba lá bài J, Q, K bất kỳ thì thắng ngay ván đó không cần tính điểm.\n'+
                         'Bài ba lá không quan tâm đến chất của mỗi lá bài.')
-    message.channel.send({ embeds: [embed] }); 
+    message.channel.send({ embeds: [embed] }).catch(error => {
+        if (error.code !== 50013) {
+            console.error('Lỗi nữaaaaa:', error);
+        }})
 }

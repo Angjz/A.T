@@ -22,5 +22,8 @@ exports.run4 = (bot, message, args, f1, f2) => {
             { name: 'Bù', value: bot.info[output].bala.bu + '', inline: true },
             { name: 'Tiền', value: bot.info[output].bala.tien + '(VND)' }
         )
-    message.channel.send({ embeds:[embed] });
+    message.channel.send({ embeds:[embed] }).catch(error => {
+        if (error.code !== 50013) {
+            console.error('Lỗi nữaaaaa:', error);
+        }})
 }

@@ -12,5 +12,8 @@ exports.run2 = (bot, message, args, f1, f2) => {
             { name: 'Ví dụ xóa', value: bot.config[message.guild.id].prefix + 'newcomer remove_user Vua [Chúa Hề]', inline: true },
             { name: 'Những vai trò cho người dùng mới đã có', value: bot.config[message.guild.id].userS + '.' },
         )
-    message.channel.send({ embeds: [embed] });
+    message.channel.send({ embeds: [embed] }).catch(error => {
+        if (error.code !== 50013) {
+            console.error('Lỗi nữaaaaa:', error);
+        }})
 }

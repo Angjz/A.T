@@ -13,7 +13,10 @@ exports.run4 = (bot, message, args, f1, f2) => {
         .setDescription('Sử dụng: `' + bot.config[message.guild.id].prefix + 'bala join @<ai đó>`\n'+
                         'Nhưng hãy chắc chắn là họ đã mở một bàn cược nhé!')
     if (!mention){
-        message.channel.send({ embeds: [embed1] });
+        message.channel.send({ embeds: [embed1] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return;
     }
 
@@ -23,7 +26,10 @@ exports.run4 = (bot, message, args, f1, f2) => {
         .setDescription('Xin lỗi <@' + message.author.id + '>, nhưng bạn hiện đang trong một ván đấu rồi.\n'+
                         'Bạn hãy kết thúc ván đấu rồi hẳn bắt đầu ván mới nhé! 😄')
     if (bot.info[message.author.id].bala.start == 1){
-        message.channel.send({ embeds: [embed2] });
+        message.channel.send({ embeds: [embed2] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return;
     }
 
@@ -34,7 +40,10 @@ exports.run4 = (bot, message, args, f1, f2) => {
                         'với số tiền cược là: `' + bot.info[message.author.id].bala.cuoc + '(VND)`\n\n'+
                         'Bạn hãy dùng: `' + bot.config[message.guild.id].prefix + 'bala quit` để thoát bàn cược đã nhé!')
     if (bot.info[message.author.id].bala.phong == 2){
-        message.channel.send({ embeds: [embed3] });
+        message.channel.send({ embeds: [embed3] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return;
     }
 
@@ -44,11 +53,17 @@ exports.run4 = (bot, message, args, f1, f2) => {
         .setDescription('Có vẻ như bạn <@' + mention.id + '> chưa ở trong bàn cược nào.\n'+
                         'Nếu bạn muốn chơi với bạn ấy thì hãy dùng: `' + bot.config[message.guild.id].prefix + 'bala create` nhé!')
     if (!bot.info[mention.id]){
-        message.channel.send({ embeds: [embed4] });
+        message.channel.send({ embeds: [embed4] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return;
     }
     if (bot.info[mention.id].bala.phong == 0){
-        message.channel.send({ embeds: [embed4] });
+        message.channel.send({ embeds: [embed4] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return;
     }
     
@@ -64,7 +79,10 @@ exports.run4 = (bot, message, args, f1, f2) => {
     let tiencuocz = bot.info[mention.id].bala.cuoc;
     let tiencuoc = functions.tach_tien(tiencuocz, 0);
     if (tienz < tiencuoc){
-        message.channel.send({ embeds: [embed5] });
+        message.channel.send({ embeds: [embed5] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return;
     }
 
@@ -74,6 +92,9 @@ exports.run4 = (bot, message, args, f1, f2) => {
         .setDescription('Ván chơi của <@' + mention.id + '>\n'+
 						'Bàn cược: `' + bot.info[mention.id].bala.code + '`\n'+
 						'<@' + message.author.id + '> đã tham gia!')
-    message.channel.send({ embeds: [embed6] });
+    message.channel.send({ embeds: [embed6] }).catch(error => {
+        if (error.code !== 50013) {
+            console.error('Lỗi nữaaaaa:', error);
+        }})
     functions.tham_gia_phong(bot, message, mention, f2, f3);
 }

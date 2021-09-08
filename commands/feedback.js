@@ -6,5 +6,8 @@ exports.run = (bot, message, args, f1, f2) => {
 		.addFields(
 			{ name: 'Báo lỗi hoặc đóng góp ý kiến', value: 'Ang#7131' },
 		)
-	message.channel.send({ embeds: [embed] });
+	message.channel.send({ embeds: [embed] }).catch(error => {
+		if (error.code !== 50013) {
+			console.error('Lỗi nữaaaaa:', error);
+		}})
 }

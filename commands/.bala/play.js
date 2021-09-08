@@ -57,15 +57,24 @@ exports.run4 = (bot, message, args, f1, f2) => {
 
     //error handlers
     if (!args[2]){
-        message.channel.send({ embeds: [embed1] });
+        message.channel.send({ embeds: [embed1] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return;
     }
     if (bot.info[message.author.id].bala.start == 1){
-        message.channel.send({ embeds: [embed2] });
+        message.channel.send({ embeds: [embed2] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return;
     }
     if (bot.info[message.author.id].bala.phong == 2){
-        message.channel.send({ embeds: [embed3] });
+        message.channel.send({ embeds: [embed3] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return;
     }
     
@@ -76,17 +85,26 @@ exports.run4 = (bot, message, args, f1, f2) => {
         else if (args[2] === "quarter") tiencuoc = (tienz/4).toFixed();
             else tiencuoc = functions.tach_tien(args[2], tiencuoc);
     if (tiencuoc < 1000){
-        message.channel.send({ embeds: [embed4] });
+        message.channel.send({ embeds: [embed4] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return;
     }
     if (tienz < tiencuoc){
-        message.channel.send({ embeds: [embed5] });
+        message.channel.send({ embeds: [embed5] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         return; 
     }
 
     //start
     let tiencuocz = "";
     tiencuocz = functions.ghep_tien(tiencuoc, tiencuocz);
-    message.channel.send({ embeds: [embed6] });
+    message.channel.send({ embeds: [embed6] }).catch(error => {
+        if (error.code !== 50013) {
+            console.error('Lỗi nữaaaaa:', error);
+        }})
     functions.tao_phong1(bot, message, tiencuocz, f2, f3);
 }

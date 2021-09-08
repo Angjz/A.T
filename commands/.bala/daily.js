@@ -49,7 +49,10 @@ exports.run4 = (bot, message, args, f1, f2) => {
             .addFields(
                 { name: 'Số tiền hiện tại của bạn', value: tien + '(VND)' },
             )
-	    message.channel.send({ embeds: [embed1] });
+	    message.channel.send({ embeds: [embed1] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
     }
     if (t_thang == 0){
         tien = functions.them_tien(tien, "500.000", "cong");
@@ -61,7 +64,10 @@ exports.run4 = (bot, message, args, f1, f2) => {
             .addFields(
                 { name: 'Số tiền hiện tại của bạn', value: tien + '(VND)' },
             )
-	    message.channel.send({ embeds: [embed2] });
+	    message.channel.send({ embeds: [embed2] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
     }
     if (t_ngay == 0){
         tien = functions.them_tien(tien, "100.000", "cong");
@@ -73,7 +79,10 @@ exports.run4 = (bot, message, args, f1, f2) => {
             .addFields(
                 { name: 'Số tiền hiện tại của bạn', value: tien + '(VND)' },
             )
-	    message.channel.send({ embeds: [embed3] });        
+	    message.channel.send({ embeds: [embed3] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})      
         
         bot.info[message.author.id].bala.tien = tien;
         bot.info[message.author.id].bala.ngay = ngay;
@@ -94,7 +103,10 @@ exports.run4 = (bot, message, args, f1, f2) => {
         .addFields(
             { name: 'Số tiền hiện tại của bạn', value: tien + '(VND)' },
         )
-	    message.channel.send({ embeds: [embed4] });
+	    message.channel.send({ embeds: [embed4] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
     }
     
 }

@@ -46,7 +46,10 @@ exports.run4 = (bot, message, args, f1, f2) => {
                 { name: 'Số tiền hiện tại của bạn', value: tien + '(VND)' },
             )
             .setThumbnail('https://i.imgur.com/uu36wha.png')
-	    message.channel.send({ embeds: [embed1] });        
+	    message.channel.send({ embeds: [embed1] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
         
         bot.info[message.author.id].bala.tien = tien;
         fs.writeFileSync(f2, JSON.stringify(bot.info, null, 4), err => {
@@ -62,6 +65,9 @@ exports.run4 = (bot, message, args, f1, f2) => {
                 { name: 'Số tiền hiện tại của bạn', value: tien + '(VND)' },
             )
             .setThumbnail('https://i.imgur.com/uu36wha.png')
-        message.channel.send({ embeds:[embed2] });
+        message.channel.send({ embeds:[embed2] }).catch(error => {
+            if (error.code !== 50013) {
+                console.error('Lỗi nữaaaaa:', error);
+            }})
     }
 }
