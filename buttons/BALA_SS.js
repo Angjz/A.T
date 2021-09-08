@@ -1,5 +1,7 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const functions = require("../functions.js");
+const fs = require("fs");
+const f3 = "../data/bala.json";
 
 exports.run3 = async (bot, interaction, f1, f2) => {
     let one = interaction.user.id;
