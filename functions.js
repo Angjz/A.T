@@ -455,18 +455,23 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	const embed2 = new MessageEmbed()
         .setColor('#FBFF08')
         .setTitle('Ba lá - chơi với A.T')
-        .setDescription('Cảm ơn bạn <@' + lose[0] + '> vì đã tham gia. Chúc bạn may mắn lần sau nhé! 🍀😄')
+        .setDescription('Cảm ơn bạn <@' + lose[0] + '> vì đã tham gia. Chúc bạn may mắn lần sau nhé! 🍀')
 	const embed3 = new MessageEmbed()
         .setColor('#FBFF08')
         .setTitle('Ba lá - chơi với A.T')
         .setDescription('Cảm ơn bạn <@' + winner[0] + '> vì đã tham gia. Bạn thật là một người may mắn! 🥳')
+	const embed4 = new MessageEmbed()
+        .setColor('#FBFF08')
+        .setTitle('Ba lá - chơi với A.T')
+        .setDescription('Cảm ơn bạn <@' + winner[0] + '> vì đã tham gia. Quả là một trận đấu tuyệt vời! 😄')
 	let tongcuoc = functions.tach_tien(cuoc, 0) * (idz.length - winner.length);
 	let nhancuoc = (tongcuoc / winner.length).toFixed();
 	nhancuoc = functions.ghep_tien(nhancuoc, '');
 	let trucuoc = cuoc;
 	for (var i = 0; i < winner.length; i++){
 		if (winner[i] == bot.user.id){
-			message.channel.send({ embeds: [embed2] });
+			if (result === 'Hòa! 🤝') message.channel.send({ embeds: [embed4] });
+			else message.channel.send({ embeds: [embed2] });
 			continue;
 		}
 		var tien = functions.them_tien(bot.info[winner[i]].bala.tien, nhancuoc, "cong");
