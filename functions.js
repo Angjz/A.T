@@ -421,7 +421,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	
 	//xuất dữ liệu
 	await message.channel.send({ content: 'Dữ liệu ván chơi của <@' + chu + '>\n'+ 'Bàn cược: `' + code + '`\n'+ list})
-	const embed = new MessageEmbed()
+	const embed1 = new MessageEmbed()
         .setColor('#FBFF08')
         .setTitle('Ba lá - chơi')
         .setDescription('Ván chơi của <@' + chu + '>\n'+
@@ -433,7 +433,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
             { name: 'Điểm thấp nhất', value: min + '', inline: true },
 			{ name: 'Kết quả', value: result + '' },
        	)
-	await message.channel.send({ embeds: [embed] });
+	await message.channel.send({ embeds: [embed1] });
 
 	//chỉnh csdl
 	let msg = await message.channel.messages.fetch(bot.bala_data[code].msg).catch(error => {
@@ -452,12 +452,23 @@ module.exports.ba_la_het = async (bot, message, code) => {
 		}
 	});
 
+	const embed2 = new MessageEmbed()
+        .setColor('#FBFF08')
+        .setTitle('Ba lá - chơi với A.T')
+        .setDescription('Cảm ơn bạn <@' + lose[0] + '> vì đã tham gia. Chúc bạn may mắn lần sau nhé! 🍀😄')
+	const embed3 = new MessageEmbed()
+        .setColor('#FBFF08')
+        .setTitle('Ba lá - chơi với A.T')
+        .setDescription('Cảm ơn bạn <@' + winner[0] + '> vì đã tham gia. Bạn thật là một người may mắn! 🥳')
 	let tongcuoc = functions.tach_tien(cuoc, 0) * (idz.length - winner.length);
 	let nhancuoc = (tongcuoc / winner.length).toFixed();
 	nhancuoc = functions.ghep_tien(nhancuoc, '');
 	let trucuoc = cuoc;
 	for (var i = 0; i < winner.length; i++){
-		if (winner[i] == bot.user.id) continue;
+		if (winner[i] == bot.user.id){
+			message.channel.send({ embeds: [embed2] });
+			continue;
+		}
 		var tien = functions.them_tien(bot.info[winner[i]].bala.tien, nhancuoc, "cong");
 		for (var j = 0; j < idz.length; j++)
 			if (idz[j] == winner[i]){
@@ -467,7 +478,10 @@ module.exports.ba_la_het = async (bot, message, code) => {
 		functions.cap_nhat(bot, tien, diemz, winner[i], 1);
 	}
 	for (var i = 0; i < lose.length; i++){
-		if (lose[i] == bot.user.id) continue;
+		if (lose[i] == bot.user.id){
+			message.channel.send({ embeds: [embed3] });
+			continue;
+		}
 		var tien = functions.them_tien(bot.info[lose[i]].bala.tien, trucuoc, "tru");
 		for (var j = 0; j < idz.length; j++)
 			if (idz[j] == lose[i]){
