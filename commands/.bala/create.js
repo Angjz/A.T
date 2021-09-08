@@ -13,11 +13,12 @@ exports.run4 = (bot, message, args, f1, f2) => {
         .setDescription('Hãy đưa ra số tiền cược lớn hơn 1.000(VND) và mời mọi người nào!')
         .addFields(
             { name: 'Sử dụng', value: bot.config[message.guild.id].prefix + 'bala create <tiền cược>', inline: true },
-            { name: 'Ví dụ', value: bot.config[message.guild.id].prefix + 'bala create 10.000', inline: true },
-            { name: 'Ví dụ 2', value: bot.config[message.guild.id].prefix + 'bala create all', inline: true },
-            { name: 'Ví dụ 3', value: bot.config[message.guild.id].prefix + 'bala create 10k', inline: true },
-            { name: 'Ví dụ 4', value: bot.config[message.guild.id].prefix + 'bala create 10m', inline: true },
-            { name: 'Ví dụ 5', value: bot.config[message.guild.id].prefix + 'bala create 10b', inline: true },
+            { name: 'Ví dụ 1', value: bot.config[message.guild.id].prefix + 'bala create 10.000', inline: true },
+            { name: 'Ví dụ 2', value: bot.config[message.guild.id].prefix + 'bala create half', inline: true },
+            { name: 'Ví dụ 3', value: bot.config[message.guild.id].prefix + 'bala create all', inline: true },
+            { name: 'Ví dụ 4', value: bot.config[message.guild.id].prefix + 'bala create 10k', inline: true },
+            { name: 'Ví dụ 5', value: bot.config[message.guild.id].prefix + 'bala create 10m', inline: true },
+            { name: 'Ví dụ 6', value: bot.config[message.guild.id].prefix + 'bala create 10b', inline: true },
             { name: 'Số tiền của bạn ' + message.author.tag, value: tien + '(VND)' },
         )
     const embed2 = new MessageEmbed()
@@ -66,7 +67,8 @@ exports.run4 = (bot, message, args, f1, f2) => {
     //check cuocz
     let tiencuoc = 0;
     if (args[2] === "all") tiencuoc = tienz;
-    else tiencuoc = functions.tach_tien(args[2], tiencuoc);
+    else if (args[2] === "half") tiencuoc = (tienz/2).toFixed();
+        else tiencuoc = functions.tach_tien(args[2], tiencuoc);
     if (tiencuoc < 1000){
         message.channel.send({ embeds: [embed4] });
         return;
