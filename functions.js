@@ -124,6 +124,8 @@ module.exports.set_user = (bot, message, f) => {
             t_ngay: 0,
             t_thang: 0,
             t_nam: 0,
+			streak1: 0,
+			streak2: 0,
 		}
 	}
 	fs.writeFileSync(f, JSON.stringify(bot.info, null, 4), err => {
@@ -558,6 +560,15 @@ module.exports.cap_nhat = (bot, tien, diem, p, thang) => {
 	bot.info[p].bala.code = ".";
 	bot.info[p].bala.start = 0;
 	bot.info[p].bala.cuoc = ".";
+
+	if (thang == 1){
+		bot.info[p].bala.streak2 += 1;
+		if (bot.info[p].bala.streak1 < bot.info[p].bala.streak2) bot.info[p].bala.streak1 = bot.info[p].bala.streak2;
+	}
+	else{
+		if (bot.info[p].bala.streak1 < bot.info[p].bala.streak2) bot.info[p].bala.streak1 = bot.info[p].bala.streak2;
+		bot.info[p].bala.streak2 = 0;
+	}
 	fs.writeFileSync("./data/users.json", JSON.stringify(bot.info, null, 4), err => {
 		if (err) throw err;
 	});
