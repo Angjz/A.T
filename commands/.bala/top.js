@@ -134,15 +134,15 @@ exports.run4 = (bot, message, args, f1, f2) => {
         
             const embed4 = new MessageEmbed()
                 .setColor('#FBFF08')
-                .setTitle('Ba lá - bảng xếp hạng số lần chơi 🎮')
-                .setDescription('Các dân chơi:')
+                .setTitle('Ba lá - bảng xếp hạng chuỗi thắng 🏆')
+                .setDescription('Nhà vô địch:')
                 .addFields(
-                    { name: '🥇Top 1', value: bot.info[a[0][1]].ten + '\n' + bot.info[a[0][1]].bala.streak1 + ' lần', inline: true },
-                    { name: '🥈Top 2', value: tt[0][0] + '\n' + tt[0][1] + ' lần', inline: true },
-                    { name: '🥉Top 3', value: tt[1][0] + '\n' + tt[1][1] + ' lần', inline: true },
-                    { name: 'Top 4', value: tt[2][0] + '\n' + tt[2][1] + ' lần', inline: true  },
-                    { name: 'Top 5', value: tt[3][0] + '\n' + tt[3][1] + ' lần', inline: true  },
-                    { name: 'Vị trí của ' + output.tag, value: 'Top ' + vitri + '\n' + bot.info[output.id].bala.streak1 + ' lần', inline: true  },
+                    { name: '🥇Top 1', value: bot.info[a[0][1]].ten + '\n' + bot.info[a[0][1]].bala.streak1 + ' ván', inline: true },
+                    { name: '🥈Top 2', value: tt[0][0] + '\n' + tt[0][1] + ' ván', inline: true },
+                    { name: '🥉Top 3', value: tt[1][0] + '\n' + tt[1][1] + ' ván', inline: true },
+                    { name: 'Top 4', value: tt[2][0] + '\n' + tt[2][1] + ' ván', inline: true  },
+                    { name: 'Top 5', value: tt[3][0] + '\n' + tt[3][1] + ' ván', inline: true  },
+                    { name: 'Vị trí của ' + output.tag, value: 'Top ' + vitri + '\n' + bot.info[output.id].bala.streak1 + ' ván', inline: true  },
                 )
             message.channel.send({ embeds: [embed4] }).catch(error => {
                 if (error.code !== 50013) {
