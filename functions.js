@@ -482,6 +482,11 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	let nhancuoc = (tongcuoc / winner.length).toFixed();
 	nhancuoc = functions.ghep_tien(nhancuoc, '');
 	let trucuoc = cuoc;
+
+	var winu;
+	if (winner.length == idz.length) winu = 0;
+	else winu = 1;
+
 	for (var i = 0; i < winner.length; i++){
 		if (winner[i] == bot.user.id){
 			if (result === 'Hòa! 🤝') message.channel.send({ embeds: [embed4] }).catch(error => {
@@ -500,8 +505,11 @@ module.exports.ba_la_het = async (bot, message, code) => {
 				var diemz = diem[j];
 				break;
 			}
-		functions.cap_nhat(bot, tien, diemz, winner[i], 1);
+		functions.cap_nhat(bot, tien, diemz, winner[i], winu);
 	}
+
+	winu = 0;
+
 	for (var i = 0; i < lose.length; i++){
 		if (lose[i] == bot.user.id){
 			message.channel.send({ embeds: [embed3] }).catch(error => {
@@ -516,7 +524,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
 				var diemz = diem[j];
 				break;
 			}
-		functions.cap_nhat(bot, tien, diemz, lose[i], 0);
+		functions.cap_nhat(bot, tien, diemz, lose[i], winu);
 	}
 }
 
