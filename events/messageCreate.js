@@ -9,13 +9,6 @@ bot.on('messageCreate', async message=>{
 
     //update datas
     functions.update_newcomer(bot, message, f1);
-    
-    //slash command
-    bot.api.applications(bot.user.id).guilds(message.guild.id).commands.post({
-        data: {
-            name: "help",
-            description: "Xem các lệnh của tôi!"
-        }})
 
 	//no bot channel
 	if (message.channel.id == bot.config[message.guild.id].channel) return;

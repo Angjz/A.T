@@ -14,5 +14,10 @@ bot.on('ready', () =>{
 	bot.guilds.cache.forEach(guild => {
 		console.log(`${guild.name} | ${guild.id} | ${guild.memberCount} thành viên`);
 	})
+	bot.api.applications(bot.user.id).commands.post({
+        data: {
+            name: "help",
+            description: "Xem các lệnh của tôi!"
+        }})
 	bot.user.setActivity("Xin chào thế giới! 😄", { type: 'PLAYING' });
 })
