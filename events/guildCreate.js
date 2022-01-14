@@ -18,10 +18,5 @@ bot.on('guildCreate', guild => {
             }
         }
     });
-    bot.api.applications(bot.user.id).guilds(guild.id).commands.post({
-        data: {
-            name: "help",
-            description: "Xem các lệnh của tôi!"
-        }})
     trannel.send({ embeds: [embed] })
 })
