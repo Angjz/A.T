@@ -1,7 +1,22 @@
 const functions = require("./function_general.js");
 const fs = require("fs");
 
-//do stuff
+module.exports.set_default = (bot, guild, guild_id, f) => {
+	bot.config[guild_id] = {
+		name: guild,
+		prefix: "&",
+		channel: " ",
+		temp: [".", ".", ".", "."],
+		botz: [""],
+		botS: [""],
+		userz: [""],
+		userS: [""],
+	}
+	fs.writeFileSync(f, JSON.stringify(bot.config, null, 4), err => {
+		if (err) throw err;
+	});
+}
+
 module.exports.sortz = (array) => {
 	if (array.length < 2) {
 		return array;
@@ -27,21 +42,4 @@ module.exports.Knuth_Fisher_Yates = ( myArray ) => {
 	   [ myArray[i], myArray[j] ] = [ myArray[j], myArray[i] ];
 	}
 	return myArray;
-}
-
-//guild
-module.exports.set_default = (bot, guild, guild_id, f) => {
-	bot.config[guild_id] = {
-		name: guild,
-		prefix: "&",
-		channel: " ",
-		temp: [".", ".", ".", "."],
-		botz: [""],
-		botS: [""],
-		userz: [""],
-		userS: [""],
-	}
-	fs.writeFileSync(f, JSON.stringify(bot.config, null, 4), err => {
-		if (err) throw err;
-	});
 }
