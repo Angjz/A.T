@@ -24,6 +24,6 @@ bot.on('interactionCreate', async interaction=>{
 	if (interaction.isButton()){
 		const cmd = bot.buttons.get(interaction.customId);
     	if (!cmd) return;
-		cmd.run3(bot, interaction, f1, f2);
+		cmd.run(bot, interaction, f1, f2);
 	}
 })

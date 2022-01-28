@@ -1,5 +1,5 @@
 const bot = require("../index.js").bot;
-const functions = require("../functions.js");
+const functions = require("../../functions/function_newcomer.js");
 const f1 = "./data/guilds.json";
 const f2 = "./data/users.json";
 

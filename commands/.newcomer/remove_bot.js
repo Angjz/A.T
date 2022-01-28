@@ -1,8 +1,8 @@
 const { MessageEmbed } = require("discord.js");
-let functions = require("../../functions.js");
+const functions = require("../../functions/function_newcomer.js");
 const fs = require("fs");
 
-exports.run2 = (bot, message, args, f1, f2) => {
+exports.run = (bot, message, args, f1, f2) => {
     let data = bot.config[message.guild.id].botS;
     let data_id = bot.config[message.guild.id].botz;
     let str = [];

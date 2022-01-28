@@ -20,5 +20,5 @@ exports.run = (bot, message, args, f1, f2) => {
         message.channel.send({ embeds: [embed] }); 
         return;
     }
-    cmd.run2(bot, message, args, f1, f2);
+    cmd.run(bot, message, args, f1, f2);
 }

@@ -1,8 +1,8 @@
 const { MessageEmbed } = require("discord.js");
-const functions = require("../../functions.js");
+const functions = require("../../functions/function_bala.js");
 const fs = require("fs");
 
-exports.run4 = (bot, message, args, f1, f2) => {
+exports.run = (bot, message, args, f1, f2) => {
     let ts = Date.now();
 	let date_ob = new Date(ts);
 	let date = date_ob.getDate();

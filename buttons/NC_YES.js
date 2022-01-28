@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const fs = require("fs");
 
-exports.run3 = (bot, interaction, f1, f2) => {
+exports.run = (bot, interaction, f1, f2) => {
 	temp = bot.config[interaction.guild.id].temp;
 	if (interaction.user.id != temp[0]){
 		interaction.reply({ content: "Này! Những nút này không phải dành cho bạn!", ephemeral: true })

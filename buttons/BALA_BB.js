@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-const functions = require("../functions.js");
+const functions = require("../functions/function_bala.js");
+const shuff = require("../functions/function_general.js");
 const hinh = [
     'WUwBBvD', 'X3Vq43o', 'cfmx907', 'JORI4Fn', 'EzSeNuQ', 'xt8tbr6', 'ULlJfdS', 'GlDpdks', 'VTz64jw', 't9RDqEF', '8uLaaqE', 'KmxV0XI', 'nygERi7',
     'kR4QIFU', '4zOJyUv', 'n7T3YaD', 'cYwFNBh', 'zmwK8gU', 'I6C4b1N', 'aMR5bmV', 'hbHLlul', 'o93vK9j', 'TrDf6RK', '2niCLbA', 'jkHU35D', 'nLe12j3',
@@ -13,7 +14,7 @@ const bo_bai = [
     "Át Cơ", "2 Cơ", "3 Cơ", "4 Cơ", "5 Cơ", "6 Cơ", "7 Cơ", "8 Cơ", "9 Cơ", "10 Cơ", "J Cơ", "Q Cơ", "K Cơ"
 ]
 
-exports.run3 = (bot, interaction, f1, f2) => {
+exports.run = (bot, interaction, f1, f2) => {
     let one = interaction.user.id;
     if (!bot.info[one]){
         interaction.reply({ content: "Này! Những nút này không phải dành cho bạn!", ephemeral: true }).catch(error => {
@@ -53,7 +54,7 @@ exports.run3 = (bot, interaction, f1, f2) => {
         bai2.push(bai[0]);
         bai = bai2;
     }
-    bai = functions.Knuth_Fisher_Yates(bai);
+    bai = shuff.Knuth_Fisher_Yates(bai);
 
     let tay = bot.bala_data[code].p[one].bai;
     let diem = bot.bala_data[code].p[one].diem;

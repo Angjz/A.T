@@ -1,7 +1,7 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
-const functions = require("../functions.js");
-
-exports.run3 = async (bot, interaction, f1, f2) => {
+const functions = require("../functions/function_bala.js");
+const shuff = require("../functions/function_general.js");
+exports.run = async (bot, interaction, f1, f2) => {
     let one = interaction.user.id;
     if (!bot.info[one]){
         interaction.reply({ content: "Này! Những nút này không phải dành cho bạn!", ephemeral: true }).catch(error => {
@@ -104,7 +104,7 @@ exports.run3 = async (bot, interaction, f1, f2) => {
         bai2.push(bai[0]);
         bai = bai2;
     }
-    bai = functions.Knuth_Fisher_Yates(bai);
+    bai = shuff.Knuth_Fisher_Yates(bai);
     
     let tay = bot.bala_data[code].p[one].bai;
     let diem = bot.bala_data[code].p[one].diem;

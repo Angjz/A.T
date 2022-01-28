@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
-const functions = require("../../functions.js");
-
-exports.run4 = (bot, message, args, f1, f2) => {
+const functions = require("../../functions/function_bala.js");
+const shuff = require("../../functions/function_general.js");
+exports.run = (bot, message, args, f1, f2) => {
     if (args[2]) args[2] = args[2].toLowerCase();
     switch(args[2]){
         case 'money':
@@ -18,7 +18,7 @@ exports.run4 = (bot, message, args, f1, f2) => {
             }
             for(var i = 0; i < a.length; i++) a[i][0] = functions.tach_tien(a[i][0], 0);
 
-            a = functions.sortz(a);
+            a = shuff.sortz(a);
             if (output.id == bot.user.id) vitri = "25-1-5";
             else for(var i = 0; i < a.length; i++)
                     if (a[i][1] == output.id){
@@ -66,7 +66,7 @@ exports.run4 = (bot, message, args, f1, f2) => {
                 a[a.length - 1].push(bot.info[k].id);    
             }
     
-            a = functions.sortz(a);
+            a = shuff.sortz(a);
             if (output.id == bot.user.id) vitri = "25-1-5";
             else for(var i = 0; i < a.length; i++)
                     if (a[i][1] == output.id){
@@ -114,7 +114,7 @@ exports.run4 = (bot, message, args, f1, f2) => {
                 a[a.length - 1].push(bot.info[k].id);    
             }
         
-            a = functions.sortz(a);
+            a = shuff.sortz(a);
             if (output.id == bot.user.id) vitri = "25-1-5";
             else for(var i = 0; i < a.length; i++)
                     if (a[i][1] == output.id){

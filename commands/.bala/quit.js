@@ -1,8 +1,8 @@
 const { MessageEmbed } = require("discord.js");
-const functions = require("../../functions.js");
+const functions = require("../../functions/function_bala.js");
 const f3 = "./data/bala.json";
 
-exports.run4 = (bot, message, args, f1, f2) => {
+exports.run = (bot, message, args, f1, f2) => {
     const embed1 = new MessageEmbed()
         .setColor('#FBFF08')
         .setTitle('Ba lá - chơi nhiều người')

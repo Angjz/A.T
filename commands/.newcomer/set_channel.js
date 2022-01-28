@@ -1,7 +1,7 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const fs = require("fs");
 
-exports.run2 = (bot, message, args, f1, f2) => {
+exports.run = (bot, message, args, f1, f2) => {
     temp = bot.config[message.guild.id].temp;
     if (!isNaN(temp[3])) return;
     temp[0] = message.author.id;

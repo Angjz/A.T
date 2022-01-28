@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 
-exports.run4 = (bot, message, args, f1, f2) => {
+exports.run = (bot, message, args, f1, f2) => {
     const embed = new MessageEmbed()
         .setColor('#FBFF08') 
         .setTitle('Ba lá - luật chơi')

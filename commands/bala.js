@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const functions = require("../functions.js");
+const functions = require("../../functions/function_bala.js");
 
 exports.run = (bot, message, args, f1, f2) => {
     if (!bot.info[message.author.id]){
@@ -30,5 +30,5 @@ exports.run = (bot, message, args, f1, f2) => {
             }})
         return;
     }
-    cmd.run4(bot, message, args, f1, f2);
+    cmd.run(bot, message, args, f1, f2);
 }

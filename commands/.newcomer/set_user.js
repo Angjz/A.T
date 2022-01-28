@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 
-exports.run2 = (bot, message, args, f1, f2) => {
+exports.run = (bot, message, args, f1, f2) => {
     const embed = new MessageEmbed()
         .setColor('#16FC35') 
         .setTitle('Newcomer set_user')

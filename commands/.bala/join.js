@@ -1,8 +1,8 @@
 const { MessageEmbed } = require("discord.js");
-const functions = require("../../functions.js");
+const functions = require("../../functions/function_bala.js");
 const f3 = "./data/bala.json";
 
-exports.run4 = (bot, message, args, f1, f2) => {
+exports.run = (bot, message, args, f1, f2) => {
     let tien = bot.info[message.author.id].bala.tien;
     let tienz = functions.tach_tien(tien, 0);
     let mention = message.mentions.users.first();
