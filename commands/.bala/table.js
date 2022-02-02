@@ -27,7 +27,6 @@ exports.run = (bot, message, args, f1, f2) => {
 	}		
 
     let code = bot.info[message.author.id].bala.code;
-	console.log(code);
     let count = 0;
 	let idz = [];
 	for(var k in bot.bala_data[code].p){
