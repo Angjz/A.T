@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const bot = require("./index.js").bot;
+const bot = require("../index.js").bot;
 const f1 = "./data/guilds.json";
 const f2 = "./data/users.json";
 

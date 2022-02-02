@@ -1,6 +1,6 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
-const functions = require("./functions/function_bala.js");
-const shuff = require("./functions/function_general.js");
+const functions = require("../functions/function_bala.js");
+const shuff = require("../functions/function_general.js");
 exports.run = async (bot, interaction, f1, f2) => {
     let one = interaction.user.id;
     if (!bot.info[one]){

@@ -1,5 +1,5 @@
-const bot = require("./index.js").bot;
-const functions = require("./functions/function_bala.js");
+const bot = require("../index.js").bot;
+const functions = require("../functions/function_bala.js");
 const f3 = "./data/bala.json";
 
 bot.on('messageDelete', message=>{
