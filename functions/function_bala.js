@@ -452,7 +452,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
 							'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n'+
 							'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`')
 			.addFields(
-				{ name: 'Tiền cược', value: tiencuocz + '(VND)' },
+				{ name: 'Tiền cược', value: bot.bala_data[code].cuoc + '(VND)' },
 				{ name: 'Danh sách người chơi', value: list + '' },
 			   )
 		message.channel.send({ embeds: [embed] }).catch(error => {
