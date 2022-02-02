@@ -429,10 +429,8 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	}
 
 	//chỉnh lại phòng
-	bot.bala_data[code] = {
-		chu: bot.bala_data[code].chu,
-		cuoc: bot.bala_data[code].cuoc,
-		bai: [
+	bot.bala_data[code].msg = ".",
+	bot.bala_data[code].bai = [
 			0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
 			11, 12, 13, 14, 15, 16, 17, 18, 19,
 			20, 21, 22, 23, 24, 25, 26, 27, 28,
@@ -440,9 +438,8 @@ module.exports.ba_la_het = async (bot, message, code) => {
 			39, 40, 41, 42, 43, 44, 45, 46, 47, 48,
 			49, 50, 51
 		],
-		danhsach: [],
-		sansang: []
-	}
+	bot.bala_data[code].danhsach = [];
+	bot.bala_data[code].sansang = [];
 	for (let i in bot.bala_data[code].p){
 		bot.bala_data[code].p[i].diem = 0;
 		bot.bala_data[code].p[i].bai = [];
