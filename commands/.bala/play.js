@@ -45,7 +45,7 @@ exports.run = (bot, message, args, f1, f2) => {
     const embed5 = new MessageEmbed()
         .setColor('#FBFF08')
         .setTitle('Ba lá - chơi với A.T')
-        .setDescription('Xin lỗi <@' + message.author.id + '>, nhưng bạn không đủ tiền.\n'+
+        .setDescription('Xin lỗi <@' + message.author.id + '>, nhưng bạn không có đủ tiền.\n'+
                         'Xin hãy cược ít hơn. 😦')
         .addFields(
             { name: 'Số tiền của bạn', value: tien + '(VND)' },

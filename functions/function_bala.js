@@ -172,6 +172,7 @@ module.exports.tao_phong2 = (bot, message, tiencuocz, f2, f3) => {
 						'Bàn cược: `' + code + '`\n'+
 						'Số lượng người chơi: ' + count + '\n\n' +
 						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + message.author.tag + '`\n'+
+						'Đổi tiền cược: `' + bot.config[message.guild.id].prefix + 'bala bet`\n'+
 						'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n'+
 						'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`')
         .addFields(
@@ -387,6 +388,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	if (winner.length == idz.length) winu = 0;
 	else winu = 1;
 
+	let van_dau_bot = 0;
 	for (var i = 0; i < winner.length; i++){
 		if (winner[i] == bot.user.id){
 			if (result === 'Hòa! 🤝') message.channel.send({ embeds: [embed4] }).catch(error => {
@@ -397,6 +399,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
 				if (error.code !== 50013) {
 					console.error('Lỗi nữaaaaa:', error);
 				}})
+			let van_dau_bot = 1;
 			continue;
 		}
 		var tien = functions.them_tien(bot.info[winner[i]].bala.tien, nhancuoc, "cong");
@@ -416,6 +419,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
 				if (error.code !== 50013) {
 					console.error('Lỗi nữaaaaa:', error);
 				}})
+			let van_dau_bot = 1;
 			continue;
 		}
 		var tien = functions.them_tien(bot.info[lose[i]].bala.tien, trucuoc, "tru");
@@ -425,6 +429,39 @@ module.exports.ba_la_het = async (bot, message, code) => {
 				break;
 			}
 		functions.cap_nhat(bot, tien, diemz, lose[i], winu);
+	}
+
+	//thông báo
+	if (van_dau_bot == 0){
+		let count = 0;
+		let idz = [];
+		for(var k in bot.bala_data[code].p){
+			if (!bot.bala_data[code].p[k].tag) continue;
+			count++;
+			idz.push(bot.bala_data[code].p[k].id);
+		}
+
+		let list = "";
+		for (var i = 0; i < idz.length; i++) list += '<@' + idz[i] + '>, ';
+		list = list.slice(0, list.length - 2);
+		const embed = new MessageEmbed()
+			.setColor('#FBFF08')
+			.setTitle('Ba lá - chơi nhiều người')
+			.setDescription('Ván chơi của <@' + message.author.id + '>\n'+
+							'Bàn cược: `' + code + '`\n'+
+							'Số lượng người chơi: ' + count + '\n\n' +
+							'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + message.author.tag + '`\n'+
+							'Đổi tiền cược: `' + bot.config[message.guild.id].prefix + 'bala bet`\n'+
+							'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n'+
+							'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`')
+			.addFields(
+				{ name: 'Tiền cược', value: tiencuocz + '(VND)' },
+				{ name: 'Danh sách người chơi', value: list + '' },
+			   )
+		message.channel.send({ embeds: [embed] }).catch(error => {
+			if (error.code !== 50013) {
+				console.error('Lỗi nữaaaaa:', error);
+			}})
 	}
 }
 
@@ -463,11 +500,7 @@ module.exports.cap_nhat = (bot, tien, diem, p, thang) => {
 	bot.info[p].bala.cthang += thang;
 	bot.info[p].bala.ba_cao += bacao;
 	bot.info[p].bala.bu += bu;
-	bot.info[p].bala.phong = 0;
-	bot.info[p].bala.chu = 0;
-	bot.info[p].bala.code = ".";
 	bot.info[p].bala.start = 0;
-	bot.info[p].bala.cuoc = ".";
 
 	if (thang == 1){
 		bot.info[p].bala.streak2 += 1;
@@ -654,6 +687,7 @@ module.exports.tham_gia_phong = (bot, message, mention, f2, f3) => {
 						'Bàn cược: `' + code + '`\n'+
 						'Số lượng người chơi: ' + count + '\n\n' +
 						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + mention.tag + '`\n'+
+						'Đổi tiền cược: `' + bot.config[message.guild.id].prefix + 'bala bet`\n'+
 						'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n'+
 						'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`')
         .addFields(
