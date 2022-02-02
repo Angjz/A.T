@@ -173,9 +173,10 @@ module.exports.tao_phong2 = (bot, message, tiencuocz, f2, f3) => {
 						'Bàn cược: `' + code + '`\n'+
 						'Số lượng người chơi: ' + count + '\n\n' +
 						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + message.author.tag + '`\n'+
+						'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`\n' +
+						'Xem bàn: `' + bot.config[message.guild.id].prefix + 'bala table`\n\n' +
 						'Đổi tiền cược: `' + bot.config[message.guild.id].prefix + 'bala bet`\n'+
-						'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n'+
-						'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`')
+						'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n')
         .addFields(
 			{ name: 'Tiền cược', value: tiencuocz + '(VND)' },
 			{ name: 'Danh sách người chơi', value: list + '' },
@@ -468,13 +469,14 @@ module.exports.ba_la_het = async (bot, message, code) => {
 		const embed = new MessageEmbed()
 			.setColor('#FBFF08')
 			.setTitle('Ba lá - chơi nhiều người')
-			.setDescription('Ván chơi của <@' + bot.bala_data[code].chu + '>\n'+
-							'Bàn cược: `' + code + '`\n'+
-							'Số lượng người chơi: ' + count + '\n\n' +
-							'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + bot.bala_data[code].chu_2 + '`\n'+
-							'Đổi tiền cược: `' + bot.config[message.guild.id].prefix + 'bala bet`\n'+
-							'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n'+
-							'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`')
+			.setDescription('Ván chơi của <@' + message.author.id + '>\n'+
+						'Bàn cược: `' + code + '`\n'+
+						'Số lượng người chơi: ' + count + '\n\n' +
+						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + message.author.tag + '`\n'+
+						'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`\n' +
+						'Xem bàn: `' + bot.config[message.guild.id].prefix + 'bala table`\n\n' +
+						'Đổi tiền cược: `' + bot.config[message.guild.id].prefix + 'bala bet`\n'+
+						'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n')
 			.addFields(
 				{ name: 'Tiền cược', value: bot.bala_data[code].cuoc + '(VND)' },
 				{ name: 'Danh sách người chơi', value: list + '' },
@@ -706,13 +708,14 @@ module.exports.tham_gia_phong = (bot, message, mention, f2, f3) => {
 	const embed = new MessageEmbed()
         .setColor('#FBFF08')
         .setTitle('Ba lá - chơi nhiều người')
-        .setDescription('Ván chơi của <@' + mention.id + '>\n'+
+        .setDescription('Ván chơi của <@' + message.author.id + '>\n'+
 						'Bàn cược: `' + code + '`\n'+
 						'Số lượng người chơi: ' + count + '\n\n' +
-						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + mention.tag + '`\n'+
+						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + message.author.tag + '`\n'+
+						'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`\n' +
+						'Xem bàn: `' + bot.config[message.guild.id].prefix + 'bala table`\n\n' +
 						'Đổi tiền cược: `' + bot.config[message.guild.id].prefix + 'bala bet`\n'+
-						'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n'+
-						'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`')
+						'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n')
         .addFields(
 			{ name: 'Tiền cược', value: cuoc + '(VND)' },
 			{ name: 'Danh sách người chơi', value: list + '' },

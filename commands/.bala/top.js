@@ -135,7 +135,7 @@ exports.run = (bot, message, args, f1, f2) => {
         
             const embed4 = new MessageEmbed()
                 .setColor('#FBFF08')
-                .setTitle('Ba lá - bảng xếp hạng chuỗi thắng 🏆')
+                .setTitle('Ba lá - bảng xếp hạng chuỗi thắng cao nhất 🏆')
                 .setDescription('Nhà vô địch:')
                 .addFields(
                     { name: '🥇Top 1', value: bot.info[a[0][1]].ten + '\n' + bot.info[a[0][1]].bala.streak1 + ' ván', inline: true },

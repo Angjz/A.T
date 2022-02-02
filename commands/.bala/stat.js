@@ -20,7 +20,7 @@ exports.run = (bot, message, args, f1, f2) => {
             { name: 'Tỉ lệ thắng', value: rate + '%', inline: true },
             { name: 'Ba cào', value: bot.info[output].bala.ba_cao + '', inline: true },
             { name: 'Bù', value: bot.info[output].bala.bu + '', inline: true },
-            { name: 'Chuỗi thắng', value: bot.info[output].bala.streak1 + ' ván' },
+            { name: 'Chuỗi thắng cao nhất', value: bot.info[output].bala.streak1 + ' ván' },
             { name: 'Tiền', value: bot.info[output].bala.tien + '(VND)' }
         )
     message.channel.send({ embeds:[embed] }).catch(error => {

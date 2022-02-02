@@ -129,12 +129,13 @@ exports.run = (bot, message, args, f1, f2) => {
             .setColor('#FBFF08')
             .setTitle('Ba lá - chơi nhiều người')
             .setDescription('Ván chơi của <@' + message.author.id + '>\n'+
-						    'Bàn cược: `' + code + '`\n'+
-						    'Số lượng người chơi: ' + count + '\n\n' +
-						    'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + message.author.tag + '`\n'+
-                            'Đổi tiền cược: `' + bot.config[message.guild.id].prefix + 'bala bet`\n'+
-						    'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n'+
-						    'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`')
+						'Bàn cược: `' + code + '`\n'+
+						'Số lượng người chơi: ' + count + '\n\n' +
+						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + message.author.tag + '`\n'+
+						'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`\n' +
+						'Xem bàn: `' + bot.config[message.guild.id].prefix + 'bala table`\n\n' +
+						'Đổi tiền cược: `' + bot.config[message.guild.id].prefix + 'bala bet`\n'+
+						'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n')
             .addFields(
 			    { name: 'Tiền cược', value: tiencuocz + '(VND)' },
 			    { name: 'Danh sách người chơi', value: list + '' },
