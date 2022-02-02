@@ -126,6 +126,7 @@ module.exports.tao_phong2 = (bot, message, tiencuocz, f2, f3) => {
 
 	bot.bala_data[code] = {
 		chu: message.author.id,
+		chu_2: message.author.tag,
 		cuoc: tiencuocz,
 		msg: ".",
 		bai: [
@@ -470,7 +471,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
 			.setDescription('Ván chơi của <@' + bot.bala_data[code].chu + '>\n'+
 							'Bàn cược: `' + code + '`\n'+
 							'Số lượng người chơi: ' + count + '\n\n' +
-							'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join <@' + bot.bala_data[code].chu + '>`\n'+
+							'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + bot.bala_data[code].chu_2 + '`\n'+
 							'Đổi tiền cược: `' + bot.config[message.guild.id].prefix + 'bala bet`\n'+
 							'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n'+
 							'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`')
