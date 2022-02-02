@@ -255,7 +255,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
 		bot.bala_data[code].p[i].bai = [];
 		bot.bala_data[code].p[i].xong = 0;
 	}
-	fs.writeFileSync("../data/bala.json", JSON.stringify(bot.bala_data, null, 4), err => {
+	fs.writeFileSync("./data/bala.json", JSON.stringify(bot.bala_data, null, 4), err => {
 		if (err) throw err;
 	});
 

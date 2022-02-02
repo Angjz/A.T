@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const bot = require("../index.js").bot;
+const bot = require("./index.js").bot;
 
 bot.on('guildMemberAdd', member => {
     if (bot.config[member.guild.id].channel != " "){

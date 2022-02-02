@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const functions = require("../../functions/function_bala.js");
+const functions = require("./functions/function_bala.js");
 const fs = require("fs");
 
 exports.run = (bot, message, args, f1, f2) => {

@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-const functions = require("../functions/function_bala.js");
-const shuff = require("../functions/function_general.js");
+const functions = require("./functions/function_bala.js");
+const shuff = require("./functions/function_general.js");
 const hinh = [
     'WUwBBvD', 'X3Vq43o', 'cfmx907', 'JORI4Fn', 'EzSeNuQ', 'xt8tbr6', 'ULlJfdS', 'GlDpdks', 'VTz64jw', 't9RDqEF', '8uLaaqE', 'KmxV0XI', 'nygERi7',
     'kR4QIFU', '4zOJyUv', 'n7T3YaD', 'cYwFNBh', 'zmwK8gU', 'I6C4b1N', 'aMR5bmV', 'hbHLlul', 'o93vK9j', 'TrDf6RK', '2niCLbA', 'jkHU35D', 'nLe12j3',
