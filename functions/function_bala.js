@@ -351,7 +351,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
 		}})
 
 	//chỉnh csdl
-	let msg = await message.channel.messages.fetch(bot.bala_data[code].msg).catch(error => {
+	let msg = await message.channel.messages.fetch(msg_code).catch(error => {
 		if (error.code !== 10008) {
 			console.error('Lỗi nữaaaaa:', error);
 		}
@@ -429,7 +429,8 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	}
 
 	//chỉnh lại phòng
-	bot.bala_data[code].msg = ".",
+	bot.bala_data[bot.bala_data[code].msg].code = 227;
+	bot.bala_data[code].msg = ".";
 	bot.bala_data[code].bai = [
 			0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
 			11, 12, 13, 14, 15, 16, 17, 18, 19,
@@ -437,7 +438,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
 			29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
 			39, 40, 41, 42, 43, 44, 45, 46, 47, 48,
 			49, 50, 51
-		],
+		];
 	bot.bala_data[code].danhsach = [];
 	bot.bala_data[code].sansang = [];
 	for (let i in bot.bala_data[code].p){
@@ -476,10 +477,12 @@ module.exports.ba_la_het = async (bot, message, code) => {
 				{ name: 'Tiền cược', value: bot.bala_data[code].cuoc + '(VND)' },
 				{ name: 'Danh sách người chơi', value: list + '' },
 			   )
-		message.channel.send({ embeds: [embed] }).catch(error => {
-			if (error.code !== 50013) {
-				console.error('Lỗi nữaaaaa:', error);
-			}})
+			setTimeout(function() {
+				message.channel.send({ embeds: [embed] }).catch(error => {
+					if (error.code !== 50013) {
+						console.error('Lỗi nữaaaaa:', error);
+				}})
+            }, 9000)
 	}
 }
 
