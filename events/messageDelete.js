@@ -4,8 +4,9 @@ const f3 = "./data/bala.json";
 
 bot.on('messageDelete', message=>{
     if (!bot.bala_data[message.id]) return;
-    if (!bot.bala_data[message.id].code) return;
+    if (bot.bala_data[message.id].code == 227) return;
 
+    let code = bot.bala_data[message.id].code;
     let chu = bot.bala_data[code].chu;
     let cuoc = bot.bala_data[code].cuoc;
     let danhsach = bot.bala_data[code].danhsach;
