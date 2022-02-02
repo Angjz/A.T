@@ -234,6 +234,7 @@ module.exports.ba_la = (bot, message, code, chu, cuoc, danhsach, sansang, f3) =>
 }
 
 module.exports.ba_la_het = async (bot, message, code) => {
+	if (!bot.bala_data[bot.bala_data[code].msg]) return;
 	if (bot.bala_data[bot.bala_data[code].msg].code == 227) return;
 
 	//lấy đủ bài
