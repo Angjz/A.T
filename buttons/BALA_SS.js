@@ -77,11 +77,13 @@ exports.run = async (bot, interaction, f1, f2) => {
                 .setLabel("SẴN SÀNG")
                 .setStyle("SUCCESS")
         );
-        msg_m.edit({ embeds: [embed2], components: [row] }).catch(error => {
-            if (error.code !== 10008 && error.code !== 50013) {
-                console.error('Lỗi nữaaaaa:', error);
-            }
-        });
+        if (msg_m){
+            msg_m.edit({ embeds: [embed2], components: [row] }).catch(error => {
+                if (error.code !== 10008 && error.code !== 50013 && error.code !== 0 && error.code !== 404) {
+                    console.error('Lỗi nữaaaaa:', error);
+                }
+            });
+        }
         xong = 1;
     } else{
         interaction.reply({ embeds: [embed1], ephemeral: true }).catch(error => {
