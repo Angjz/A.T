@@ -234,7 +234,7 @@ module.exports.ba_la = (bot, message, code, chu, cuoc, danhsach, sansang, f3) =>
 }
 
 module.exports.ba_la_het = async (bot, message, code) => {
-	if (!bot.bala_data[bot.bala_data[code].msg].code) return;
+	if (bot.bala_data[bot.bala_data[code].msg].code == 227) return;
 
 	//lấy đủ bài
 	for(var k in bot.bala_data[code].p){
@@ -429,7 +429,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
 	}
 
 	//chỉnh lại phòng
-	bot.bala_data[bot.bala_data[code].msg] = {};
+	bot.bala_data[bot.bala_data[code].msg].code = 227;
 	bot.bala_data[code].msg = ".";
 	bot.bala_data[code].bai = [
 			0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
