@@ -1,6 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const functions = require("../../functions/function_bala.js");
 const shuff = require("../../functions/function_general.js");
+
 exports.run = (bot, message, args, f1, f2) => {
     if (args[2]) args[2] = args[2].toLowerCase();
     switch(args[2]){

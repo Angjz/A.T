@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const functions = require("../../functions/function_bala.js");
-const f3 = "./data/bala.json";
+const f3 = "../data/bala.json";
 
 exports.run = (bot, message, args, f1, f2) => {
     //embeds

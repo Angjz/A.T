@@ -236,6 +236,29 @@ module.exports.ba_la = (bot, message, code, chu, cuoc, danhsach, sansang, f3) =>
 module.exports.ba_la_het = async (bot, message, code) => {
 	if (!bot.bala_data[code].chu) return;
 
+	//chỉnh lại phòng
+	bot.bala_data[code] = {
+		msg: ".",
+		bai: [
+			0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+			11, 12, 13, 14, 15, 16, 17, 18, 19,
+			20, 21, 22, 23, 24, 25, 26, 27, 28,
+			29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+			39, 40, 41, 42, 43, 44, 45, 46, 47, 48,
+			49, 50, 51
+		],
+		danhsach: [],
+		sansang: []
+	}
+	for (let i in bot.bala_data[code].p){
+		bot.bala_data[code].p[i].diem = 0;
+		bot.bala_data[code].p[i].bai = [];
+		bot.bala_data[code].p[i].xong = 0;
+	}
+	fs.writeFileSync("../data/bala.json", JSON.stringify(bot.bala_data, null, 4), err => {
+		if (err) throw err;
+	});
+
 	//lấy đủ bài
 	for(var k in bot.bala_data[code].p){
 		if (!bot.bala_data[code].p[k].tag) continue;
