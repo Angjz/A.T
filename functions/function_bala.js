@@ -356,10 +356,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
 			console.error('Lỗi nữaaaaa:', error);
 		}
 	});
-	bot.bala_data[code] = {};
-	fs.writeFileSync("./data/bala.json", JSON.stringify(bot.bala_data, null, 4), err => {
-		if (err) throw err;
-	});
+	
 	if (msg)
 	msg.delete().catch(error => {
 		if (error.code !== 10008 && error.code !== 50013) {
@@ -447,10 +444,10 @@ module.exports.ba_la_het = async (bot, message, code) => {
 		const embed = new MessageEmbed()
 			.setColor('#FBFF08')
 			.setTitle('Ba lá - chơi nhiều người')
-			.setDescription('Ván chơi của <@' + message.author.id + '>\n'+
+			.setDescription('Ván chơi của <@' + bot.bala_data[code].chu + '>\n'+
 							'Bàn cược: `' + code + '`\n'+
 							'Số lượng người chơi: ' + count + '\n\n' +
-							'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + message.author.tag + '`\n'+
+							'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join <@' + bot.bala_data[code].chu + '>`\n'+
 							'Đổi tiền cược: `' + bot.config[message.guild.id].prefix + 'bala bet`\n'+
 							'Bắt đầu: `' + bot.config[message.guild.id].prefix + 'bala start`\n'+
 							'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`')
