@@ -16,7 +16,7 @@ bot.on('ready', () =>{
 	console.log("- Danh sách các kênh:");
 	
 	bot.guilds.cache.forEach(guild => {
-		console.log(`${guild.name} | ${guild.id} | ${guild.memberCount} thành viên`);
+		console.log(`${guild.name} | ${guild.id} | ${guild.memberCount} thành viên / ${guild.members.cache.filter((member) => !member.user.bot).size} người / ${guild.members.cache.filter((member) => member.user.bot).size} máy`);
 	})
 
 	bot.api.applications(bot.user.id).commands.post({
