@@ -64,7 +64,7 @@ fs.readdir("./command/.newcomer", (err, files) =>{
   if (jsFiles.length <= 0) return console.log("[QUẢN LÍ NEWCOMER] - Không tìm được lệnh nào.");
 
  jsFiles.forEach(file =>{
-     const fileGet = require(`./commands/.newcomer/${file}`);    
+     const fileGet = require(`./command/.newcomer/${file}`);    
 
       try{
         bot.newcomer.set(file.substring(0, file.length - 3), fileGet);
