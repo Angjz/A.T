@@ -1,7 +1,7 @@
 const bot = require("../index.js").bot;
 const fs = require("fs");
 const f = "./data/bala.json";
-const f2 = "./data/users.json";
+const f2 = "./data/user.json";
 
 bot.on('ready', () =>{	
 	let ts = Date.now();

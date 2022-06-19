@@ -1,7 +1,7 @@
 const bot = require("../index.js").bot;
-const functions = require("../functions/function_newcomer.js");
-const f1 = "./data/guilds.json";
-const f2 = "./data/users.json";
+const functions = require("../function/function_newcomer.js");
+const f1 = "./data/guild.json";
+const f2 = "./data/user.json";
 
 bot.on('messageCreate', async message=>{
     if (message.author.bot) return;

@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const functions = require("../../functions/function_newcomer.js");
+const functions = require("../../function/function_newcomer.js");
 const fs = require("fs");
 
 exports.run = (bot, message, args, f1, f2) => {

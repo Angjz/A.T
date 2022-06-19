@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const bot = require("../index.js").bot;
-const functions = require("../functions/function_general.js");
-const f1 = "./data/guilds.json";
+const functions = require("../function/function_general.js");
+const f1 = "./data/guild.json";
 
 bot.on('guildCreate', guild => {
     functions.set_default(bot, guild.name, guild.id, f1);

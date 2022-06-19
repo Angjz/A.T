@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const bot = require("../index.js").bot;
-const f1 = "./data/guilds.json";
-const f2 = "./data/users.json";
+const f1 = "./data/guild.json";
+const f2 = "./data/user.json";
 
 bot.on('interactionCreate', async interaction=>{
 	if (interaction.isCommand()){
