@@ -13,8 +13,6 @@ exports.run = (bot, message, args, f1, f2) => {
 	let mMem = message.guild.memberCount;
 	let hMem = message.guild.members.cache.filter((member) => !member.user.bot).size;
 	let bMem = message.guild.members.cache.filter((member) => member.user.bot).size;
-	let xacNhan = "Chưa xác nhận";
-	if (message.guild.verified) xacNhan = "Đã xác nhận";
 
 	const embed = new MessageEmbed()
 		.setColor('#B2FF33') //xanh chuoi
