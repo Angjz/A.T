@@ -472,7 +472,7 @@ module.exports.ba_la_het = async (bot, message, code) => {
 			.setDescription('Ván chơi của <@' + bot.bala_data[code].chu + '>\n'+
 						'Bàn cược: `' + code + '`\n'+
 						'Số lượng người chơi: ' + count + '\n\n' +
-						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join <@' + bot.bala_data[code].chu_2 + '>`\n'+
+						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + bot.bala_data[code].chu_2 + '`\n'+
 						'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`\n' +
 						'Xem bàn: `' + bot.config[message.guild.id].prefix + 'bala table`\n\n' +
 						'Đổi tiền cược: `' + bot.config[message.guild.id].prefix + 'bala bet`\n'+
