@@ -2,6 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const functions = require("../../function/function_bala.js");
 const fs = require("fs");
 const f3 = "./data/bala.json";
+const f4 = "./data/user.json";
 
 exports.run = (bot, message, args, f1, f2) => {
     let tien = bot.info[message.author.id].bala.tien;
@@ -110,6 +111,10 @@ exports.run = (bot, message, args, f1, f2) => {
         let code = bot.info[message.author.id].bala.code;
         bot.bala_data[code].cuoc = tiencuocz;
         fs.writeFileSync(f3, JSON.stringify(bot.bala_data, null, 4), err => {
+            if (err) throw err;
+        });
+        bot.info[message.author.id].bala.cuoc = tiencuocz;
+        fs.writeFileSync(f4, JSON.stringify(bot.info, null, 4), err => {
             if (err) throw err;
         });
 

@@ -469,10 +469,10 @@ module.exports.ba_la_het = async (bot, message, code) => {
 		const embed = new MessageEmbed()
 			.setColor('#FBFF08')
 			.setTitle('Ba lá - chơi nhiều người')
-			.setDescription('Ván chơi của <@' + message.author.id + '>\n'+
+			.setDescription('Ván chơi của <@' + bot.bala_data[code].chu + '>\n'+
 						'Bàn cược: `' + code + '`\n'+
 						'Số lượng người chơi: ' + count + '\n\n' +
-						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join @' + message.author.tag + '`\n'+
+						'Tham gia: `' + bot.config[message.guild.id].prefix + 'bala join <@' + bot.bala_data[code].chu_2 + '>`\n'+
 						'Thoát bàn: `' + bot.config[message.guild.id].prefix + 'bala quit`\n' +
 						'Xem bàn: `' + bot.config[message.guild.id].prefix + 'bala table`\n\n' +
 						'Đổi tiền cược: `' + bot.config[message.guild.id].prefix + 'bala bet`\n'+
