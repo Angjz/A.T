@@ -8,19 +8,11 @@ exports.run = (bot, message, args, f1, f2) => {
 		.addFields(
 			{ name: 'Sử dụng', value: bot.config[message.guild.id].prefix + 'avatar @<ai đó>', inline: true },
 			{ name: 'Ví dụ', value: bot.config[message.guild.id].prefix + 'avatar @Ang', inline: true },
-			{ name: 'Hình đại diện hội', value: bot.config[message.guild.id].prefix + 'avatar guild', inline: true },
 		)
 
 	let user = message.mentions.users.first();
 	if (!args[1]){
 		message.channel.send({ embeds: [embed] }).catch(error => {
-			if (error.code !== 50013) {
-				console.error('Lỗi nữaaaaa:', error);
-			}})
-		return;
-	}
-	if (args[1] == "guild"){
-		message.channel.send({ content:"Đây là hình đại diện của hội `" + message.guild.name + "`:\n" + message.guild.iconURL() }).catch(error => {
 			if (error.code !== 50013) {
 				console.error('Lỗi nữaaaaa:', error);
 			}})
@@ -33,7 +25,10 @@ exports.run = (bot, message, args, f1, f2) => {
 			}})
 		return;
 	}
-	message.channel.send({ content:"Đây là hình đại diện của `" + user.tag + "`:\n" + user.displayAvatarURL() }).catch(error => {
+	let avatar = user.displayAvatarURL();
+	avatar = avatar.slice(0, (avatar.length - 4));
+	avatar = avatar + "png";
+	message.channel.send({ content:"Đây là hình đại diện của `" + user.tag + "`:\n" + avatar }).catch(error => {
 		if (error.code !== 50013) {
 			console.error('Lỗi nữaaaaa:', error);
 		}})
