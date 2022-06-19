@@ -3,8 +3,8 @@ const intents = new Discord.Intents(32767);
 const bot = new Discord.Client({ intents });
 
 const fs = require("fs");
-const config = require("./data/guilds.json");
-const info = require("./data/users.json");
+const config = require("./data/guild.json");
+const info = require("./data/user.json");
 const bala_data = require("./data/bala.json");
 const tokem = require("./data/token.json");
 
@@ -20,14 +20,14 @@ bot.info = info;
 bot.bala_data = bala_data;
 
 //event handler 
-fs.readdir("./events/", (err, files) =>{
+fs.readdir("./event/", (err, files) =>{
    if (err) throw err;
 
    var jsFiles = files.filter(f => f.split(".").pop() === "js");
    if (jsFiles.length <= 0) return console.log("[QUẢN LÍ SỰ KIỆN] - Không tìm được sự kiện nào.");
 
   jsFiles.forEach(file =>{
-      const eventGet = require(`./events/${file}`);
+      const eventGet = require(`./event/${file}`);
       console.log(`[QUẢN LÍ SỰ KIỆN] - File ${file} đã được nạp.`);
 
        try{
@@ -39,14 +39,14 @@ fs.readdir("./events/", (err, files) =>{
 });
 
 //command handler
-fs.readdir("./commands/", (err, files) =>{
+fs.readdir("./command/", (err, files) =>{
   if (err) throw err;
 
    var jsFiles = files.filter(f => f.split(".").pop() === "js");
    if (jsFiles.length <= 0) return console.log("[QUẢN LÍ LỆNH] - Không tìm được lệnh nào.")
 
   jsFiles.forEach(file =>{
-      const fileGet = require(`./commands/${file}`);
+      const fileGet = require(`./command/${file}`);
       console.log(`[QUẢN LÍ LỆNH] - File ${file} đã được nạp.`);
        try{
          bot.commands.set(file.substring(0, file.length - 3), fileGet);
@@ -57,7 +57,7 @@ fs.readdir("./commands/", (err, files) =>{
 });
 
 //newcomer
-fs.readdir("./commands/.newcomer", (err, files) =>{
+fs.readdir("./command/.newcomer", (err, files) =>{
   if (err) throw err;
 
   var jsFiles = files.filter(f => f.split(".").pop() === "js");
@@ -75,15 +75,15 @@ fs.readdir("./commands/.newcomer", (err, files) =>{
   })
 });
 
-//buttons
-fs.readdir("./buttons", (err, files) =>{
+//button
+fs.readdir("./button", (err, files) =>{
   if (err) throw err;
 
   var jsFiles = files.filter(f => f.split(".").pop() === "js");
   if (jsFiles.length <= 0) return console.log("[QUẢN LÍ NÚT] - Không tìm được lệnh nào.");
 
  jsFiles.forEach(file =>{
-     const fileGet = require(`./buttons/${file}`);    
+     const fileGet = require(`./button/${file}`);    
 
       try{
         bot.buttons.set(file.substring(0, file.length - 3), fileGet);
@@ -95,14 +95,14 @@ fs.readdir("./buttons", (err, files) =>{
 });
 
 //bala
-fs.readdir("./commands/.bala", (err, files) =>{
+fs.readdir("./command/.bala", (err, files) =>{
   if (err) throw err;
 
   var jsFiles = files.filter(f => f.split(".").pop() === "js");
   if (jsFiles.length <= 0) return console.log("[QUẢN LÍ BALA] - Không tìm được lệnh nào.");
 
  jsFiles.forEach(file =>{
-     const fileGet = require(`./commands/.bala/${file}`);    
+     const fileGet = require(`./command/.bala/${file}`);    
 
       try{
         bot.bala.set(file.substring(0, file.length - 3), fileGet);
