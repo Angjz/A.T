@@ -535,7 +535,7 @@ module.exports.cap_nhat = (bot, tien, diem, p, thang) => {
 		if (bot.info[p].bala.streak1 < bot.info[p].bala.streak2) bot.info[p].bala.streak1 = bot.info[p].bala.streak2;
 		bot.info[p].bala.streak2 = 0;
 	}
-	fs.writeFileSync("./data/users.json", JSON.stringify(bot.info, null, 4), err => {
+	fs.writeFileSync("./data/user.json", JSON.stringify(bot.info, null, 4), err => {
 		if (err) throw err;
 	});
 }
