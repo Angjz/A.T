@@ -42,5 +42,5 @@ bot.on('ready', () =>{
 		});
 	}
 
-	bot.user.setActivity("Xin chào thế giới! 😄", { type: 'PLAYING' });
+	bot.user.setActivity("Xin chào thế giới! 😄\n\nMã nguồn của tôi: https://github.com/Angjz/A.T", { type: 'PLAYING' });
 })
