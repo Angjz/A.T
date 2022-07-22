@@ -7,6 +7,8 @@ bot.on('messageCreate', async message=>{
     if (message.author.bot) return;
 	if (message.content.includes("@here") || message.content.includes("@everyone")) return;
 
+    bot.user.setActivity("Xin chào thế giới! 😄", { type: 'PLAYING' });
+
     //update datas
     functions.update_newcomer(bot, message, f1);
 
