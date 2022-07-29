@@ -10,11 +10,11 @@ bot.on('messageCreate', async message=>{
     if (message.author.bot) return;
 
     //mention
-    if (message.content.includes("@")){
-        if (message.mentions.has(bot.user.id)) message.channel.send({ content: 'Người máy vui vẻ A.T luôn sẵn sàng!\nDùng: `' + bot.config[message.guild.id].prefix + 'help` để xem các lệnh của tôi nhé~' }).catch(error => {
-            if (error.code !== 50013) {
-                console.error('Lỗi nữaaaaa:', error);
-            }})
+    if (message.content.includes("@A.T#1910")){
+        message.channel.send({ content: 'Người máy vui vẻ A.T luôn sẵn sàng!\nDùng: `' + bot.config[message.guild.id].prefix + 'help` để xem các lệnh của tôi nhé~' }).catch(error => {
+        if (error.code !== 50013) {
+            console.error('Lỗi nữaaaaa:', error);
+        }})
     } else return;
 
     //no bot channel (newcomer)
